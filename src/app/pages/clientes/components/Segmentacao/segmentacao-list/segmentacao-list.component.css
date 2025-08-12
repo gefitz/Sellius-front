@@ -1,0 +1,31 @@
+.container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  color: #333;
+}
+
+
+
+.mat-column-btnEditar {
+  width: 60px;
+  text-align: center;
+}
+
+/* .mat-column-fAtivo {
+  width: 100px;
+}
+
+.mat-column-dthCriacao,
+.mat-column-dthAlteracao {
+  width: 150px;
+} */

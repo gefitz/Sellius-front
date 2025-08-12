@@ -1,0 +1,45 @@
+mat-form-field{
+  width: 20vw;
+  margin: 5px;
+}
+form{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.container-btn{
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão para esquerda */
+  margin-right: 2rem;
+}
+button{
+  margin: 5px;
+}
+.btn-cadastro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px; /* espaçamento entre texto e ícone */
+}
+
+.icone-direita {
+  order: 2;
+}
+
+.texto-botao {
+  order: 1;
+}
+@media(max-width:770px){
+  mat-form-field{
+    width: 60vw;
+  }
+  .btn-cadastro{
+    padding: 15px;
+  }
+  .container-btn{
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+  }
+}

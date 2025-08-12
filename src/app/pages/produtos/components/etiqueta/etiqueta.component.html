@@ -1,0 +1,14 @@
+<h2 mat-dialog-title class="acoes-nao-imprimir">Etiqueta do Produto</h2>
+
+<div class="etiqueta-dialog">
+  <div class="etiqueta">
+    <h3>{{ dados.nomeProduto }}</h3>
+    <p><strong>Código:</strong> {{ dados.codigo }}</p>
+    <p><strong>Preço:</strong> R$ {{ dados.preco}}</p>
+  </div>
+
+  <div class="acoes-nao-imprimir">
+    <button mat-button color="primary" (click)="imprimir()">Imprimir</button>
+    <button mat-button (click)="fechar()">Fechar</button>
+  </div>
+</div>

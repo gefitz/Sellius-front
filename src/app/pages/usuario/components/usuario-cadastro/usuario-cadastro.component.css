@@ -1,0 +1,33 @@
+mat-form-field{
+  width: 20vw;
+  margin: 5px;
+}
+form{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+.container-btn{
+  width: 100%; /* Botão ocupa uma linha inteira */
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão para esquerda */
+  margin-right: 2rem;
+}
+button{
+  margin: 5px;
+}
+@media(max-width:770px){
+  mat-form-field{
+    width: 60vw;
+  }
+  .btn-cadastro{
+    padding: 15px;
+  }
+  .container-btn{
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+  }
+}

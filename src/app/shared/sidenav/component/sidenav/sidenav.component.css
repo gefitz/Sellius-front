@@ -1,0 +1,51 @@
+.sidenav-container {
+  height: calc(100% - 65px);
+}
+
+.sidenav {
+  width: 220px;
+  background: #3b7eb9;
+  border-top-right-radius: 2px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #3b7eb9;
+}
+
+.container {
+  padding: 20px;
+}
+.mat-icon-nav-list {
+  margin-right: 8px;
+}
+.menu-expansion {
+  background-color: transparent;
+  box-shadow: none !important;
+}
+.mat-icon-nav-list{
+  position: relative;
+  top: 5px;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+span, mat-icon {
+  color: white;
+}
+.espaco{
+  flex: 1 1 auto;
+}
+@media (width:769px) {
+  .sidenav {
+    width: calc(100% - 200px);
+  }
+}
+

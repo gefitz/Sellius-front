@@ -1,0 +1,37 @@
+.container-form{
+  margin-top: 15px;
+}
+.form-control{
+  margin: 5px;
+  width: 20vw;
+}
+table {
+  width: 100%;
+}
+.table-responsivo{
+  overflow-x: auto;
+  width: 100%;
+  display: block;
+}
+.container-table{
+  display: flex;
+  gap:8px;
+  width: 100%;
+  align-items: center;
+  margin: 5px;
+}
+.btn-Voltar{
+  margin: 5px;
+}
+
+@media(max-width:1024px){
+  .container-table{
+    display: block;
+  }
+}
+@media(max-width: 770px){
+
+  .form-control{
+    width:60vw;
+  }
+}

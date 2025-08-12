@@ -1,0 +1,54 @@
+/* .container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-row:hover {
+  background-color: #f5f5f5;
+}
+
+.ativo {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.inativo {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.mat-column-btnEditar {
+  width: 60px;
+  text-align: center;
+}
+
+.mat-column-fAtivo {
+  width: 100px;
+}
+
+.mat-column-dthCriacao,
+.mat-column-dthAlteracao {
+  width: 150px;
+} */

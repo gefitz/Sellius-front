@@ -1,0 +1,16 @@
+<h3>Entrar no sistema</h3>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-form-field>
+    <mat-label for="email">E-mail</mat-label>
+    <input type="email" formControlName="email" matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="password">Senha</mat-label>
+    <input type="password" formControlName="password" matInput>
+  </mat-form-field>
+  <div class="div-btn">
+
+    <button mat-raised-button routerLink="/Cadastro" type="button">Cadastrar-se</button>
+    <button mat-flat-button color="primary">Entrar</button>
+  </div>
+</form>

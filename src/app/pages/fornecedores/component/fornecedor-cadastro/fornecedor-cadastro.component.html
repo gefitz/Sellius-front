@@ -1,0 +1,69 @@
+<mat-dialog-content>
+  <div class="header">
+
+    <h5>{{titulo}}</h5>
+    <span class="space"></span>
+    <button mat-icon-button [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="fornecedorForm">
+    <mat-form-field class="form-control">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>CNPJ</mat-label>
+      <input matInput formControlName="cnpj" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>Telefone</mat-label>
+      <input matInput formControlName="telefone" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label>CEP</mat-label>
+      <input matInput formControlName="cep" required (change)="buscarCep()">
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label>Rua, Numero</mat-label>
+      <input matInput formControlName="rua" required>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label>Estado:</mat-label>
+      <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
+        <mat-option *ngFor="let estado of lisEstados" [value]="estado.id">
+          {{ estado.estado }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label>Cidade</mat-label>
+      <mat-select formControlName="cidadeId" required>
+        <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">
+          {{ cidade.cidade }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>Complemento</mat-label>
+      <input matInput formControlName="complemento">
+    </mat-form-field>
+    <div>
+
+      <div class="button-container">
+        <button mat-raised-button [mat-dialog-close]>
+          Fechar
+        </button>
+        <button mat-flat-button type="button" color="primary" (click)="onSubmit()">Salvar</button>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>

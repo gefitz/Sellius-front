@@ -1,0 +1,44 @@
+<mat-dialog-content>
+  <div class="header">
+
+    <h5>Pesquisar Produto</h5>
+    <span class="space"></span>
+    <button mat-icon-button [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div>
+
+    <form [formGroup]="produtoForm">
+      <mat-form-field class="form-control">
+        <mat-label for="nome">
+          Nome:
+        </mat-label>
+        <input type="text" matInput formControlName="nome">
+      </mat-form-field >
+      <mat-form-field class="form-control">
+        <mat-label for="tipoProduto">
+          Tipo Produto:
+        </mat-label>
+        <mat-select formControlName="tipoProduto">
+        </mat-select>
+      </mat-form-field >
+
+      <mat-form-field class="form-control">
+        <mat-label for="marca">
+          Marca:
+        </mat-label>
+        <mat-select formControlName="marca"></mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="fAtivo">
+          Status:
+        </mat-label>
+        <mat-select formControlName="fAtivo"></mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-flat-button type="button" color="primary" [mat-dialog-close]="produtoForm.value">Pesquisar</button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

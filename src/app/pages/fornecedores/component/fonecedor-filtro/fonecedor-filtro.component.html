@@ -1,0 +1,38 @@
+<mat-dialog-content>
+  <div class="header">
+    <h5>Pesquisar Fornecedor</h5>
+    <span class="space"></span>
+    <button mat-icon-button [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="filtroForm">
+    <mat-form-field class="form-control">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>CNPJ</mat-label>
+      <input matInput formControlName="cnpj" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>Estado:</mat-label>
+      <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
+        <mat-option *ngFor="let estado of lisEstados" [value]="estado.id">
+          {{ estado.estado }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>Cidade</mat-label>
+      <mat-select formControlName="cidadeId" required>
+        <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">
+          {{ cidade.cidade }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>

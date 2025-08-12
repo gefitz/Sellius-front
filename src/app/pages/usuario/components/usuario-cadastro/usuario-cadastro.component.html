@@ -1,0 +1,56 @@
+<form [formGroup]="formUsuario">
+
+  <mat-form-field>
+    <mat-label for="nome">Nome: </mat-label>
+    <input type="text" matInput formControlName="nome">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="documento">CPF: </mat-label>
+    <input type="text" matInput formControlName="documento">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="cep">CEP: </mat-label>
+    <input type="text" matInput formControlName="cep" (change)="buscarCep()">
+  </mat-form-field>
+  <mat-form-field class="form-control">
+    <mat-label for="estado">Estado: </mat-label>
+    <mat-select formControlName="estado" (selectionChange)="buscarCidades($event.value)">
+      <mat-option *ngFor="let estado of listEstados" [value]="estado.id">{{estado.estado}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-control">
+    <mat-label for="cidadeId">Cidade: </mat-label>
+    <mat-select formControlName="cidadeId">
+      <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">{{cidade.cidade}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="rua">Rua: </mat-label>
+    <input type="text" matInput formControlName="rua">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="email">E-mail: </mat-label>
+    <input type="email" matInput formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="password">Senha: </mat-label>
+    <input type="password" matInput formControlName="password">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="confirmaPassword">Confirma Senha: </mat-label>
+    <input type="password" matInput formControlName="confirmaPassword">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="tipoUsuario">Tipo Usuario: </mat-label>
+    <mat-select formControlName="tipoUsuario" #tipoUsuario>
+      <mat-option *ngFor="let tipoUsuario  of listaTipoUsuario"
+        [value]="tipoUsuario.key">{{tipoUsuario.value}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <input type="text" matInput formControlName="id" hidden>
+  <div class="container-btn" *ngIf="!telaCadastroEmpresa">
+    <button mat-raised-button type="button" routerLink="/Login" class="btn-voltar"><mat-icon>arrow_back</mat-icon>
+      Voltar</button>
+    <button mat-flat-button color="primary" (click)="submitCadastro()" class="btn-cadastro">Cadastrar-seaa</button>
+  </div>
+</form>

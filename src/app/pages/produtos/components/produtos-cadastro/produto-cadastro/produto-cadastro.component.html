@@ -1,0 +1,62 @@
+<button mat-raised-button class="btn-Voltar" routerLink="/Produto">
+  <mat-icon>arrow_back</mat-icon>
+  Voltar
+</button>
+<form [formGroup]="produtoForm" (ngSubmit)="salvarProduto()" class="form-group">
+
+  <div>
+    <input type="number" matInput formControlName="id" hidden>
+    <mat-form-field class="form-control">
+      <mat-label for="Nome">Nome: </mat-label>
+      <input type="text" matInput formControlName="Nome">
+      <mat-error>O nome do produto e obrigatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label for="TipoProduto">Tipo de Produto: </mat-label>
+      <mat-select formControlName="tipoProduto">
+        <mat-option *ngFor="let item of tpProduto" [value]="item.id">{{item.tipo}}</mat-option>
+      </mat-select>
+      <mat-error>O tipo do produto e obrigatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label for="Marca">Marca Produto: </mat-label>
+      <mat-select formControlName="marca">
+        <mat-option *ngFor="let item of fornecedores" [value]="item.id">{{item.nome}}</mat-option>
+      </mat-select>
+      <mat-error>O tipo do produto e obrigatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label for="fAtivo">Status do Produto: </mat-label>
+      <mat-select formControlName="fAtivo">
+        <mat-option [value]="1">Ativo</mat-option>
+        <mat-option [value]="0">Inativo</mat-option>
+      </mat-select>
+      <mat-error>O tipo do produto e obrigatorio</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="form-control">
+      <mat-label for="qtd">Quantidade em Estoque: </mat-label>
+      <input type="number" matInput formControlName="qtd">
+      <mat-error>A quantidade e obrigatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+      <mat-label for="valor">Valor Unitario do Produto: </mat-label>
+      <input type="number" matInput formControlName="valor">
+      <mat-error>A quantidade e obrigatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label for="dthCriacao">Data Cadastro: </mat-label>
+      <input type="date" [readonly]="true" matInput formControlName="dthCriacao" />
+
+    </mat-form-field>
+  </div>
+  <mat-form-field class="form-control text-area">
+    <mat-label for="descricao">Descricao: </mat-label>
+    <textarea formControlName="descricao" matInput></textarea>
+  </mat-form-field>
+  <div>
+    <button mat-flat-button type="submit" [disabled]="!produtoForm.valid" color="primary"> Salvar</button>
+  </div>
+</form>

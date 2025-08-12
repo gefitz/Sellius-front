@@ -1,0 +1,21 @@
+.form-control{
+  margin: 5px;
+  width: 12vw;
+
+}
+@media(max-width: 770px){
+  .form-control{
+    width:60vw;
+  }
+}
+.space{
+  flex:1 1 auto;
+}
+.header{
+  display: flex;
+}
+.button-container{
+  display: flex;
+  margin-left: 5px;
+  float: right;
+}

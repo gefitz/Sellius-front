@@ -1,0 +1,68 @@
+<mat-dialog-content>
+  <div class="header">
+    <h3 class="titulo">{{titleModal}}</h3>
+    <span class="space"></span>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="clienteForm" (ngSubmit)="salvarCliente()" class="form-group">
+    <div class="container-form">
+      <mat-form-field class="form-control">
+        <mat-label for="nome">Nome Cliente: </mat-label>
+        <input matInput type="text" formControlName='nome'>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="razao">Razão Social: </mat-label>
+        <input matInput type="text" formControlName='razao'>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="cpf_cnpj">CPF / CNPJ: </mat-label>
+        <input matInput type="text" formControlName='cpf_cnpj'>
+      </mat-form-field>
+
+      <mat-form-field class="form-control">
+        <mat-label for="telefone">Telefone: </mat-label>
+        <input matInput type="text" formControlName='telefone'>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="email">E-mail: </mat-label>
+        <input matInput type="text" formControlName='email'>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="cep">CEP: </mat-label>
+        <input type="text" matInput formControlName="cep">
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label>Estado: </mat-label>
+        <mat-select>
+          <mat-option value="1">Parana</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="cidade">Cidade: </mat-label>
+        <mat-select formControlName="cidade">
+          <mat-option *ngFor="let c of cidade" [value]="c">{{c.cidade}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="rua">Endereço: </mat-label>
+        <input type="text" matInput formControlName="rua">
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="fAtivo">Status: </mat-label>
+        <mat-select formControlName="fAtivo">
+          <mat-option value="1">Ativo</mat-option>
+          <mat-option value="0">Inativo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="div-btn-modal">
+      <button mat-raised-button class="btn-Voltar" (click)="close()">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+      </button>
+      <button mat-flat-button type="submit" [disabled]="!clienteForm.valid" color="primary"> Salvar</button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,5 @@
+<mat-dialog-content>
+  <h5>Deseja realmente inativar o cliente: {{cliente.nome}}</h5>
+  <button mat-flat-button type="button" [mat-dialog-close]="false" color="primary">Não</button>
+  <button mat-flat-button type="button" color="warn" [mat-dialog-close]="true">Sim</button>
+</mat-dialog-content>

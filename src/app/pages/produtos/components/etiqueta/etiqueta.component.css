@@ -1,0 +1,35 @@
+.etiqueta-dialog {
+  padding: 20px;
+  text-align: center;
+}
+
+.etiqueta {
+  border: 2px dashed #333;
+  padding: 16px;
+  display: inline-block;
+  width: 300px;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .mat-dialog-container, .mat-dialog-container * {
+    visibility: visible;
+  }
+
+  .mat-dialog-container {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  .acoes-nao-imprimir {
+    display: none;
+  }
+}
