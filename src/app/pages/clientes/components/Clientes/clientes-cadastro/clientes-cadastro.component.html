@@ -17,8 +17,8 @@
         <input matInput type="text" formControlName='razao'>
       </mat-form-field>
       <mat-form-field class="form-control">
-        <mat-label for="cpf_cnpj">CPF / CNPJ: </mat-label>
-        <input matInput type="text" formControlName='cpf_cnpj'>
+        <mat-label for="documento">CPF / CNPJ: </mat-label>
+        <input matInput type="text" formControlName='documento'>
       </mat-form-field>
 
       <mat-form-field class="form-control">
@@ -31,18 +31,18 @@
       </mat-form-field>
       <mat-form-field class="form-control">
         <mat-label for="cep">CEP: </mat-label>
-        <input type="text" matInput formControlName="cep">
+        <input type="text" matInput formControlName="cep" (change)="buscarCep()">
       </mat-form-field>
       <mat-form-field class="form-control">
-        <mat-label>Estado: </mat-label>
-        <mat-select>
-          <mat-option value="1">Parana</mat-option>
+        <mat-label for="estado">Estado: </mat-label>
+        <mat-select type="text" formControlName="estado" (selectionChange)="buscarCidades($event.value)">
+          <mat-option *ngFor="let estado of estado" [value]="estado.id">{{estado.estado}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-control">
-        <mat-label for="cidade">Cidade: </mat-label>
-        <mat-select formControlName="cidade">
-          <mat-option *ngFor="let c of cidade" [value]="c">{{c.cidade}}</mat-option>
+        <mat-label for="cidadeId">Cidade: </mat-label>
+        <mat-select formControlName="cidadeId">
+          <mat-option *ngFor="let c of cidade" [value]="c.id">{{c.cidade}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-control">
@@ -50,10 +50,26 @@
         <input type="text" matInput formControlName="rua">
       </mat-form-field>
       <mat-form-field class="form-control">
+        <mat-label for="bairro">Bairro: </mat-label>
+        <input type="text" matInput formControlName="bairro">
+      </mat-form-field>
+      <mat-form-field class="form-control">
         <mat-label for="fAtivo">Status: </mat-label>
         <mat-select formControlName="fAtivo">
           <mat-option value="1">Ativo</mat-option>
           <mat-option value="0">Inativo</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="idSegmentacao">Segmentação: </mat-label>
+        <mat-select formControlName="idSegmentacao">
+          <mat-option *ngFor="let s of segmentacao" [value]="s.id">{{s.segmento}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label for="idGrupo">Grupo: </mat-label>
+        <mat-select formControlName="idGrupo">
+          <mat-option *ngFor="let g of grupo" [value]="g.id">{{g.nome}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

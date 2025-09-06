@@ -4,13 +4,17 @@ export interface ClienteModel {
   id: number;
   nome: string;
   razao: string;
-  cpf_cnpj: string;
+  documento: string;
   telefone: string;
   email: string;
-  cidade: CidadeModel;
+  cidadeId: CidadeModel;
   rua: string;
   cep: string;
   fAtivo: number;
   dthCadastro: Date;
   dthAlteracao: Date;
+  idSegmentacao: number;
+  idGrupo: number;
+  idEstado: number;
+  bairro: string;
 }

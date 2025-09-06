@@ -35,11 +35,9 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
     'nome',
     'razao',
     'cpf_cnpj',
-    'telefone',
-    'email',
-    'cep',
     'cidade',
     'rua',
+    'segmento',
     'dthCadastro',
     'dthAlteracao',
   ];
@@ -114,6 +112,7 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
     this.clienteService.listarClientes(this.paginacaoCliente).subscribe({
       next: (ret) => {
         this.paginacaoCliente = ret;
+        console.log(this.paginacaoCliente.dados);
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<ClienteTabela>(
           this.paginacaoCliente.dados

@@ -64,22 +64,6 @@ export class PedidoNovoComponent {
   );
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  cliente: ClienteModel[] = [
-    {
-      id: 0,
-      nome: 'string',
-      razao: 'string',
-      cpf_cnpj: 'string',
-      telefone: 'string',
-      email: 'string',
-      cidade: cidade,
-      rua: 'string',
-      cep: 'string',
-      fAtivo: 1,
-      dthCadastro: new Date(),
-      dthAlteracao: new Date(),
-    },
-  ];
   constructor(private dialog: MatDialog) {
     this.pedidoForm = new FormGroup({
       id: new FormControl(''),

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -17,6 +17,12 @@ import { CommonModule } from '@angular/common';
 import { ClienteService } from '../../../services/cliente.service';
 import { SharedModule } from '../../../../../core/services/Module/shared.module';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SegmentacaoModel } from '../../../models/segmentacao.model';
+import { GrupoModel } from '../../../models/grupo.model';
+import { SegmentacaoService } from '../../../services/segmentacao.service';
+import { GrupoService } from '../../../services/grupo.service';
+import { ConsumirApi } from '../../../../../core/services/Utils/consome-api.serivce';
+import { EstadoModel } from '../../../../../core/model/estado.model';
 
 @Component({
   selector: 'app-clientes-cadastro',
@@ -25,18 +31,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './clientes-cadastro.component.html',
   styleUrl: './clientes-cadastro.component.css',
 })
-export class ClientesCadastroComponent {
-  cidade: CidadeModel[] = [
-    {
-      id: 1,
-      cidade: 'Colombo',
-      estado: {
-        estado: 'Parana',
-        sigla: 'PR',
-        id: 1,
-      },
-    },
-  ];
+export class ClientesCadastroComponent implements OnInit {
+  cidade: CidadeModel[] = [];
+  segmentacao: SegmentacaoModel[] = [];
+  grupo: GrupoModel[] = [];
+  estado: EstadoModel[] = [];
   titleModal: string = '';
   clienteForm: FormGroup = undefined!;
   editando: boolean = false;
@@ -44,14 +43,20 @@ export class ClientesCadastroComponent {
   constructor(
     private clienteService: ClienteService,
     private dialogRef: MatDialogRef<ClientesCadastroComponent>,
-    @Inject(MAT_DIALOG_DATA) public clienteEditar: ClienteModel
+    @Inject(MAT_DIALOG_DATA) public clienteEditar: ClienteModel,
+    private segmentacaoService: SegmentacaoService,
+    private grupoService: GrupoService
   ) {
     this.preencherCamposFormulario(clienteEditar);
     if (clienteEditar) {
       this.editando = true;
     }
   }
-
+  ngOnInit(): void {
+    this.preencherSegmentacao();
+    this.preencherGrupo();
+    this.carregaEstado();
+  }
   salvarCliente() {
     if (this.clienteForm.valid) {
       const cliente: ClienteModel = this.clienteForm.value;
@@ -74,18 +79,25 @@ export class ClientesCadastroComponent {
         id: new FormControl(clienteEditar.id),
         nome: new FormControl(clienteEditar.nome, Validators.required),
         razao: new FormControl(clienteEditar.razao, Validators.required),
-        cpf_cnpj: new FormControl(clienteEditar.cpf_cnpj, Validators.required),
+        documento: new FormControl(
+          clienteEditar.documento,
+          Validators.required
+        ),
         telefone: new FormControl(clienteEditar.telefone, Validators.required),
         email: new FormControl(clienteEditar.email, [
           Validators.required,
           Validators.email,
         ]),
-        cidade: new FormControl(clienteEditar.cidade, Validators.required),
+        estado: new FormControl(clienteEditar.idEstado),
+        cidadeId: new FormControl(clienteEditar.cidadeId, Validators.required),
         rua: new FormControl(clienteEditar.rua, Validators.required),
         cep: new FormControl(clienteEditar.cep, Validators.required),
         fAtivo: new FormControl(clienteEditar.fAtivo, Validators.required),
         dthCadastro: new FormControl(clienteEditar.dthCadastro),
         dthAlteracao: new FormControl(clienteEditar.dthAlteracao),
+        idSegmentacao: new FormControl(clienteEditar.idSegmentacao),
+        idGrupo: new FormControl(clienteEditar.idGrupo),
+        bairro: new FormControl(clienteEditar.bairro),
       });
     } else {
       this.titleModal = 'Novo Cliente';
@@ -93,19 +105,72 @@ export class ClientesCadastroComponent {
         id: new FormControl(0),
         nome: new FormControl('', Validators.required),
         razao: new FormControl('', Validators.required),
-        cpf_cnpj: new FormControl('', Validators.required),
+        documento: new FormControl('', Validators.required),
         telefone: new FormControl('', Validators.required),
         email: new FormControl('', [Validators.required, Validators.email]),
-        cidade: new FormControl(null, Validators.required),
+        estado: new FormControl(0),
+        cidadeId: new FormControl(0, Validators.required),
         rua: new FormControl('', Validators.required),
         cep: new FormControl('', Validators.required),
         fAtivo: new FormControl(1, Validators.required),
         dthCadastro: new FormControl(new Date()),
         dthAlteracao: new FormControl(new Date()),
+        idSegmentacao: new FormControl(0),
+        idGrupo: new FormControl(0, Validators.required),
+        bairro: new FormControl(''),
       });
     }
   }
   close() {
     this.dialogRef.close(this.clienteEditar);
+  }
+  preencherSegmentacao() {
+    this.segmentacaoService.carregarSegmentacao().subscribe({
+      next: (ret) => {
+        this.segmentacao = ret;
+      },
+    });
+  }
+  preencherGrupo() {
+    this.grupoService.carregarSegmentacao().subscribe({
+      next: (ret) => {
+        this.grupo = ret;
+      },
+    });
+  }
+  buscarCep() {
+    const cep = this.clienteForm.get('cep')?.value;
+    if (cep && cep.length === 8) {
+      ConsumirApi.BuscaCep(cep)
+        .then(async (data) => {
+          await this.buscarCidades(data.estado || 0);
+          this.clienteForm.patchValue({
+            estado: data.estado,
+            cidadeId: data.cidade,
+            rua: data.rua,
+          });
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar CEP:', error);
+        });
+    }
+  }
+  carregaEstado() {
+    ConsumirApi.BuscaEstados()
+      .then((data) => {
+        this.estado = data;
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar estados:', error);
+      });
+  }
+  async buscarCidades(estadoId: number) {
+    await ConsumirApi.BuscaCidade(estadoId)
+      .then((data) => {
+        this.cidade = data;
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar cidades:', error);
+      });
   }
 }

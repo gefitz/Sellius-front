@@ -35,40 +35,7 @@ export class PedidosComponent {
     'status',
     'dthPedido',
   ];
-  dataSource = new MatTableDataSource<PedidoModel>(pedido);
+  dataSource = new MatTableDataSource<PedidoModel>();
   statusPedido = StatusPedido;
   abrirModalPesquisa() {}
 }
-const estado: EstadoModel = {
-  id: 1,
-  estado: 'Parana',
-  sigla: 'PR',
-};
-const cidade: CidadeModel = {
-  id: 1,
-  cidade: 'Colombo',
-  estado: estado,
-};
-var cliente: ClienteModel = {
-  id: 0,
-  nome: 'string',
-  razao: 'string',
-  cpf_cnpj: 'string',
-  telefone: 'string',
-  email: 'string',
-  cidade: cidade,
-  rua: 'string',
-  cep: 'string',
-  fAtivo: 1,
-  dthCadastro: new Date(),
-  dthAlteracao: new Date(),
-};
-const pedido: PedidoModel[] = [
-  {
-    id: 1,
-    status: 1,
-    cliente: cliente,
-    // produtos: produto,
-    dthPedido: new Date(),
-  },
-];

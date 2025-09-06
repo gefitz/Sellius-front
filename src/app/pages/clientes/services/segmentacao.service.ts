@@ -37,4 +37,9 @@ export class SegmentacaoService {
   obterSegmentacaoPorId(id: number) {
     return this.api.get<SegmentacaoModel>(`${this.apiUrl}?id=${id}`);
   }
+  carregarSegmentacao() {
+    return this.api.get<SegmentacaoModel[]>(
+      this.apiUrl + '/carregarComboSegmentacao'
+    );
+  }
 }
