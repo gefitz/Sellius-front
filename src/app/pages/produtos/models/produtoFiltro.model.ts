@@ -1,4 +1,6 @@
 export interface ProdutoFiltro {
   nome: string;
-  descricao: string;
+  tipoProdutoId: number;
+  fornecedorId: number;
+  fAtivo: number;
 }

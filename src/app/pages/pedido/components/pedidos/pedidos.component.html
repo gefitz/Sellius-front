@@ -1,11 +1,9 @@
-
 <div class="demo-button-container">
   <a mat-raised-button class="demo-button" routerLink="/Pedido/Novo">
     <mat-icon>add</mat-icon>
     Novo Pedido
   </a>
-  <button type="button" mat-raised-button
-      class="demo-button" (click)="abrirModalPesquisa()">
+  <button type="button" mat-raised-button class="demo-button" (click)="abrirModalPesquisa()">
     <mat-icon>search</mat-icon>
     Filtrar Pedido
   </button>
@@ -20,12 +18,12 @@
 
     <ng-container matColumnDef="cliente">
       <th mat-header-cell *matHeaderCellDef> Cliente </th>
-      <td mat-cell *matCellDef="let element"> {{element.cliente.nome}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.cliente}} </td>
     </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="produto">
       <th mat-header-cell *matHeaderCellDef> Quantidade de Produtos </th>
-      <td mat-cell *matCellDef="let element"> {{element.produtos.length}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.produto.qtd}} </td>
     </ng-container>
 
     <!-- Weight Column -->
@@ -37,15 +35,13 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="dthPedido">
       <th mat-header-cell *matHeaderCellDef> Data do Pedido </th>
-      <td mat-cell *matCellDef="let element"> {{element.dthPedido}} </td>
+      <td mat-cell *matCellDef="let element"> {{_pipe.transform(element.dthPedido,"dd/MM/yyyy")}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of periodic elements">
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>

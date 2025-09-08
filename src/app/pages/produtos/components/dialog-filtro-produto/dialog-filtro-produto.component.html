@@ -15,20 +15,19 @@
           Nome:
         </mat-label>
         <input type="text" matInput formControlName="nome">
-      </mat-form-field >
+      </mat-form-field>
       <mat-form-field class="form-control">
-        <mat-label for="tipoProduto">
-          Tipo Produto:
-        </mat-label>
+        <mat-label for="TipoProduto">Tipo de Produto: </mat-label>
         <mat-select formControlName="tipoProduto">
+          <mat-option *ngFor="let item of tpProduto" [value]="item.id">{{item.tipo}}</mat-option>
         </mat-select>
-      </mat-form-field >
+      </mat-form-field>
 
       <mat-form-field class="form-control">
-        <mat-label for="marca">
-          Marca:
-        </mat-label>
-        <mat-select formControlName="marca"></mat-select>
+        <mat-label for="Marca">Marca Produto: </mat-label>
+        <mat-select formControlName="marca">
+          <mat-option *ngFor="let item of fornecedores" [value]="item.id">{{item.nome}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="form-control">
         <mat-label for="fAtivo">

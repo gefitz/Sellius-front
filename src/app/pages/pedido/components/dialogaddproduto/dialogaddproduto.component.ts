@@ -37,22 +37,22 @@ export class DialogaddprodutoComponent {
     @Inject(MAT_DIALOG_DATA)
     public data: PedidoXProdutoModel
   ) {
-    if (data.qtdProduto === 0) {
+    if (data.qtd === 0) {
       this.pedidoXProdutoForm = new FormGroup({
         qtdProduto: new FormControl('', Validators.required),
         vlrProduto: new FormControl('', Validators.required),
       });
     } else {
       this.pedidoXProdutoForm = new FormGroup({
-        qtdProduto: new FormControl(data.qtdProduto, Validators.required),
-        vlrProduto: new FormControl(data.vlrProduto, Validators.required),
+        qtdProduto: new FormControl(data.qtd, Validators.required),
+        vlrProduto: new FormControl(data.valorVenda, Validators.required),
       });
     }
   }
   add() {
     if (this.pedidoXProdutoForm.valid) {
-      this.data.qtdProduto = this.pedidoXProdutoForm.value.qtdProduto;
-      this.data.vlrProduto = this.pedidoXProdutoForm.value.vlrProduto;
+      this.data.qtd = this.pedidoXProdutoForm.value.qtdProduto;
+      this.data.valorVenda = this.pedidoXProdutoForm.value.vlrProduto;
       this.dialog.close(this.data);
     }
   }

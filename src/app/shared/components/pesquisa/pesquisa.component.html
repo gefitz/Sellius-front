@@ -1,0 +1,32 @@
+<mat-dialog-content>
+  <div class="header">
+
+    <h5>{{pesquisa.tituloPesquisa}}</h5>
+    <span class="space"></span>
+    <button mat-icon-button [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div>
+    <form>
+    </form>
+  </div>
+  <div class="mat-elevation-z8 table-responsivo">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container *ngFor="let coluna of pesquisa.colunas; let i = index" [matColumnDef]="coluna">
+        <th mat-header-cell *matHeaderCellDef> {{ pesquisa.nomeColunas[i] }} </th>
+        <td mat-cell *matCellDef="let element"> {{ element[coluna] }} </td>
+      </ng-container>
+
+      <!-- Header e linhas -->
+      <tr mat-header-row *matHeaderRowDef="pesquisa.colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: pesquisa.colunas;" (click)="closeDialog(row)"></tr>
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" [length]="paginacao.totalRegistros"
+        [pageSize]="paginacao.tamanhoPagina" [pageIndex]="paginacao.paginaAtual - 1" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </table>
+  </div>
+</mat-dialog-content>
