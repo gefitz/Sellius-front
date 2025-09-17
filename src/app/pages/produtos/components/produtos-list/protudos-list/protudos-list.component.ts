@@ -137,14 +137,16 @@ export class ProtudosListComponent implements OnInit {
     });
   }
   carregFiltro(filtro: ProdutoFiltro) {
-    // if (filtro != null) {
-    //   this.produtoFiltro = filtro;
-    // } else {
-    //   this.produtoFiltro = {
-    //     descricao: '',
-    //     nome: '',
-    //   };
-    // }
+    if (filtro != null) {
+      this.produtoFiltro = filtro;
+    } else {
+      this.produtoFiltro = {
+        nome: ``,
+        tipoProdutoId: 0,
+        fornecedorId: 0,
+        fAtivo: -1,
+      };
+    }
     this.carregarProduto();
   }
   private paginacaoToPaginator() {

@@ -51,12 +51,6 @@ export class SidenavComponent {
       children: [],
     },
     {
-      label: 'Anual',
-      icon: 'calendar_today',
-      route: '/relatorios/anual',
-      children: [],
-    },
-    {
       icon: 'inventory',
       label: 'Produto',
       route: '/Produto',

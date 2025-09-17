@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class ApiService {
-  url: string = 'https://localhost:7147/api';
+  url: string = 'http://localhost:5000/api';
 
   constructor(
     private http: HttpClient,
