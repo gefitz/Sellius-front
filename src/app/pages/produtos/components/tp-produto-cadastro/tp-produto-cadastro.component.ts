@@ -67,7 +67,6 @@ export class TpProdutoCadastroComponent implements OnInit {
   preencherCampos() {
     if (this.tpProdutoEdit) {
       this.titulo = 'Editar Tipo Produto';
-      console.log(this.tpProdutoEdit.fAtivo);
       this.tpProdutoForm = new FormGroup({
         id: new FormControl(this.tpProdutoEdit.id),
         tipo: new FormControl(this.tpProdutoEdit.tipo, Validators.required),
@@ -77,7 +76,6 @@ export class TpProdutoCadastroComponent implements OnInit {
         ),
         fAtivo: new FormControl(this.tpProdutoEdit.fAtivo),
       });
-      console.log(this.tpProdutoForm.value);
     } else {
       this.tpProdutoForm = new FormGroup({
         id: new FormControl(0),

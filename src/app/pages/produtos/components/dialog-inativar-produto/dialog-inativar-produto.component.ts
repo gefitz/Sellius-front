@@ -13,7 +13,5 @@ import { ProdutoFiltro } from '../../models/produtoFiltro.model';
   styleUrl: './dialog-inativar-produto.component.css',
 })
 export class DialogInativarProdutoComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public produto: ProdutoModel) {
-    console.log(produto);
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public produto: ProdutoModel) {}
 }

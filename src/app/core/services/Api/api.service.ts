@@ -6,12 +6,13 @@ import { ResponseModel } from './model/response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../pages/login/services/login.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  url: string = 'http://localhost:5000/api';
+  url: string = environment.apiUrl + '/api';
 
   constructor(
     private http: HttpClient,

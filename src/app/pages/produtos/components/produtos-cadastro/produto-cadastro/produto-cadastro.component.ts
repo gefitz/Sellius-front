@@ -58,10 +58,8 @@ export class ProdutoCadastroComponent {
         this.produtoForm.value.dthCriacao
       ).toISOString();
       const produto: ProdutoModel = this.produtoForm.value;
-      console.log(produto);
       produto.tipoProdutoId = this.produtoForm.value.tipoProduto;
       produto.fornecedorId = this.produtoForm.value.marca;
-      console.log('Ola');
       if (produto.id == 0) {
         this.service.cadastrarProduto(produto);
       } else {

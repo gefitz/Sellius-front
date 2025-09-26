@@ -4,6 +4,7 @@ import { EstadoModel } from '../../model/estado.model';
 import { ResponseApiModel } from '../../model/ResponseApi.model';
 import { CidadeModel } from '../../model/cidade.model';
 import { ApiService } from '../Api/api.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +40,7 @@ export class ConsumirApi {
   }
   static async BuscaEstados() {
     const response = await fetch(
-      'https://localhost:7147/api/recuperaTodosEstados'
+      environment.apiUrl + '/api/recuperaTodosEstados'
     );
 
     const respo: ResponseApiModel<EstadoModel[]> = await response.json();
@@ -50,7 +51,7 @@ export class ConsumirApi {
   }
   static async BuscaCidade(estadoId: number) {
     const response = await fetch(
-      'https://localhost:7147/api/recuperaCidades?idEstado=' + estadoId
+      environment.apiUrl + '/api/recuperaCidades?idEstado=' + estadoId
     );
     const respo: ResponseApiModel<CidadeModel[]> = await response.json();
     if (respo.success) {

@@ -71,7 +71,6 @@ export class UsuarioCadastroComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    console.log(this.listaTipoUsuario);
     this.carregaEstado();
   }
   ngAfterViewInit(): void {

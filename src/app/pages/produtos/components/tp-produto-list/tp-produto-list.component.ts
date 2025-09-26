@@ -77,7 +77,6 @@ export class TpProdutoListComponent implements OnInit {
     const retDialog = this.dialog.open(DialogInativacaoComponent);
     retDialog.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Ola');
         this.service.inativarTpProduto(tp).subscribe({
           next: (ret) => {
             if (ret) {
@@ -95,7 +94,6 @@ export class TpProdutoListComponent implements OnInit {
       next: (ret) => {
         this.paginacaoProduto = ret;
         this.paginacaoToPaginator();
-        console.log(ret);
         this.dataSource = new MatTableDataSource<TpProdutoModel>(
           this.paginacaoProduto.dados
         );

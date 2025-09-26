@@ -112,7 +112,6 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
     this.clienteService.listarClientes(this.paginacaoCliente).subscribe({
       next: (ret) => {
         this.paginacaoCliente = ret;
-        console.log(this.paginacaoCliente.dados);
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<ClienteTabela>(
           this.paginacaoCliente.dados

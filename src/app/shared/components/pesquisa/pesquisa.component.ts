@@ -59,7 +59,6 @@ export class PesquisaComponent<tabela, filtro> implements OnInit {
     });
   }
   carregarTabela() {
-    console.log(this.paginacao);
     this.api
       .post<Paginacao<tabela, filtro>>(this.pesquisa.urlChamada, this.paginacao)
       .subscribe({

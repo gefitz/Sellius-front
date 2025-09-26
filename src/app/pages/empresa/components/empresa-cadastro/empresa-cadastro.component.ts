@@ -64,7 +64,6 @@ export class EmpresaCadastroComponent implements OnInit {
     }));
   constructor(private service: EmpresaService, private snack: MatSnackBar) {}
   ngOnInit(): void {
-    console.log(this.listaTipoLicenca);
     this.montaForm();
     this.carregaCombo();
     this.carregaEstado();

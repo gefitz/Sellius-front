@@ -192,15 +192,15 @@ export class PedidoNovoComponent implements OnInit {
     const dialog = this.dialog.open(DialogFiltroProdutoComponent);
   }
   abrirModalPesquisaCliente() {
-    var pesquisaModel: PesquisaModel = {
+
+    var retDialog = this.dialog.open(
+      PesquisaComponent<ClienteTabela, ClienteFiltro>,
+      { data:  {
       urlChamada: '/Cliente/obterClientes',
       tituloPesquisa: 'Selecionar Cliente',
       colunas: ['nome', 'documento'],
       nomeColunas: ['Nome', 'CPF / CNPJ'],
-    };
-    var retDialog = this.dialog.open(
-      PesquisaComponent<ClienteTabela, ClienteFiltro>,
-      { data: pesquisaModel, panelClass: `md-large` }
+    }, panelClass: `md-large` }
     );
     retDialog.afterClosed().subscribe({
       next: (ret) => {

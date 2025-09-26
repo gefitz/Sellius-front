@@ -16,7 +16,6 @@ export class UsuarioserviceService {
   ) {}
 
   createUsuario(usuairo: UsuarioModel) {
-    console.log(usuairo);
     this.http.post(this.apiUrl, usuairo).subscribe({
       next: (response) => {
         if (response) {

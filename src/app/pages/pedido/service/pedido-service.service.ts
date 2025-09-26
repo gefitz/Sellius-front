@@ -13,9 +13,7 @@ export class PedidoService {
   novoPedido(pedido: PedidoModel) {
     var url = this.endPoint + '/novoPedido';
     this.api.post(url, pedido).subscribe({
-      next: (ret) => {
-        console.log('Sucesso');
-      },
+      next: (ret) => {},
     });
   }
   listarPedido(pedido: Paginacao<PedidoModel, PedidoFiltro>) {

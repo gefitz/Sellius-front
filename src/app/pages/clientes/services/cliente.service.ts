@@ -21,7 +21,6 @@ export class ClienteService {
   }
 
   cadastrarCliente(cliente: ClienteModel) {
-    console.log(cliente);
     return this.api.post<ClienteModel>(this.apiUrl, cliente);
   }
 
