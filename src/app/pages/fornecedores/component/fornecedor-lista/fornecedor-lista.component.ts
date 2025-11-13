@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
 import { FornecedorCadastroComponent } from '../fornecedor-cadastro/fornecedor-cadastro.component';
 import { FonecedorFiltroComponent } from '../fonecedor-filtro/fonecedor-filtro.component';
+import { FornecedorFiltro } from '../../models/forncedor-filtro.model';
 
 @Component({
   selector: 'app-fornecedor-lista',
@@ -39,23 +40,20 @@ import { FonecedorFiltroComponent } from '../fonecedor-filtro/fonecedor-filtro.c
 export class FornecedorListaComponent implements OnInit {
   displayedColumns: string[] = [
     'btnEditar',
-    'id',
+    'fAtivo',
     'nome',
     'cnpj',
     'telefone',
     'email',
     'Cidade',
-    'fAtivo',
     'dthCadastro',
     'dthAlteracao',
   ];
-  paginacaoProduto: Paginacao<FornecedorModel, FornecedorModel> = new Paginacao<
-    FornecedorModel,
-    FornecedorModel
-  >();
+  paginacaoProduto: Paginacao<FornecedorModel, FornecedorFiltro> =
+    new Paginacao<FornecedorModel, FornecedorFiltro>();
   dataSource!: MatTableDataSource<FornecedorModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  private fornecedorFiltro!: FornecedorModel;
+  private fornecedorFiltro!: FornecedorFiltro;
   constructor(
     public pipe: DatePipe,
     private service: FornecedorService,
@@ -103,24 +101,16 @@ export class FornecedorListaComponent implements OnInit {
     this.paginator.pageIndex = this.paginacaoProduto.paginaAtual - 1;
     this.paginator.length = this.paginacaoProduto.totalRegistros;
   }
-  private carregaFiltro(filtro?: FornecedorModel) {
+  private carregaFiltro(filtro?: FornecedorFiltro) {
     if (filtro != null) {
       this.fornecedorFiltro = filtro;
     } else {
       this.fornecedorFiltro = {
-        id: 0,
         nome: '',
         cnpj: '',
-        telefone: '',
-        email: '',
-        fAtivo: -1, // -1 pode representar "todos" ou "sem filtro"
-        dthCadastro: new Date(),
-        dthAlteracao: new Date(),
-        empresaId: 0,
         cidadeId: 0,
-        cep: '',
-        rua: '',
-        complemento: '',
+        estadoId: 0,
+        fAtivo: -1,
       };
     }
     this.paginacaoProduto.filtro = this.fornecedorFiltro;

@@ -20,7 +20,7 @@
     <mat-form-field class="form-control">
       <mat-label>Estado:</mat-label>
       <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
-        <mat-option *ngFor="let estado of lisEstados" [value]="estado.id">
+        <mat-option *ngFor="let estado of listEstados" [value]="estado.id">
           {{ estado.estado }}
         </mat-option>
       </mat-select>
@@ -34,5 +34,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
   </form>
+  <div>
+    <button mat-flat-button type="button" color="primary" [mat-dialog-close]="filtroForm.value">Pesquisar</button>
+  </div>
 </mat-dialog-content>

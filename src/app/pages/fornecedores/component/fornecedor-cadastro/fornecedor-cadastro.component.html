@@ -1,69 +1,148 @@
-<mat-dialog-content>
-  <div class="header">
-
-    <h5>{{titulo}}</h5>
-    <span class="space"></span>
-    <button mat-icon-button [mat-dialog-close]>
+<mat-dialog-content class="modal-content large">
+  <!-- Header da Modal -->
+  <div class="modal-header fornecedores">
+    <div class="header-content">
+      <mat-icon class="header-icon">business</mat-icon>
+      <h2 class="modal-title">{{ titulo }}</h2>
+    </div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]>
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <form [formGroup]="fornecedorForm">
-    <mat-form-field class="form-control">
-      <mat-label>Nome</mat-label>
-      <input matInput formControlName="nome" required>
-    </mat-form-field>
 
-    <mat-form-field class="form-control">
-      <mat-label>CNPJ</mat-label>
-      <input matInput formControlName="cnpj" required>
-    </mat-form-field>
+  <!-- Formulário -->
+  <form [formGroup]="fornecedorForm" (ngSubmit)="onSubmit()" class="form-container">
+    <!-- Informações da Empresa -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>business</mat-icon>
+        Informações da Empresa
+      </h3>
 
-    <mat-form-field class="form-control">
-      <mat-label>Telefone</mat-label>
-      <input matInput formControlName="telefone" required>
-    </mat-form-field>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome da Empresa</mat-label>
+          <input type="text" matInput formControlName="nome" placeholder="Nome da empresa">
+          <mat-icon matSuffix>business</mat-icon>
+          <mat-error>O nome é obrigatório</mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="form-control">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" required>
-    </mat-form-field>
-    <mat-form-field class="form-control">
-      <mat-label>CEP</mat-label>
-      <input matInput formControlName="cep" required (change)="buscarCep()">
-    </mat-form-field>
-    <mat-form-field class="form-control">
-      <mat-label>Rua, Numero</mat-label>
-      <input matInput formControlName="rua" required>
-    </mat-form-field>
-    <mat-form-field class="form-control">
-      <mat-label>Estado:</mat-label>
-      <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
-        <mat-option *ngFor="let estado of lisEstados" [value]="estado.id">
-          {{ estado.estado }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="form-control">
-      <mat-label>Cidade</mat-label>
-      <mat-select formControlName="cidadeId" required>
-        <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">
-          {{ cidade.cidade }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="form-control">
-      <mat-label>Complemento</mat-label>
-      <input matInput formControlName="complemento">
-    </mat-form-field>
-    <div>
-
-      <div class="button-container">
-        <button mat-raised-button [mat-dialog-close]>
-          Fechar
-        </button>
-        <button mat-flat-button type="button" color="primary" (click)="onSubmit()">Salvar</button>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>CNPJ</mat-label>
+          <input type="text" matInput formControlName="cnpj" placeholder="00.000.000/0000-00">
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-error>O CNPJ é obrigatório</mat-error>
+        </mat-form-field>
       </div>
+
+      <div class="form-row auto-responsive">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>E-mail</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="contato@empresa.com">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error>E-mail inválido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Telefone</mat-label>
+          <input type="tel" matInput formControlName="telefone" placeholder="(11) 99999-9999">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Endereço -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>home</mat-icon>
+        Endereço
+      </h3>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>CEP</mat-label>
+          <input type="text" matInput formControlName="cep" placeholder="00000-000" (change)="buscarCep()">
+          <mat-icon matSuffix>markunread_mailbox</mat-icon>
+          <mat-error>O CEP é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
+            <mat-option *ngFor="let estado of lisEstados" [value]="estado.id">
+              {{ estado.estado }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>map</mat-icon>
+          <mat-error>O estado é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Cidade</mat-label>
+          <mat-select formControlName="cidadeId">
+            <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">
+              {{ cidade.cidade }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>location_city</mat-icon>
+          <mat-error>A cidade é obrigatória</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Rua, Número</mat-label>
+          <input type="text" matInput formControlName="rua" placeholder="Rua, número">
+          <mat-icon matSuffix>home</mat-icon>
+          <mat-error>A rua é obrigatória</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row single-column">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Complemento</mat-label>
+          <input type="text" matInput formControlName="complemento" placeholder="Complemento (opcional)">
+          <mat-icon matSuffix>add_location</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>settings</mat-icon>
+        Configurações
+      </h3>
+
+      <div class="form-row single-column">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Inativo
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="form-actions">
+      <button mat-stroked-button type="button" [mat-dialog-close] class="cancel-button">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+
+      <button mat-flat-button type="submit" [disabled]="!fornecedorForm.valid" color="primary" class="save-button">
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
     </div>
   </form>
 </mat-dialog-content>

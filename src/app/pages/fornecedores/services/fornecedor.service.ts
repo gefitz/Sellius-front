@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../../core/services/Api/api.service';
 import { FornecedorModel } from '../models/forncedor.model';
 import { Paginacao } from '../../../core/model/paginacao.mode';
+import { FornecedorFiltro } from '../models/forncedor-filtro.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,13 +17,18 @@ export class FornecedorService {
       fornecedor
     );
   }
+  obterFornecedor(idFornecedor: number) {
+    return this.api.get<FornecedorModel>(
+      this.url + '?idFornecedor=' + idFornecedor
+    );
+  }
   editarFornecedor(fornecedor: FornecedorModel) {
     return this.api.put<FornecedorModel>(this.url, fornecedor);
   }
   carregaTabelaFornecedor(
-    paginator: Paginacao<FornecedorModel, FornecedorModel>
+    paginator: Paginacao<FornecedorModel, FornecedorFiltro>
   ) {
-    return this.api.post<Paginacao<FornecedorModel, FornecedorModel>>(
+    return this.api.post<Paginacao<FornecedorModel, FornecedorFiltro>>(
       this.url + '/ObterTabelaFornecedor',
       paginator
     );

@@ -33,6 +33,6 @@ export class ClienteService {
   }
 
   obterClientePorId(id: number) {
-    return this.api.get<ClienteModel>(`${this.apiUrl}?id=${id}`);
+    return this.api.get<ClienteModel>(`${this.apiUrl}?idCliente=${id}`);
   }
 }

@@ -36,7 +36,7 @@ import { ConsumirApi } from '../../../../core/services/Utils/consome-api.serivce
     MatSelectModule,
   ],
   templateUrl: './usuario-cadastro.component.html',
-  styleUrl: './usuario-cadastro.component.css',
+  styleUrls: ['./usuario-cadastro.component.css'],
 })
 export class UsuarioCadastroComponent implements OnInit {
   formUsuario: FormGroup;

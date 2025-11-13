@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import {
@@ -8,7 +8,7 @@ import {
   PageEvent,
 } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProdutoModel } from '../../../models/produto.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogFiltroProdutoComponent } from '../../dialog-filtro-produto/dialog-filtro-produto.component';
@@ -18,10 +18,10 @@ import { EtiquetaComponent } from '../../etiqueta/etiqueta.component';
 import { EtiquetaModel } from '../../../models/etiqueta.model';
 import { ProdutoService } from '../../../services/produto.service';
 import { ProdutoFiltro } from '../../../models/produtoFiltro.model';
-import { error } from 'console';
 import { CustomPaginator } from '../../../../../core/services/Utils/paginator-edit';
 import { Paginacao } from '../../../../../core/model/paginacao.mode';
 import { ProdutoTabela } from '../../../models/produto-tabela.model';
+import { ProdutoModalService } from '../../../services/produto-modal.service';
 @Component({
   selector: 'app-protudos-list',
   standalone: true,
@@ -30,7 +30,6 @@ import { ProdutoTabela } from '../../../models/produto-tabela.model';
     MatTableModule,
     MatButtonModule,
     MatIcon,
-    RouterLink,
     MatButtonModule,
     MatIconModule,
     CommonModule,
@@ -42,7 +41,10 @@ import { ProdutoTabela } from '../../../models/produto-tabela.model';
     },
   ],
   templateUrl: './protudos-list.component.html',
-  styleUrl: './protudos-list.component.css',
+  styleUrls: [
+    './protudos-list.component.css',
+    '/src/app/shared/styles/modal-styles.css',
+  ],
 })
 export class ProtudosListComponent implements OnInit {
   displayedColumns: string[] = [
@@ -67,7 +69,8 @@ export class ProtudosListComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private service: ProdutoService,
-    private pipe: DatePipe
+    private pipe: DatePipe,
+    private modalProduto: ProdutoModalService
   ) {
     this._pipe = pipe;
   }
@@ -86,10 +89,8 @@ export class ProtudosListComponent implements OnInit {
     });
   }
 
-  editarProduto(produto: ProdutoModel) {
-    this.router.navigateByUrl('/Produto/Cadastro', {
-      state: { produto },
-    });
+  editarProduto(produto?: ProdutoModel) {
+    this.modalProduto.abrirModal(produto);
   }
   abrirModalPesquisa() {
     const dialog = this.dialog.open(DialogFiltroProdutoComponent);

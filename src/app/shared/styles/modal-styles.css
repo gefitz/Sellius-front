@@ -1,0 +1,485 @@
+/* ========================================
+   SISTEMA DE DESIGN GLOBAL PARA MODAIS
+   ======================================== */
+
+/* Variáveis CSS para cores do sistema */
+:root {
+  --primary-color: #3b7eb9;
+  --primary-gradient: linear-gradient(135deg, #3b7eb9 0%, #2c5aa0 100%);
+  --secondary-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --success-color: #48bb78;
+  --warning-color: #ed8936;
+  --error-color: #e53e3e;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+  --background-light: #f8fafc;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+  --border-radius-lg: 16px;
+}
+
+/* ========================================
+   CLASSES BASE PARA MODAIS
+   ======================================== */
+
+/* Container principal da modal */
+.modal-content {
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 0;
+  background: var(--secondary-gradient);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Modal responsiva para telas maiores */
+@media (min-width: 1200px) {
+  .modal-content {
+    max-width: 1000px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .modal-content {
+    max-width: 1200px;
+  }
+}
+
+/* Modal extra larga para formulários complexos */
+.modal-content.large {
+  max-width: 1000px;
+}
+
+@media (min-width: 1200px) {
+  .modal-content.large {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .modal-content.large {
+    max-width: 1400px;
+  }
+}
+
+/* Layout de 3 colunas para telas grandes */
+@media (min-width: 1200px) {
+  .form-row.auto-responsive {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1400px) {
+  .form-row.auto-responsive {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Header da modal */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background: var(--primary-gradient);
+  color: white;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  box-shadow: var(--shadow-md);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.close-button {
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* Container do formulário */
+.form-container {
+  padding: 32px;
+  background: white;
+}
+
+/* ========================================
+   SEÇÕES DO FORMULÁRIO
+   ======================================== */
+
+.form-section {
+  padding: 5px;
+  background: var(--background-light);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Seções responsivas para telas maiores */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.section-title mat-icon {
+  color: var(--primary-color);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* ========================================
+   LAYOUT DO FORMULÁRIO
+   ======================================== */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-row:last-child {
+  margin-bottom: 0;
+}
+
+.form-row.single-column {
+  grid-template-columns: 1fr;
+}
+
+.form-row.three-columns {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Layout responsivo para modais maiores */
+@media (min-width: 1200px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-row.three-columns {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1400px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-row.three-columns {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* ========================================
+   CAMPOS DO FORMULÁRIO
+   ======================================== */
+
+.form-field {
+  width: 100%;
+}
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Estilização dos Mat-Form-Field */
+::ng-deep .modal-content .mat-mdc-form-field {
+  font-size: 14px;
+}
+
+::ng-deep .modal-content .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background-color: white;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .modal-content .mat-mdc-form-field .mat-mdc-text-field-wrapper:hover {
+  box-shadow: 0 4px 12px rgba(59, 126, 185, 0.15);
+}
+
+::ng-deep .modal-content .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  box-shadow: 0 4px 12px rgba(59, 126, 185, 0.25);
+}
+
+::ng-deep .modal-content .mat-mdc-form-field .mat-mdc-form-field-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+::ng-deep .modal-content .mat-mdc-form-field.mat-focused .mat-mdc-form-field-label {
+  color: var(--primary-color);
+}
+
+::ng-deep .modal-content .mat-mdc-form-field .mat-mdc-input-element {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+::ng-deep .modal-content .mat-mdc-form-field .mat-mdc-form-field-error {
+  color: var(--error-color);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ========================================
+   BOTÕES DE AÇÃO
+   ======================================== */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 24px 0 0 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: 24px;
+}
+
+.cancel-button {
+  color: var(--text-muted);
+  border-color: var(--border-color);
+  font-weight: 500;
+  padding: 8px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: var(--background-light);
+  border-color: #cbd5e0;
+  transform: translateY(-1px);
+}
+
+.save-button {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 126, 185, 0.3);
+}
+
+.save-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 126, 185, 0.4);
+}
+
+.save-button:disabled {
+  background: #cbd5e0;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.form-section {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+
+  .modal-header {
+    padding: 20px 24px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+  }
+
+  .form-container {
+    padding: 24px;
+  }
+
+  .form-section {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cancel-button,
+  .save-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-header {
+    padding: 16px 20px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-section {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+}
+
+/* ========================================
+   ESTADOS ESPECIAIS
+   ======================================== */
+
+.form-container.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.form-field:focus-within {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+::ng-deep .modal-content .mat-mdc-form-field.mat-form-field-invalid .mat-mdc-text-field-wrapper {
+  border-color: var(--error-color);
+}
+
+::ng-deep .modal-content .mat-mdc-form-field.mat-form-field-invalid .mat-mdc-form-field-label {
+  color: var(--error-color);
+}
+
+/* ========================================
+   CLASSES UTILITÁRIAS
+   ======================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 32px; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mt-4 { margin-top: 32px; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: 8px; }
+.p-2 { padding: 16px; }
+.p-3 { padding: 24px; }
+.p-4 { padding: 32px; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 8px; }
+.gap-2 { gap: 16px; }
+.gap-3 { gap: 24px; }
+
+/* ========================================
+   TEMAS ESPECÍFICOS POR MÓDULO
+   ======================================== */
+
+/* Produtos */
+.modal-header.produtos {
+  background: #3b7eb9 !important;
+  background: linear-gradient(135deg, #3b7eb9 0%, #2c5aa0 100%) !important;
+}
+
+/* Clientes */
+.modal-header.clientes {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+/* Fornecedores */
+.modal-header.fornecedores {
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+}
+
+/* Pedidos */
+.modal-header.pedidos {
+  background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+}
+
+/* Usuários */
+.modal-header.usuarios {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+}

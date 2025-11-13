@@ -29,7 +29,10 @@ import { FormGroupModule } from '../../../../core/services/Module/form.module';
   standalone: true,
   imports: [FormGroupModule, CommonModule],
   templateUrl: './fornecedor-cadastro.component.html',
-  styleUrl: './fornecedor-cadastro.component.css',
+  styleUrls: [
+    '/src/app/shared/styles/modal-styles.css',
+    './fornecedor-cadastro.component.css',
+  ],
 })
 export class FornecedorCadastroComponent implements OnInit {
   fornecedorForm!: FormGroup;
@@ -42,8 +45,27 @@ export class FornecedorCadastroComponent implements OnInit {
     private dialogRef: MatDialogRef<FornecedorCadastroComponent>
   ) {}
   ngOnInit(): void {
+    this.fornecedorForm = new FormGroup({
+      id: new FormControl(0),
+      nome: new FormControl('', Validators.required),
+      cnpj: new FormControl('', Validators.required),
+      telefone: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      fAtivo: new FormControl(1), // 1 = ativo
+      cidadeId: new FormControl(null, Validators.required),
+      cep: new FormControl('', Validators.required),
+      rua: new FormControl('', Validators.required),
+      complemento: new FormControl(''),
+      estado: new FormControl(''),
+    });
     this.carregarCombo();
-    this.carregaEdit();
+    this.service.obterFornecedor(this.fornecedorEdit.id).subscribe({
+      next: (ret) => {
+        this.fornecedorEdit = ret;
+        this.carregarCidade(this.fornecedorEdit.cidade.estado.id);
+        this.carregaEdit();
+      },
+    });
   }
 
   onSubmit() {
@@ -88,21 +110,7 @@ export class FornecedorCadastroComponent implements OnInit {
         cep: new FormControl(this.fornecedorEdit.cep, Validators.required),
         rua: new FormControl(this.fornecedorEdit.rua, Validators.required),
         complemento: new FormControl(this.fornecedorEdit.complemento),
-        estado: new FormControl(''),
-      });
-    } else {
-      this.fornecedorForm = new FormGroup({
-        id: new FormControl(0),
-        nome: new FormControl('', Validators.required),
-        cnpj: new FormControl('', Validators.required),
-        telefone: new FormControl(''),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        fAtivo: new FormControl(1), // 1 = ativo
-        cidadeId: new FormControl(null, Validators.required),
-        cep: new FormControl('', Validators.required),
-        rua: new FormControl('', Validators.required),
-        complemento: new FormControl(''),
-        estado: new FormControl(''),
+        estado: new FormControl(this.fornecedorEdit.cidade?.estado?.id),
       });
     }
   }
@@ -117,6 +125,7 @@ export class FornecedorCadastroComponent implements OnInit {
     });
   }
   buscarCep() {
+    console.log('Ola');
     const cep = this.fornecedorForm.get('cep')?.value;
     if (cep && cep.length === 8) {
       ConsumirApi.BuscaCep(cep)

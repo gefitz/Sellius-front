@@ -1,84 +1,182 @@
-<mat-dialog-content>
-  <div class="header">
-    <h3 class="titulo">{{titleModal}}</h3>
-    <span class="space"></span>
-    <button mat-icon-button (click)="close()">
+<mat-dialog-content class="modal-content large">
+  <!-- Header da Modal -->
+  <div class="modal-header clientes">
+    <div class="header-content">
+      <mat-icon class="header-icon">person</mat-icon>
+      <h2 class="modal-title">{{ titleModal }}</h2>
+    </div>
+    <button mat-icon-button class="close-button" (click)="close()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <form [formGroup]="clienteForm" (ngSubmit)="salvarCliente()" class="form-group">
-    <div class="container-form">
-      <mat-form-field class="form-control">
-        <mat-label for="nome">Nome Cliente: </mat-label>
-        <input matInput type="text" formControlName='nome'>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="razao">Razão Social: </mat-label>
-        <input matInput type="text" formControlName='razao'>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="documento">CPF / CNPJ: </mat-label>
-        <input matInput type="text" formControlName='documento'>
-      </mat-form-field>
 
-      <mat-form-field class="form-control">
-        <mat-label for="telefone">Telefone: </mat-label>
-        <input matInput type="text" formControlName='telefone'>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="email">E-mail: </mat-label>
-        <input matInput type="text" formControlName='email'>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="cep">CEP: </mat-label>
-        <input type="text" matInput formControlName="cep" (change)="buscarCep()">
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="estado">Estado: </mat-label>
-        <mat-select type="text" formControlName="estado" (selectionChange)="buscarCidades($event.value)">
-          <mat-option *ngFor="let estado of estado" [value]="estado.id">{{estado.estado}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="cidadeId">Cidade: </mat-label>
-        <mat-select formControlName="cidadeId">
-          <mat-option *ngFor="let c of cidade" [value]="c.id">{{c.cidade}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="rua">Endereço: </mat-label>
-        <input type="text" matInput formControlName="rua">
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="bairro">Bairro: </mat-label>
-        <input type="text" matInput formControlName="bairro">
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="fAtivo">Status: </mat-label>
-        <mat-select formControlName="fAtivo">
-          <mat-option value="1">Ativo</mat-option>
-          <mat-option value="0">Inativo</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="idSegmentacao">Segmentação: </mat-label>
-        <mat-select formControlName="idSegmentacao">
-          <mat-option *ngFor="let s of segmentacao" [value]="s.id">{{s.segmento}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="idGrupo">Grupo: </mat-label>
-        <mat-select formControlName="idGrupo">
-          <mat-option *ngFor="let g of grupo" [value]="g.id">{{g.nome}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <!-- Formulário -->
+  <form [formGroup]="clienteForm" (ngSubmit)="salvarCliente()" class="form-container">
+    <!-- Informações Pessoais -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>person</mat-icon>
+        Informações Pessoais
+      </h3>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome Completo</mat-label>
+          <input type="text" matInput formControlName="nome" placeholder="Digite o nome completo">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>O nome é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>CPF / CNPJ</mat-label>
+          <input type="text" matInput formControlName="documento" placeholder="000.000.000-00">
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-error>O documento é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row auto-responsive">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Telefone</mat-label>
+          <input type="text" matInput formControlName="telefone" placeholder="(11) 99999-9999">
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error>O telefone é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>E-mail</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="exemplo@email.com">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error>E-mail inválido</mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="div-btn-modal">
-      <button mat-raised-button class="btn-Voltar" (click)="close()">
-        <mat-icon>arrow_back</mat-icon>
-        Voltar
+
+    <!-- Endereço -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>home</mat-icon>
+        Endereço
+      </h3>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>CEP</mat-label>
+          <input type="text" matInput formControlName="cep" placeholder="00000-000" (change)="buscarCep()">
+          <mat-icon matSuffix>markunread_mailbox</mat-icon>
+          <mat-error>O CEP é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estado" (selectionChange)="buscarCidades($event.value)">
+            <mat-option *ngFor="let estado of estado" [value]="estado.id">
+              {{ estado.estado }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>map</mat-icon>
+          <mat-error>O estado é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Cidade</mat-label>
+          <mat-select formControlName="cidadeId">
+            <mat-option *ngFor="let c of cidade" [value]="c.id">
+              {{ c.cidade }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>location_city</mat-icon>
+          <mat-error>A cidade é obrigatória</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Bairro</mat-label>
+          <input type="text" matInput formControlName="bairro" placeholder="Nome do bairro">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row single-column">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Endereço</mat-label>
+          <input type="text" matInput formControlName="rua" placeholder="Rua, número, complemento">
+          <mat-icon matSuffix>home</mat-icon>
+          <mat-error>O endereço é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Classificação -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>category</mat-icon>
+        Classificação
+      </h3>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Segmentação</mat-label>
+          <mat-select formControlName="idSegmentacao">
+            <mat-option *ngFor="let s of segmentacao" [value]="s.id">
+              {{ s.segmento }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>category</mat-icon>
+          <mat-error>A segmentação é obrigatória</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Grupo</mat-label>
+          <mat-select formControlName="idGrupo">
+            <mat-option *ngFor="let g of grupo" [value]="g.id">
+              {{ g.nome }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>group_work</mat-icon>
+          <mat-error>O grupo é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>settings</mat-icon>
+        Configurações
+      </h3>
+
+      <div class="form-row single-column">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Inativo
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+          <mat-error>O status é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="form-actions">
+      <button mat-stroked-button type="button" (click)="close()" class="cancel-button">
+        <mat-icon>close</mat-icon>
+        Cancelar
       </button>
-      <button mat-flat-button type="submit" [disabled]="!clienteForm.valid" color="primary"> Salvar</button>
+
+      <button mat-flat-button type="submit" [disabled]="!clienteForm.valid" color="primary" class="save-button">
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
     </div>
   </form>
 </mat-dialog-content>

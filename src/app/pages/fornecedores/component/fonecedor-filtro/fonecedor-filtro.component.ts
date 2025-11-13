@@ -5,13 +5,17 @@ import { FormGroupModule } from '../../../../core/services/Module/form.module';
 import { ConsumirApi } from '../../../../core/services/Utils/consome-api.serivce';
 import { CidadeModel } from '../../../../core/model/cidade.model';
 import { EstadoModel } from '../../../../core/model/estado.model';
+import { SharedModule } from '../../../../core/services/Module/shared.module';
 
 @Component({
   selector: 'app-fonecedor-filtro',
   standalone: true,
-  imports: [MatDialogModule, FormGroupModule],
+  imports: [SharedModule],
   templateUrl: './fonecedor-filtro.component.html',
-  styleUrl: './fonecedor-filtro.component.css',
+  styleUrls: [
+    '/src/app/shared/styles/modal-styles.css',
+    './fonecedor-filtro.component.css',
+  ],
 })
 export class FonecedorFiltroComponent implements OnInit {
   filtroForm!: FormGroup;

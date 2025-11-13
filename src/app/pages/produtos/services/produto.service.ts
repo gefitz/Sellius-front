@@ -21,24 +21,13 @@ export class ProdutoService {
     );
   }
   cadastrarProduto(produto: ProdutoModel) {
-    this.api
-      .post<ProdutoModel>(this.apiUrl + '/CadastrarProduto', produto)
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            window.location.reload();
-          }
-        },
-      });
+    return this.api.post<ProdutoModel>(
+      this.apiUrl + '/CadastrarProduto',
+      produto
+    );
   }
   editarProduto(produto: ProdutoModel) {
-    return this.api.put<ProdutoModel>(this.apiUrl, produto).subscribe({
-      next: (response) => {
-        if (response) {
-          window.location.reload();
-        }
-      },
-    });
+    return this.api.put<ProdutoModel>(this.apiUrl, produto);
   }
   inativarProduto(produto: ProdutoModel) {
     return this.api.delete<ProdutoModel>(this.apiUrl + '?id=' + produto.id);

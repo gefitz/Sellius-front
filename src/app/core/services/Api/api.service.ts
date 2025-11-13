@@ -1,18 +1,32 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError, finalize } from 'rxjs';
 import { Cookie } from '../cookie/cookie.service';
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Component,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { ResponseModel } from './model/response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../pages/login/services/login.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   url: string = environment.apiUrl + '/api';
+
+  // Controle interno do loader
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  public loading$ = this.loadingSubject.asObservable();
+  private requestCount = 0;
 
   constructor(
     private http: HttpClient,
@@ -21,7 +35,24 @@ export class ApiService {
     private login: LoginService,
     private route: Router
   ) {}
+
+  // Métodos para controlar o loader internamente
+  private showLoader(): void {
+    this.requestCount++;
+    if (this.requestCount === 1) {
+      this.loadingSubject.next(true);
+    }
+  }
+
+  private hideLoader(): void {
+    this.requestCount--;
+    if (this.requestCount <= 0) {
+      this.requestCount = 0;
+      this.loadingSubject.next(false);
+    }
+  }
   get<model>(endPoint: string): Observable<model> {
+    this.showLoader();
     return this.http
       .get<ResponseModel<model>>(this.url + endPoint, {
         headers: this.montarHeader(),
@@ -29,17 +60,18 @@ export class ApiService {
       .pipe(
         map((response) => {
           if (response.success) {
-            this.snack.open(response.message, 'Ok', { duration: 5000 });
             return response.data;
           } else {
             this.snack.open(response.errorMessage, `Ok`, { duration: 5000 });
             throw new Error('Erro: ' + response.errorMessage);
           }
         }),
-        catchError((error) => this.error(error))
+        catchError((error) => this.error(error)),
+        finalize(() => this.hideLoader())
       );
   }
   post<model>(endPoint: string, obj: object): Observable<model> {
+    this.showLoader();
     return this.http
       .post<ResponseModel<model>>(this.url + endPoint, obj, {
         headers: this.montarHeader(),
@@ -47,21 +79,18 @@ export class ApiService {
       .pipe(
         map((response) => {
           if (response.success) {
-            this.snack.open(response.message, `Ok`, {
-              duration: 5000,
-              horizontalPosition: 'center',
-              verticalPosition: 'bottom',
-            });
             return response.data;
           } else {
             throw new Error(response.errorMessage);
           }
         }),
-        catchError((error) => this.error(error))
+        catchError((error) => this.error(error)),
+        finalize(() => this.hideLoader())
       );
   }
 
   put<model>(endPoint: string, obj: object): Observable<model> {
+    this.showLoader();
     return this.http
       .put<ResponseModel<model>>(this.url + endPoint, obj, {
         headers: this.montarHeader(),
@@ -69,17 +98,18 @@ export class ApiService {
       .pipe(
         map((response) => {
           if (response.success) {
-            this.snack.open(response.message, 'Ok', { duration: 5000 });
             return response.data;
           } else {
             throw new Error('Erro ao excluir');
           }
         }),
-        catchError((error) => this.error(error))
+        catchError((error) => this.error(error)),
+        finalize(() => this.hideLoader())
       );
   }
 
   delete<model>(endPoint: string): Observable<model> {
+    this.showLoader();
     return this.http
       .delete<ResponseModel<model>>(this.url + endPoint, {
         headers: this.montarHeader(),
@@ -87,13 +117,13 @@ export class ApiService {
       .pipe(
         map((response) => {
           if (response.success) {
-            this.snack.open(response.message, 'Ok', { duration: 5000 });
             return response.data;
           } else {
             throw new Error('Erro ao excluir');
           }
         }),
-        catchError((error) => this.error(error))
+        catchError((error) => this.error(error)),
+        finalize(() => this.hideLoader())
       );
   }
 
@@ -117,7 +147,71 @@ export class ApiService {
     if (error.status == 401) {
       this.httpResponse401(error);
     }
-    this.snack.open(error.error, 'Ok', { duration: 5000 });
+    this.snack.open(error.error.errorMessage, 'Ok', { duration: 5000 });
     return throwError(() => error.error);
+  }
+}
+
+// Componente de Loader integrado ao ApiService
+@Component({
+  selector: 'app-api-loader',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div *ngIf="isLoading" class="loader-overlay">
+      <div class="spinner"></div>
+    </div>
+  `,
+  styles: [
+    `
+      .loader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    `,
+  ],
+})
+export class ApiLoaderComponent implements OnInit, OnDestroy {
+  isLoading = false;
+  private subscription: Subscription = new Subscription();
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.subscription = this.apiService.loading$.subscribe((loading) => {
+      this.isLoading = loading;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

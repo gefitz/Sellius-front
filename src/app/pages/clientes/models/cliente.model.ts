@@ -7,7 +7,7 @@ export interface ClienteModel {
   documento: string;
   telefone: string;
   email: string;
-  cidadeId: CidadeModel;
+  cidadeId: number;
   rua: string;
   cep: string;
   fAtivo: number;
@@ -17,4 +17,5 @@ export interface ClienteModel {
   idGrupo: number;
   idEstado: number;
   bairro: string;
+  cidade: CidadeModel;
 }

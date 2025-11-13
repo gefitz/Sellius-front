@@ -1,13 +1,4 @@
-/* .container-form{
-  margin-top: 15px;
+/* Estilos específicos para modal de cliente */
+.modal-header.clientes {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
 }
-.form-control{
-  margin: 5px;
-  width: 20vw;
-}
-
-@media(max-width: 770px){
-  .form-control{
-    width:60vw;
-  }
-} */

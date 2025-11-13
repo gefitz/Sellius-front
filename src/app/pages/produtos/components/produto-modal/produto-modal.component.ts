@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,19 +9,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router, RouterLink } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ProdutoModel } from '../../../models/produto.model';
-import { ProdutoService } from '../../../services/produto.service';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { TpProdutoModel } from '../../../models/tpProduto.model';
-import { TpProdutoService } from '../../../services/tp-produto.service';
-import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model';
-import { FornecedorService } from '../../../../fornecedores/services/fornecedor.service';
+import { TpProdutoModel } from '../../models/tpProduto.model';
+import { FornecedorModel } from '../../../fornecedores/models/forncedor.model';
+import { ProdutoModel } from '../../models/produto.model';
+import { ProdutoService } from '../../services/produto.service';
+import { TpProdutoService } from '../../services/tp-produto.service';
+import { FornecedorService } from '../../../fornecedores/services/fornecedor.service';
 
 @Component({
-  selector: 'app-produto-cadastro',
+  selector: 'app-produto-modal',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -29,48 +32,79 @@ import { FornecedorService } from '../../../../fornecedores/services/fornecedor.
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
-    RouterLink,
     MatSelectModule,
-    FlexLayoutModule,
+    MatDialogModule,
     CommonModule,
   ],
-  templateUrl: './produto-cadastro.component.html',
+  templateUrl: './produto-modal.component.html',
   styleUrls: [
     '/src/app/shared/styles/modal-styles.css',
-    './produto-cadastro.component.css',
+    './produto-modal.component.css',
   ],
 })
-export class ProdutoCadastroComponent {
+export class ProdutoModalComponent implements OnInit {
   produtoForm!: FormGroup;
-  tpProduto!: TpProdutoModel[];
-  fornecedores!: FornecedorModel[];
+  tpProduto: TpProdutoModel[] = [];
+  fornecedores: FornecedorModel[] = [];
+  titulo: string = 'Cadastrar Produto';
+  isLoading: boolean = false;
+
   constructor(
-    private router: Router,
-    private service: ProdutoService,
-    private tpService: TpProdutoService,
-    private fornecedorService: FornecedorService
+    private dialogRef: MatDialogRef<ProdutoModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { produto?: ProdutoModel },
+    @Inject(ProdutoService) private service: ProdutoService,
+    @Inject(TpProdutoService) private tpService: TpProdutoService,
+    @Inject(FornecedorService) private fornecedorService: FornecedorService
   ) {
-    const nav = router.getCurrentNavigation();
-    const produtoEditar: ProdutoModel = nav?.extras.state?.['produto'];
-    this.carregarCombos();
-    this.preencherCamposFormulario(produtoEditar);
+    if (this.data?.produto) {
+      this.titulo = 'Editar Produto';
+    }
   }
-  salvarProduto() {
+
+  ngOnInit(): void {
+    this.carregarCombos();
+    this.preencherCamposFormulario(this.data?.produto);
+  }
+
+  salvarProduto(): void {
     if (this.produtoForm.valid) {
+      this.isLoading = true;
+
       this.produtoForm.value.dthCriacao = new Date(
         this.produtoForm.value.dthCriacao
       ).toISOString();
+
       const produto: ProdutoModel = this.produtoForm.value;
       produto.tipoProdutoId = this.produtoForm.value.tipoProduto;
       produto.fornecedorId = this.produtoForm.value.marca;
+
       if (produto.id == 0) {
-        this.service.cadastrarProduto(produto);
+        this.service.cadastrarProduto(produto).subscribe({
+          next: () => {
+            this.dialogRef.close(true);
+          },
+          error: () => {
+            this.isLoading = false;
+          },
+        });
       } else {
-        this.service.editarProduto(produto);
+        this.service.editarProduto(produto).subscribe({
+          next: () => {
+            this.dialogRef.close(true);
+          },
+          error: () => {
+            this.isLoading = false;
+          },
+        });
       }
     }
   }
-  preencherCamposFormulario(produtoEditar: ProdutoModel) {
+
+  fechar(): void {
+    this.dialogRef.close(false);
+  }
+
+  private preencherCamposFormulario(produtoEditar?: ProdutoModel): void {
     if (produtoEditar) {
       this.produtoForm = new FormGroup({
         id: new FormControl(produtoEditar.id),
@@ -105,7 +139,8 @@ export class ProdutoCadastroComponent {
       });
     }
   }
-  carregarCombos() {
+
+  private carregarCombos(): void {
     this.tpService.carregarTpProdutoCombo().subscribe({
       next: (ret) => {
         this.tpProduto = ret;

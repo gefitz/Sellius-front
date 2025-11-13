@@ -10,7 +10,7 @@ import {
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router, RouterLink } from '@angular/router';
 import { ClienteModel } from '../../../models/cliente.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInativarComponent } from '../dialog-inativar/dialog-inativar.component';
 import { ClienteService } from '../../../services/cliente.service';
@@ -58,7 +58,8 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    public _pipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -73,15 +74,14 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editarCliente(cliente: ClienteModel) {
-    this.router.navigateByUrl('/Cliente/Cadastro', {
-      state: { cliente },
-    });
-  }
-  abrirDialog() {
+  editarCliente(cliente?: ClienteModel) {
     var ret = this.dialog.open(ClientesCadastroComponent, {
       panelClass: `md-large`,
+      data: cliente,
     });
+    ret
+      .afterClosed()
+      .subscribe({ next: () => this.carregarFiltro(this.clienteFiltro) });
   }
 
   inativarCliente(cliente: ClienteModel) {
@@ -116,6 +116,7 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource<ClienteTabela>(
           this.paginacaoCliente.dados
         );
+        this.paginacaoCliente.dados = [];
       },
     });
   }

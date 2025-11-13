@@ -1,5 +1,5 @@
 <div class="demo-button-container">
-  <a mat-raised-button class="demo-button" (click)="abrirDialog()">
+  <a mat-raised-button class="demo-button" (click)="editarCliente()">
     <mat-icon>add</mat-icon>
     Novo Cliente
   </a>
@@ -44,7 +44,7 @@
     </ng-container>
     <ng-container matColumnDef="dthCadastro">
       <th mat-header-cell *matHeaderCellDef> Data de Cadastro </th>
-      <td mat-cell *matCellDef="let element"> {{element.dthCadastro}} </td>
+      <td mat-cell *matCellDef="let element"> {{_pipe.transform(element.dthCadastro,'dd/MM/yyyy HH:mm:ss')}} </td>
     </ng-container>
     <ng-container matColumnDef="segmento">
       <th mat-header-cell *matHeaderCellDef> Segmento </th>
@@ -52,7 +52,7 @@
     </ng-container>
     <ng-container matColumnDef="dthAlteracao">
       <th mat-header-cell *matHeaderCellDef> Data de Alteração </th>
-      <td mat-cell *matCellDef="let element"> {{element.dthCadastro}} </td>
+      <td mat-cell *matCellDef="let element"> {{_pipe.transform(element.dthAlteracao,'dd/MM/yyyy HH:mm:ss')}} </td>
     </ng-container>
     <ng-container matColumnDef="btnEditar">
       <th mat-header-cell *matHeaderCellDef class="sticky-column"></th>

@@ -1,3 +1,5 @@
+import { CidadeModel } from '../../../core/model/cidade.model';
+
 export interface FornecedorModel {
   id: number;
   nome: string;
@@ -12,4 +14,5 @@ export interface FornecedorModel {
   cep: string;
   rua: string;
   complemento: string;
+  cidade: CidadeModel;
 }
