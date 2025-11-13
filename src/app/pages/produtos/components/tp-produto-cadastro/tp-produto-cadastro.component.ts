@@ -31,11 +31,16 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
   templateUrl: './tp-produto-cadastro.component.html',
-  styleUrl: './tp-produto-cadastro.component.css',
+  styleUrls: [
+    './tp-produto-cadastro.component.css',
+    '/src/app/shared/styles/modal-styles.css',
+  ],
 })
 export class TpProdutoCadastroComponent implements OnInit {
   tpProdutoForm!: FormGroup;
   titulo: string = 'Novo Tipo Produto';
+  isLoading: boolean = false;
+
   constructor(
     private service: TpProdutoService,
     private dialogRef: MatDialogRef<TpProdutoCadastroComponent>,
@@ -84,5 +89,8 @@ export class TpProdutoCadastroComponent implements OnInit {
         fAtivo: new FormControl(0),
       });
     }
+  }
+  fechar() {
+    this.dialogRef.close();
   }
 }

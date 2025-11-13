@@ -1,4 +1,4 @@
-.form-control{
+/* .form-control{
   margin: 5px;
   width: 12vw;
 
@@ -18,4 +18,8 @@
   display: flex;
   margin-left: 5px;
   float: right;
+} */
+.modal-header.produtos {
+  background: #3b7eb9 !important;
+  background: linear-gradient(135deg, #3b7eb9 0%, #2c5aa0 100%) !important;
 }

@@ -1,41 +1,55 @@
-<mat-dialog-content>
-  <div class="header">
-
-    <h5>{{titulo}}</h5>
-    <span class="space"></span>
-    <button mat-icon-button [mat-dialog-close]>
+<mat-dialog-content class="modal-content">
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <mat-icon class="header-icon">label</mat-icon>
+      <h2 class="modal-title">{{ titulo }}</h2>
+    </div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]>
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <form [formGroup]="tpProdutoForm">
-    <div>
-      <mat-form-field class="form-control">
-        <mat-label for="tipo">
-          Tipo Produto:
-        </mat-label>
-        <input type="text" matInput formControlName="tipo">
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="descricao">
-          Descrição:
-        </mat-label>
-        <input type="text" matInput formControlName="descricao">
-      </mat-form-field>
-      <mat-form-field class="form-control">
-        <mat-label for="fAtivo">
-          Status:
-        </mat-label>
-        <mat-select formControlName="fAtivo">
-          <mat-option [value]="1">Ativo</mat-option>
-          <mat-option [value]="0">Inativo</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <form [formGroup]="tpProdutoForm" class="form-container" (ngSubmit)="salvar()">
+    <div class="form-section">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="tipo">
+            Tipo Produto:
+          </mat-label>
+          <input type="text" matInput formControlName="tipo">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="descricao">
+            Descrição:
+          </mat-label>
+          <input type="text" matInput formControlName="descricao">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="fAtivo">
+            Status:
+          </mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Inativo
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+          <mat-error>O status é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="button-container">
-      <button mat-raised-button [mat-dialog-close]>
+    <div class="form-actions">
+      <button mat-stroked-button [mat-dialog-close] type="button" class="cancel-button">
         Fechar
       </button>
-      <button mat-flat-button type="button" color="primary" (click)="salvar()">Salvar</button>
+      <button mat-flat-button type="submit" [disabled]="!tpProdutoForm.valid" color="primary" class="save-button">
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
     </div>
   </form>
 </mat-dialog-content>

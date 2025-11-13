@@ -109,15 +109,12 @@ export class ProdutoModalComponent implements OnInit {
       this.produtoForm = new FormGroup({
         id: new FormControl(produtoEditar.id),
         Nome: new FormControl(produtoEditar.nome, Validators.required),
-        tipoProduto: new FormControl(
-          produtoEditar.tipoProdutoId,
-          Validators.required
-        ),
+        tipoProduto: new FormControl(produtoEditar.tipoProdutoId),
         qtd: new FormControl(produtoEditar.qtd, [
           Validators.required,
           Validators.min(0),
         ]),
-        marca: new FormControl(produtoEditar.fornecedorId, Validators.required),
+        marca: new FormControl(produtoEditar.fornecedorId),
         fAtivo: new FormControl(produtoEditar.fAtivo, Validators.required),
         dthCriacao: new FormControl(
           new Date(produtoEditar.dthCriacao).toISOString().split('T')[0]
@@ -129,9 +126,9 @@ export class ProdutoModalComponent implements OnInit {
       this.produtoForm = new FormGroup({
         id: new FormControl(0),
         Nome: new FormControl('', Validators.required),
-        tipoProduto: new FormControl('', Validators.required),
+        tipoProduto: new FormControl(''),
         qtd: new FormControl('', [Validators.required, Validators.min(0)]),
-        marca: new FormControl('', Validators.required),
+        marca: new FormControl(''),
         fAtivo: new FormControl(1, Validators.required),
         dthCriacao: new FormControl(new Date().toISOString().split('T')[0]),
         descricao: new FormControl(''),

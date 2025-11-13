@@ -102,6 +102,11 @@ export class TpProdutoListComponent implements OnInit {
   }
   abrirModalCadastro(tpPoduto?: TpProdutoModel) {
     const retDialog = this.dialog.open(TpProdutoCadastroComponent, {
+      width: '90vw',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: true,
+      autoFocus: false,
       data: tpPoduto,
     });
     retDialog.afterClosed().subscribe({
