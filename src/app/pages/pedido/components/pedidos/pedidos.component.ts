@@ -15,6 +15,8 @@ import { Paginacao } from '../../../../core/model/paginacao.mode';
 import { SharedModule } from '../../../../core/services/Module/shared.module';
 import { PedidoService } from '../../service/pedido-service.service';
 import { PedidoFiltro } from '../../models/pedido-filtro.model';
+import { MatDialog } from '@angular/material/dialog';
+import { PedidoNovoComponent } from '../pedido-novo/pedido-novo.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -39,7 +41,11 @@ export class PedidosComponent implements OnInit {
   statusPedido = StatusPedido;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private pedidoService: PedidoService, public _pipe: DatePipe) {}
+  constructor(
+    private pedidoService: PedidoService,
+    public _pipe: DatePipe,
+    private dialog: MatDialog
+  ) {}
   ngOnInit(): void {
     this.carregarFiltro();
     this.carregarTabela();
@@ -77,5 +83,15 @@ export class PedidosComponent implements OnInit {
       this.paginator.length = this.paginacao.totalRegistros;
       this.paginator.pageSize = this.paginacao.tamanhoPagina;
     }
+  }
+  novoPedido() {
+    var ret = this.dialog.open(PedidoNovoComponent, {
+      panelClass: 'md-large',
+    });
+    ret.afterClosed().subscribe({
+      next: (ret) => {
+        this.carregarTabela();
+      },
+    });
   }
 }

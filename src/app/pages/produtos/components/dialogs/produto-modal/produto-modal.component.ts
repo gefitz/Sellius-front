@@ -16,12 +16,12 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { TpProdutoModel } from '../../models/tpProduto.model';
-import { FornecedorModel } from '../../../fornecedores/models/forncedor.model';
-import { ProdutoModel } from '../../models/produto.model';
-import { ProdutoService } from '../../services/produto.service';
-import { TpProdutoService } from '../../services/tp-produto.service';
-import { FornecedorService } from '../../../fornecedores/services/fornecedor.service';
+import { TpProdutoModel } from '../../../models/tpProduto.model';
+import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model';
+import { ProdutoModel } from '../../../models/produto.model';
+import { ProdutoService } from '../../../services/produto.service';
+import { TpProdutoService } from '../../../services/tp-produto.service';
+import { FornecedorService } from '../../../../fornecedores/services/fornecedor.service';
 
 @Component({
   selector: 'app-produto-modal',
@@ -126,9 +126,9 @@ export class ProdutoModalComponent implements OnInit {
       this.produtoForm = new FormGroup({
         id: new FormControl(0),
         Nome: new FormControl('', Validators.required),
-        tipoProduto: new FormControl(''),
+        tipoProduto: new FormControl(0),
         qtd: new FormControl('', [Validators.required, Validators.min(0)]),
-        marca: new FormControl(''),
+        marca: new FormControl(null),
         fAtivo: new FormControl(1, Validators.required),
         dthCriacao: new FormControl(new Date().toISOString().split('T')[0]),
         descricao: new FormControl(''),

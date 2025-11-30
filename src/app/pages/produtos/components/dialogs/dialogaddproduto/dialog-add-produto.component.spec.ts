@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogaddprodutoComponent } from './dialogaddproduto.component';
+import { DialogaddprodutoComponent } from './dialog-add-produto.component';
 
 describe('DialogaddprodutoComponent', () => {
   let component: DialogaddprodutoComponent;
@@ -8,9 +8,8 @@ describe('DialogaddprodutoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogaddprodutoComponent]
-    })
-    .compileComponents();
+      imports: [DialogaddprodutoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DialogaddprodutoComponent);
     component = fixture.componentInstance;

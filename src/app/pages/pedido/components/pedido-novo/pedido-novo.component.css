@@ -35,3 +35,8 @@ table {
     width:60vw;
   }
 }
+.form-row-flex{
+  display: flex;
+  gap:10px;
+}
+

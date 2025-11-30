@@ -1,8 +1,8 @@
 <div class="demo-button-container">
-  <a mat-raised-button class="demo-button" routerLink="/Pedido/Novo">
+  <button type="button" mat-raised-button class="demo-button" (click)="novoPedido()">
     <mat-icon>add</mat-icon>
     Novo Pedido
-  </a>
+  </button>
   <button type="button" mat-raised-button class="demo-button" (click)="abrirModalPesquisa()">
     <mat-icon>search</mat-icon>
     Filtrar Pedido

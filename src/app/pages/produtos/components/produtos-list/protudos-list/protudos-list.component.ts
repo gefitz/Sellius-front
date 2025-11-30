@@ -11,8 +11,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProdutoModel } from '../../../models/produto.model';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogFiltroProdutoComponent } from '../../dialog-filtro-produto/dialog-filtro-produto.component';
-import { DialogInativarProdutoComponent } from '../../dialog-inativar-produto/dialog-inativar-produto.component';
+import { DialogInativarProdutoComponent } from '../../dialogs/dialog-inativar-produto/dialog-inativar-produto.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { EtiquetaComponent } from '../../etiqueta/etiqueta.component';
 import { EtiquetaModel } from '../../../models/etiqueta.model';
@@ -22,6 +21,7 @@ import { CustomPaginator } from '../../../../../core/services/Utils/paginator-ed
 import { Paginacao } from '../../../../../core/model/paginacao.mode';
 import { ProdutoTabela } from '../../../models/produto-tabela.model';
 import { ProdutoModalService } from '../../../services/produto-modal.service';
+import { DialogFiltroProdutoComponent } from '../../dialogs/dialog-filtro-produto/dialog-filtro-produto.component';
 @Component({
   selector: 'app-protudos-list',
   standalone: true,
@@ -90,7 +90,7 @@ export class ProtudosListComponent implements OnInit {
   }
 
   editarProduto(produto?: ProdutoModel) {
-    this.modalProduto.abrirModal(produto);
+    this.modalProduto.abrirModalCadastro(produto);
   }
   abrirModalPesquisa() {
     const dialog = this.dialog.open(DialogFiltroProdutoComponent);

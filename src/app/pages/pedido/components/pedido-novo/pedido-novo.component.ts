@@ -15,10 +15,9 @@ import {
   PageEvent,
 } from '@angular/material/paginator';
 import { PedidoXProdutoModel } from '../../models/pedidoxproduto.model';
-import { DialogaddprodutoComponent } from '../dialogaddproduto/dialogaddproduto.component';
+import { DialogaddprodutoComponent } from '../../../produtos/components/dialogs/dialogaddproduto/dialog-add-produto.component';
 import { PedidoModel } from '../../models/pedido.model';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogFiltroProdutoComponent } from '../../../produtos/components/dialog-filtro-produto/dialog-filtro-produto.component';
+import { MatDialog, MatDialogContent } from '@angular/material/dialog';
 import { PesquisaComponent } from '../../../../shared/components/pesquisa/pesquisa.component';
 import { ClienteTabela } from '../../../clientes/models/cliente-tabela.model';
 import { ClienteFiltro } from '../../../clientes/models/cliente-filtro.model';
@@ -29,6 +28,8 @@ import { ProdutoTabela } from '../../../produtos/models/produto-tabela.model';
 import { ProdutoFiltro } from '../../../produtos/models/produtoFiltro.model';
 import { CustomPaginator } from '../../../../core/services/Utils/paginator-edit';
 import { PedidoService } from '../../service/pedido-service.service';
+import { DialogFiltroProdutoComponent } from '../../../produtos/components/dialogs/dialog-filtro-produto/dialog-filtro-produto.component';
+import { ProdutoModalService } from '../../../produtos/services/produto-modal.service';
 
 @Component({
   selector: 'app-pedido-novo',
@@ -39,14 +40,17 @@ import { PedidoService } from '../../service/pedido-service.service';
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
-    RouterLink,
     MatSelectModule,
     CommonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDialogContent,
   ],
   templateUrl: './pedido-novo.component.html',
-  styleUrl: './pedido-novo.component.css',
+  styleUrls: [
+    './pedido-novo.component.css',
+    '/src/app/shared/styles/modal-styles.css',
+  ],
   providers: [
     {
       provide: MatPaginatorIntl,
@@ -93,7 +97,8 @@ export class PedidoNovoComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private serviceProduto: ProdutoService,
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private produtoModalService: ProdutoModalService
   ) {}
 
   ngOnInit(): void {
@@ -116,44 +121,8 @@ export class PedidoNovoComponent implements OnInit {
     });
   }
 
-  addProdutoXPedido(produto: ProdutoTabela) {
-    //verefica se existe o produto na lista
-    const validaProduto = this.paginacaoPedidoXProduto.dados?.find(
-      (p) => p.produto.id === produto.id
-    );
-
-    if (!validaProduto) {
-      let pedido: PedidoModel = this.pedidoForm.value;
-
-      let pedidoXProduto: PedidoXProdutoModel = {
-        id: 0,
-        qtd: 0,
-        produto: produto,
-        valorVenda: 0,
-      };
-
-      const retDialog = this.dialog.open(DialogaddprodutoComponent, {
-        data: pedidoXProduto,
-      });
-
-      retDialog.afterClosed().subscribe((pedidoxProduto) => {
-        if (pedidoxProduto) {
-          this.paginacaoPedidoXProduto.dados.push(pedidoxProduto);
-
-          this.pedidoXProduto = new MatTableDataSource<PedidoXProdutoModel>(
-            this.paginacaoPedidoXProduto.dados
-          );
-
-          this.paginacaoProduto.dados = this.paginacaoProduto.dados.filter(
-            (p) => p.id !== produto.id
-          );
-
-          this.produtos = new MatTableDataSource<ProdutoTabela>(
-            this.paginacaoProduto.dados
-          );
-        }
-      });
-    }
+  addProdutoXPedido() {
+    this.produtoModalService.abrirModalTabelaProduto();
   }
 
   removerProdutoXPedido(produto: PedidoXProdutoModel) {
@@ -192,15 +161,17 @@ export class PedidoNovoComponent implements OnInit {
     const dialog = this.dialog.open(DialogFiltroProdutoComponent);
   }
   abrirModalPesquisaCliente() {
-
     var retDialog = this.dialog.open(
       PesquisaComponent<ClienteTabela, ClienteFiltro>,
-      { data:  {
-      urlChamada: '/Cliente/obterClientes',
-      tituloPesquisa: 'Selecionar Cliente',
-      colunas: ['nome', 'documento'],
-      nomeColunas: ['Nome', 'CPF / CNPJ'],
-    }, panelClass: `md-large` }
+      {
+        data: {
+          urlChamada: '/Cliente/obterClientes',
+          tituloPesquisa: 'Selecionar Cliente',
+          colunas: ['nome', 'documento'],
+          nomeColunas: ['Nome', 'CPF / CNPJ'],
+        },
+        panelClass: `md-large`,
+      }
     );
     retDialog.afterClosed().subscribe({
       next: (ret) => {
@@ -235,5 +206,12 @@ export class PedidoNovoComponent implements OnInit {
       fornecedorId: 0,
       fAtivo: 1,
     };
+  }
+  close() {
+    this.dialog.closeAll();
+  }
+
+  calcularTotalPedido(): number {
+    return 0;
   }
 }
