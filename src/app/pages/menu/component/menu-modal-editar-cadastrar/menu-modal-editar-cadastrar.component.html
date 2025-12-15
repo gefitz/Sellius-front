@@ -1,0 +1,108 @@
+<div class="modal-content large">
+  <!-- Header da Modal -->
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <mat-icon class="header-icon">inventory_2</mat-icon>
+      <h2 class="modal-title">Cadastro de Produto</h2>
+    </div>
+    <button mat-icon-button class="close-button" routerLink="/Produto">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Formulário -->
+  <form [formGroup]="MenuForm" (ngSubmit)="salvarProduto()" class="form-container">
+    <!-- Informações Básicas -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>info</mat-icon>
+        Informações Básicas
+      </h3>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome do Menu</mat-label>
+          <input type="text" matInput formControlName="deMenu" placeholder="Digite o nome do menu">
+          <mat-error>O nome do menu é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Url do Menu</mat-label>
+          <input type="text" matInput formControlName="urlMenu" placeholder="Digite a URL do menu">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Icone do Menu</mat-label>
+          <input type="text" matInput formControlName="icone" placeholder="Digite o ícone do menu">
+          <mat-error>O ícone é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="fAtivo">
+            Status:
+          </mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Inativo
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+          <mat-error>O status é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="fMenuExclusivo">
+            Menu Exclusivo:
+          </mat-label>
+          <mat-select formControlName="fMenuExclusivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Sim
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Não
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="MenuForm.value?.fMenuExclusivo == 1" appearance="outline" class="form-field">
+          <mat-label>Empresa</mat-label>
+          <input type="text" matInput formControlName="idEmpresa" placeholder="Digite o id da empresa">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="idMenuPai">
+            Menu Pai:
+          </mat-label>
+          <mat-select formControlName="idMenuPai">
+            <mat-option *ngFor="let menu of listaMenus" [value]="menu.id">
+              {{ menu.deMenu }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="form-actions">
+      <button mat-stroked-button type="button" [mat-dialog-close] class="cancel-button">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+      </button>
+
+      <button mat-flat-button type="submit" [disabled]="!MenuForm.valid" color="primary" class="save-button">
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
+    </div>
+
+    <input type="number" matInput formControlName="id" hidden>
+  </form>
+</div>

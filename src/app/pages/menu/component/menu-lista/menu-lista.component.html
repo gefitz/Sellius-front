@@ -1,0 +1,74 @@
+<div class="demo-button-container">
+  <button mat-raised-button class="demo-button" (click)="editarMenu()">
+    <mat-icon>add</mat-icon>
+    Novo Menu
+  </button>
+  <button type="button" mat-raised-button class="demo-button" (click)="abrirModalPesquisa()">
+    <mat-icon>search</mat-icon>
+    Filtrar Menu
+  </button>
+</div>
+<div class="mat-elevation-z8 table-responsivo">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="deMenu">
+      <th mat-header-cell *matHeaderCellDef> Nome</th>
+      <td mat-cell *matCellDef="let element"> {{element.deMenu}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dtCadastro">
+      <th mat-header-cell *matHeaderCellDef> Data de Cadastro </th>
+      <td mat-cell *matCellDef="let element"> {{_pipe.transform(element.dtCadastro,"dd/MM/yyyy hh:MM:ss")}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dtAtualizacao">
+      <th mat-header-cell *matHeaderCellDef> Data de Atualizacao </th>
+      <td mat-cell *matCellDef="let element"> {{_pipe.transform(element.dtAtualizacao,"dd/MM/yyyy hh:MM:ss")}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id Menu </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef> Url </th>
+      <td mat-cell *matCellDef="let element"> {{element.urlMenu}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idMenuPai">
+      <th mat-header-cell *matHeaderCellDef> Menu Pai </th>
+      <td mat-cell *matCellDef="let element"> {{element.idMenuPai != 0 ? element.idMenuPai : ''}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fAtivo">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.fAtivo === 1"> Ativo</span>
+        <span *ngIf="element.fAtivo === 0"> Inativo</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="btnEditar">
+      <th mat-header-cell *matHeaderCellDef class="sticky-column"></th>
+      <td mat-cell *matCellDef="let element" class="sticky-column">
+        <div class="btn-container">
+
+          <button mat-icon-button (click)="editarMenu(element)">
+            <mat-icon color="primary">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button (click)="inativarMenu(element)">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 10]" [length]="paginacaoMenu.totalRegistros"
+    [pageSize]="paginacaoMenu.tamanhoPagina" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

@@ -9,6 +9,7 @@ import { Usuarioroutes } from './pages/usuario/usario.routes';
 import { Empresaroutes } from './pages/empresa/empresa.route';
 import { FornecedorRoutes } from './pages/fornecedores/fornecedor.route';
 import { AuthGuardService } from './core/services/AuthGuard/auth-guard.service';
+import { MenuRoutes } from './pages/menu/menu.route';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
       ...PedidoRoutes,
       ...Usuarioroutes,
       ...FornecedorRoutes,
+      ...MenuRoutes,
     ],
     canActivate: [AuthGuardService],
   },

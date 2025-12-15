@@ -18,28 +18,28 @@
 
   <mat-sidenav [opened]="expanded" class="sidenav" mode="side">
     <mat-nav-list>
-      <ng-container *ngFor="let item of navItems">
+      <ng-container *ngFor="let item of menu">
 
         <!-- Se tiver submenu (children), usa expansion -->
-        <mat-expansion-panel *ngIf="item.children && item.children.length; else simpleLink" class="menu-expansion">
+        <mat-expansion-panel *ngIf="item.menuFilhos && item.menuFilhos.length; else simpleLink" class="menu-expansion">
           <mat-expansion-panel-header style="padding-left: 17px;">
-            <mat-icon class="mat-icon-nav-list">{{ item.icon }}</mat-icon>
-            <span *ngIf="expanded">{{ item.label }}</span>
+            <mat-icon class="mat-icon-nav-list">{{ item.icone }}</mat-icon>
+            <span *ngIf="expanded">{{ item.deMenu }}</span>
           </mat-expansion-panel-header>
 
-          <ng-container *ngFor="let child of item.children">
-            <a mat-list-item [routerLink]="child.route">
-              <mat-icon class="mat-icon-nav-list">{{ child.icon }}</mat-icon>
-              <span *ngIf="expanded">{{ child.label }}</span>
+          <ng-container *ngFor="let child of item.menuFilhos">
+            <a mat-list-item [routerLink]="child.urlMenu">
+              <mat-icon class="mat-icon-nav-list">{{ child.icone }}</mat-icon>
+              <span *ngIf="expanded">{{ child.deMenu }}</span>
             </a>
           </ng-container>
         </mat-expansion-panel>
 
         <!-- Se NÃO tiver submenu, mostra como link direto -->
         <ng-template #simpleLink>
-          <a mat-list-item [routerLink]="item.route">
-            <mat-icon class="mat-icon-nav-list">{{ item.icon }}</mat-icon>
-            <span *ngIf="expanded">{{ item.label }}</span>
+          <a mat-list-item [routerLink]="item.urlMenu">
+            <mat-icon class="mat-icon-nav-list">{{ item.icone }}</mat-icon>
+            <span *ngIf="expanded">{{ item.deMenu }}</span>
           </a>
         </ng-template>
 
