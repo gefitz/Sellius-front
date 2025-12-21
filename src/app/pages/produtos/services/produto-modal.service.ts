@@ -16,19 +16,17 @@ export class ProdutoModalService {
    */
   abrirModalCadastro(produto?: ProdutoModel): Observable<boolean> {
     const dialogRef = this.dialog.open(ProdutoModalComponent, {
-      width: '90vw',
-      maxWidth: '800px',
-      maxHeight: '90vh',
+      panelClass: `md-large`,
       disableClose: true,
       autoFocus: false,
-      data: {},
+      data: { produto },
     });
 
     return dialogRef.afterClosed();
   }
   abrirModalTabelaProduto() {
     const dialogRef = this.dialog.open(DialogaddprodutoComponent, {
-      panelClass: 'md-large',
+      panelClass: `md-large`,
     });
   }
 }

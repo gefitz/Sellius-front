@@ -1,134 +1,142 @@
 <mat-dialog-content class="modal-content">
-    <!-- Header da Modal -->
-    <div class="modal-header produtos">
-        <div class="header-content">
-            <mat-icon class="header-icon">inventory_2</mat-icon>
-            <h2 class="modal-title">{{ titulo }}</h2>
-        </div>
-        <button mat-icon-button class="close-button" (click)="fechar()" [disabled]="isLoading">
-            <mat-icon>close</mat-icon>
-        </button>
+  <!-- Header da Modal -->
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <mat-icon class="header-icon">inventory_2</mat-icon>
+      <h2 class="modal-title">{{ titulo }}</h2>
+    </div>
+    <button mat-icon-button class="close-button" (click)="fechar()" [disabled]="isLoading">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Formulário -->
+  <form [formGroup]="produtoForm" (ngSubmit)="salvarProduto()" class="form-container">
+    <!-- Campos Principais -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>info</mat-icon>
+        Informações Básicas
+      </h3>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome do Produto</mat-label>
+          <input type="text" matInput formControlName="Nome" placeholder="Digite o nome do produto">
+          <mat-icon matSuffix>inventory_2</mat-icon>
+          <mat-error>O nome do produto é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Tipo de Produto</mat-label>
+          <mat-select formControlName="tipoProduto">
+            <mat-option *ngFor="let item of tpProduto" [value]="item.id">
+              {{ item.tipo }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>category</mat-icon>
+          <mat-error>O tipo do produto é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Fornecedor</mat-label>
+          <mat-select formControlName="marca">
+            <mat-option *ngFor="let item of fornecedores" [value]="item.id">
+              {{ item.nome }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>business</mat-icon>
+          <mat-error>O fornecedor é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Inativo
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+          <mat-error>O status é obrigatório</mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
-    <!-- Formulário -->
-    <form [formGroup]="produtoForm" (ngSubmit)="salvarProduto()" class="form-container">
-        <!-- Campos Principais -->
-        <div class="form-section">
-            <h3 class="section-title">
-                <mat-icon>info</mat-icon>
-                Informações Básicas
-            </h3>
+    <!-- Seção de Estoque e Preço -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>store</mat-icon>
+        Estoque e Preço
+      </h3>
 
-            <div class="form-row">
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Nome do Produto</mat-label>
-                    <input type="text" matInput formControlName="Nome" placeholder="Digite o nome do produto">
-                    <mat-icon matSuffix>inventory_2</mat-icon>
-                    <mat-error>O nome do produto é obrigatório</mat-error>
-                </mat-form-field>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Quantidade em Estoque</mat-label>
+          <input type="number" matInput formControlName="qtd" placeholder="0" min="0">
+          <mat-icon matSuffix>inventory</mat-icon>
+          <mat-error>A quantidade é obrigatória</mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Tipo de Produto</mat-label>
-                    <mat-select formControlName="tipoProduto">
-                        <mat-option *ngFor="let item of tpProduto" [value]="item.id">
-                            {{ item.tipo }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-icon matSuffix>category</mat-icon>
-                    <mat-error>O tipo do produto é obrigatório</mat-error>
-                </mat-form-field>
-            </div>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Valor Unitário (R$)</mat-label>
+          <input type="number" matInput formControlName="valor" placeholder="0.00" min="0" step="0.01">
+          <mat-icon matSuffix>attach_money</mat-icon>
+          <mat-error>O valor é obrigatório</mat-error>
+        </mat-form-field>
 
-            <div class="form-row">
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Fornecedor</mat-label>
-                    <mat-select formControlName="marca">
-                        <mat-option *ngFor="let item of fornecedores" [value]="item.id">
-                            {{ item.nome }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-icon matSuffix>business</mat-icon>
-                    <mat-error>O fornecedor é obrigatório</mat-error>
-                </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Regra de Tabela Preco</mat-label>
+          <mat-select formControlName="origemTabelaPreco">
+            <mat-option *ngFor="let item of listaTabelaPrecoOrigem" [value]="item.value">
+              {{ item.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>O valor é obrigatório</mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Status</mat-label>
-                    <mat-select formControlName="fAtivo">
-                        <mat-option [value]="1">
-                            <mat-icon>check_circle</mat-icon>
-                            Ativo
-                        </mat-option>
-                        <mat-option [value]="0">
-                            <mat-icon>cancel</mat-icon>
-                            Inativo
-                        </mat-option>
-                    </mat-select>
-                    <mat-icon matSuffix>toggle_on</mat-icon>
-                    <mat-error>O status é obrigatório</mat-error>
-                </mat-form-field>
-            </div>
-        </div>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Data de Cadastro</mat-label>
+          <input type="date" matInput formControlName="dthCriacao" readonly>
+          <mat-icon matSuffix>calendar_today</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
 
-        <!-- Seção de Estoque e Preço -->
-        <div class="form-section">
-            <h3 class="section-title">
-                <mat-icon>store</mat-icon>
-                Estoque e Preço
-            </h3>
+    <!-- Seção de Descrição -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>description</mat-icon>
+        Descrição
+      </h3>
 
-            <div class="form-row">
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Quantidade em Estoque</mat-label>
-                    <input type="number" matInput formControlName="qtd" placeholder="0" min="0">
-                    <mat-icon matSuffix>inventory</mat-icon>
-                    <mat-error>A quantidade é obrigatória</mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Valor Unitário (R$)</mat-label>
-                    <input type="number" matInput formControlName="valor" placeholder="0.00" min="0" step="0.01">
-                    <mat-icon matSuffix>attach_money</mat-icon>
-                    <mat-error>O valor é obrigatório</mat-error>
-                </mat-form-field>
-            </div>
-
-            <div class="form-row">
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Data de Cadastro</mat-label>
-                    <input type="date" matInput formControlName="dthCriacao" readonly>
-                    <mat-icon matSuffix>calendar_today</mat-icon>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <!-- Seção de Descrição -->
-        <div class="form-section">
-            <h3 class="section-title">
-                <mat-icon>description</mat-icon>
-                Descrição
-            </h3>
-
-            <mat-form-field appearance="outline" class="form-field full-width">
-                <mat-label>Descrição do Produto</mat-label>
-                <textarea matInput formControlName="descricao" placeholder="Descreva o produto..." rows="4">
+      <mat-form-field appearance="outline" class="form-field full-width">
+        <mat-label>Descrição do Produto</mat-label>
+        <textarea matInput formControlName="descricao" placeholder="Descreva o produto..." rows="4">
         </textarea>
-                <mat-icon matSuffix>notes</mat-icon>
-            </mat-form-field>
-        </div>
+        <mat-icon matSuffix>notes</mat-icon>
+      </mat-form-field>
+    </div>
 
-        <!-- Botões de Ação -->
-        <div class="form-actions">
-            <button mat-stroked-button type="button" (click)="fechar()" [disabled]="isLoading" class="cancel-button">
-                <mat-icon>close</mat-icon>
-                Cancelar
-            </button>
+    <!-- Botões de Ação -->
+    <div class="form-actions">
+      <button mat-stroked-button type="button" (click)="fechar()" [disabled]="isLoading" class="cancel-button">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
 
-            <button mat-flat-button type="submit" [disabled]="!produtoForm.valid || isLoading" color="primary"
-                class="save-button">
-                <mat-icon *ngIf="!isLoading">save</mat-icon>
-                <mat-icon *ngIf="isLoading" class="spinning">refresh</mat-icon>
-                {{ isLoading ? 'Salvando...' : 'Salvar' }}
-            </button>
-        </div>
-    </form>
+      <button mat-flat-button type="submit" [disabled]="!produtoForm.valid || isLoading" color="primary"
+        class="save-button">
+        <mat-icon *ngIf="!isLoading">save</mat-icon>
+        <mat-icon *ngIf="isLoading" class="spinning">refresh</mat-icon>
+        {{ isLoading ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </form>
 </mat-dialog-content>

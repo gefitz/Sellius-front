@@ -22,6 +22,7 @@ import { ProdutoModel } from '../../../models/produto.model';
 import { ProdutoService } from '../../../services/produto.service';
 import { TpProdutoService } from '../../../services/tp-produto.service';
 import { FornecedorService } from '../../../../fornecedores/services/fornecedor.service';
+import { enumToArrayOrigemTabelaPreco } from '../../../Enum/OrigemTabelaPreco.enum';
 
 @Component({
   selector: 'app-produto-modal',
@@ -48,6 +49,7 @@ export class ProdutoModalComponent implements OnInit {
   fornecedores: FornecedorModel[] = [];
   titulo: string = 'Cadastrar Produto';
   isLoading: boolean = false;
+  listaTabelaPrecoOrigem = enumToArrayOrigemTabelaPreco();
 
   constructor(
     private dialogRef: MatDialogRef<ProdutoModalComponent>,
@@ -121,6 +123,10 @@ export class ProdutoModalComponent implements OnInit {
         ),
         descricao: new FormControl(produtoEditar.descricao),
         valor: new FormControl(produtoEditar.valor, Validators.required),
+        origemTabelaPreco: new FormControl(
+          produtoEditar.origemTabelaPreco,
+          Validators.required
+        ),
       });
     } else {
       this.produtoForm = new FormGroup({
@@ -133,6 +139,7 @@ export class ProdutoModalComponent implements OnInit {
         dthCriacao: new FormControl(new Date().toISOString().split('T')[0]),
         descricao: new FormControl(''),
         valor: new FormControl(0, Validators.required),
+        origemTabelaPreco: new FormControl(0, Validators.required),
       });
     }
   }

@@ -1,3 +1,4 @@
+import { OrigemTabelaPreco } from '../Enum/OrigemTabelaPreco.enum';
 import { TpProdutoModel } from './tpProduto.model';
 
 export interface ProdutoModel {
@@ -12,4 +13,5 @@ export interface ProdutoModel {
   descricao: string;
   valor: number;
   fornecedorId: number;
+  origemTabelaPreco: OrigemTabelaPreco;
 }
