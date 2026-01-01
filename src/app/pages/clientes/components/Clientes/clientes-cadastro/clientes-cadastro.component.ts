@@ -21,7 +21,7 @@ import { SegmentacaoModel } from '../../../models/segmentacao.model';
 import { GrupoModel } from '../../../models/grupo.model';
 import { SegmentacaoService } from '../../../services/segmentacao.service';
 import { GrupoService } from '../../../services/grupo.service';
-import { ConsumirApi } from '../../../../../core/services/Utils/consome-api.serivce';
+import { Viacep } from '../../../../../core/services/Utils/consome-api.serivce';
 import { EstadoModel } from '../../../../../core/model/estado.model';
 import { error } from 'node:console';
 import { HttpResponse } from '@angular/common/http';
@@ -169,7 +169,7 @@ export class ClientesCadastroComponent implements OnInit {
   buscarCep() {
     const cep = this.clienteForm.get('cep')?.value;
     if (cep && cep.length === 8) {
-      ConsumirApi.BuscaCep(cep)
+      Viacep.BuscaCep(cep)
         .then(async (data) => {
           await this.buscarCidades(data.estado || 0);
           this.clienteForm.patchValue({
@@ -184,7 +184,7 @@ export class ClientesCadastroComponent implements OnInit {
     }
   }
   carregaEstado() {
-    ConsumirApi.BuscaEstados()
+    Viacep.BuscaEstados()
       .then((data) => {
         this.estado = data;
         if (this.clienteEditar.id) {
@@ -196,7 +196,7 @@ export class ClientesCadastroComponent implements OnInit {
       });
   }
   async buscarCidades(estadoId: number) {
-    await ConsumirApi.BuscaCidade(estadoId)
+    await Viacep.BuscaCidade(estadoId)
       .then((data) => {
         this.cidade = data;
       })

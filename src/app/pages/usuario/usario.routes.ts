@@ -1,10 +1,16 @@
 import { Routes } from '@angular/router';
-import { UsuarioCadastroComponent } from './components/usuario-cadastro/usuario-cadastro.component';
+import { ListaUsuairoComponent } from './components/lista-usuario/lista-usuario.component';
+import { ListaTipoUsuario } from './components/lista-tipo-usuario/lista-tipo-usuario.component';
 
 export const Usuarioroutes: Routes = [
   {
-    path: 'cadastroUsuario',
-    component: UsuarioCadastroComponent,
+    path: 'Usuario',
+    component: ListaUsuairoComponent,
     data: { title: 'Cadastro de Usuario' },
+  },
+  {
+    path: 'Usuario/TpUsuario',
+    component: ListaTipoUsuario,
+    data: { title: 'Cadastro Tipo de Usuario' },
   },
 ];

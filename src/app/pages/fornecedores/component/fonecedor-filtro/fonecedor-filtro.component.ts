@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
-import { FormGroupModule } from '../../../../core/services/Module/form.module';
-import { ConsumirApi } from '../../../../core/services/Utils/consome-api.serivce';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 import { CidadeModel } from '../../../../core/model/cidade.model';
 import { EstadoModel } from '../../../../core/model/estado.model';
 import { SharedModule } from '../../../../core/services/Module/shared.module';
@@ -27,12 +25,12 @@ export class FonecedorFiltroComponent implements OnInit {
       cnpj: new FormControl(''),
       cidade: new FormControl(''),
     });
-    ConsumirApi.BuscaEstados().then((result) => {
+    Viacep.BuscaEstados().then((result) => {
       this.listEstados = result;
     });
   }
   carregarCidade(idEstado: number) {
-    ConsumirApi.BuscaCidade(idEstado).then((result) => {
+    Viacep.BuscaCidade(idEstado).then((result) => {
       this.listCidades = result;
     });
   }

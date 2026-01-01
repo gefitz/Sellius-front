@@ -54,4 +54,8 @@ export class MenuService {
 
     return menu;
   }
+
+  buscarTodosMenus(menu: MenuFiltro) {
+    return this.api.post<Menu[]>(this.endPoint + '/obterTodosMenus', menu);
+  }
 }

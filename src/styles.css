@@ -50,7 +50,7 @@ table {
 }
 .md-large{
         width: 60% !important;
-      max-width: 100vw !important;
+      max-width: 200vh !important;
 }
 .md-medium{
      width: '90vw';
@@ -75,6 +75,15 @@ table {
   justify-content: flex-end;
   gap:10px;
 }
+.ativo{
+  color: green;
+  /* font-weight: bold; */
+}
+.inativo{
+  color: red;
+  /* font-weight: bold; */
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #9e9e9e #3b7eb9;

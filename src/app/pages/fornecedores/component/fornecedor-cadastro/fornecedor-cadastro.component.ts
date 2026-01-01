@@ -18,7 +18,7 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ConsumirApi } from '../../../../core/services/Utils/consome-api.serivce';
+import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 import { EstadoModel } from '../../../../core/model/estado.model';
 import { CidadeModel } from '../../../../core/model/cidade.model';
 import { FornecedorService } from '../../services/fornecedor.service';
@@ -115,12 +115,12 @@ export class FornecedorCadastroComponent implements OnInit {
     }
   }
   carregarCombo() {
-    ConsumirApi.BuscaEstados().then((result) => {
+    Viacep.BuscaEstados().then((result) => {
       this.lisEstados = result;
     });
   }
   carregarCidade(idEstado: number) {
-    ConsumirApi.BuscaCidade(idEstado).then((result) => {
+    Viacep.BuscaCidade(idEstado).then((result) => {
       this.listCidades = result;
     });
   }
@@ -128,7 +128,7 @@ export class FornecedorCadastroComponent implements OnInit {
     console.log('Ola');
     const cep = this.fornecedorForm.get('cep')?.value;
     if (cep && cep.length === 8) {
-      ConsumirApi.BuscaCep(cep)
+      Viacep.BuscaCep(cep)
         .then(async (data) => {
           await this.carregarCidade(data.estado || 0);
           this.fornecedorForm.patchValue({

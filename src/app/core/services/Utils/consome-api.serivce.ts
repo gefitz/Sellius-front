@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class ConsumirApi {
+export class Viacep {
   constructor(public http: HttpClient, private apiInterna: ApiService) {}
 
   static async BuscaCep(cep: string) {

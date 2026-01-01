@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline">
+  <mat-label>CEP</mat-label>
+  <input matInput #input type="text" [value]="_displayValue" (input)="onInput($event)" (blur)="onTouched()"
+    maxlength="9" placeholder="00000-000" class="cep-input" />
+  <mat-icon matSuffix>markunread_mailbox</mat-icon>
+  <mat-error>O CEP é obrigatório</mat-error>
+</mat-form-field>

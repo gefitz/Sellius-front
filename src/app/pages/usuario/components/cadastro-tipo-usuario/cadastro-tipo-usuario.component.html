@@ -1,0 +1,124 @@
+<div class="modal-content large">
+  <!-- Header da Modal -->
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <mat-icon class="header-icon">person_add</mat-icon>
+      <h2 class="modal-title">Cadastro de Tipo de Usuário</h2>
+    </div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Formulário -->
+  <form [formGroup]="formTpUsuario" (ngSubmit)="submitCadastro()" class="form-container">
+    <!-- Informações Pessoais -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>person</mat-icon>
+        Informações Basicas
+      </h3>
+
+      <div class="form-row">
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Descrição Tipo Usuario</mat-label>
+          <input type="text" matInput formControlName="tpUsuario" placeholder="Ex: Vendedor">
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-error>A descrição é obrigatória</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="fAtivo">
+            Status:
+          </mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Inativo
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+          <mat-error>O status é obrigatório</mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="form-section">
+        <h3 class="section-title">
+          <mat-icon>security</mat-icon>
+          Permissões
+        </h3>
+
+        <mat-checkbox formControlName="flPodeCriar">Permite Adicionar</mat-checkbox>
+        <mat-checkbox formControlName="flPodeEditar">Permite Editar</mat-checkbox>
+        <mat-checkbox formControlName="flPodeInativar">Permite Inativar</mat-checkbox>
+        <mat-checkbox formControlName="flPodeAprovar">Permite Aprovar</mat-checkbox>
+        <mat-checkbox formControlName="flPodeExportar">Permite Exportar</mat-checkbox>
+        <mat-checkbox formControlName="flPodeGerenciarUsuarios">Permite Gerenciar Usuários</mat-checkbox>
+        <!-- <mat-checkbox formControlName="flPodeExcluir">Gerenciar Produtos</mat-checkbox> -->
+
+
+
+      </div>
+      <div class="form-section">
+        <h3 class="section-title">
+          <mat-icon>menu</mat-icon>
+          Menu Acessível
+        </h3>
+        <div class="mat-elevation-z8 table-responsivo table-menu">
+          <table mat-table [dataSource]="dataSourceMenu">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="deMenu">
+              <th mat-header-cell *matHeaderCellDef> Nome</th>
+              <td mat-cell *matCellDef="let element"> {{element.deMenu}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="menuPai">
+              <th mat-header-cell *matHeaderCellDef> Menu Pai </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.sMenuPai}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="check">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button type="button" *ngIf="!validarMenuAdicionado(element)" mat-icon-button color="primary"
+                  title="Adicionar Menu" (click)="adicionarMenu(element)">
+                  <mat-icon>add</mat-icon>
+                </button>
+                <button type="button" *ngIf="validarMenuAdicionado(element)" mat-icon-button color="warn"
+                  title="Remover Menu" (click)="removerMenu(element)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+      <!-- Botões de Ação -->
+      <div class="form-actions">
+        <button mat-stroked-button type="button" class="cancel-button" [mat-dialog-close]>
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+
+        <button mat-flat-button type="submit" [disabled]="!formTpUsuario.valid" color="primary" class="save-button">
+          <mat-icon>save</mat-icon>
+          Salvar
+        </button>
+      </div>
+
+      <input type="text" matInput formControlName="id" hidden>
+    </div>
+  </form>
+</div>

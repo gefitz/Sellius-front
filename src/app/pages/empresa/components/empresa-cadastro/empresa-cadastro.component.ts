@@ -25,7 +25,7 @@ import { EstadoModel } from '../../../../core/model/estado.model';
 import { CommonModule } from '@angular/common';
 import { TipoLicenca } from '../../../../core/enums/tipo-licenca.enum';
 import { RouterLink } from '@angular/router';
-import { ConsumirApi } from '../../../../core/services/Utils/consome-api.serivce';
+import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 @Component({
   selector: 'app-empresa-cadastro',
   standalone: true,
@@ -122,7 +122,7 @@ export class EmpresaCadastroComponent implements OnInit {
   buscarCep() {
     const cep = this.formEmpresa.get('cep')?.value;
     if (cep && cep.length === 8) {
-      ConsumirApi.BuscaCep(cep)
+      Viacep.BuscaCep(cep)
         .then(async (data) => {
           await this.buscarCidades(data.estado || 0);
           this.formEmpresa.patchValue({
@@ -137,7 +137,7 @@ export class EmpresaCadastroComponent implements OnInit {
     }
   }
   carregaEstado() {
-    ConsumirApi.BuscaEstados()
+    Viacep.BuscaEstados()
       .then((data) => {
         this.listEstados = data;
       })
@@ -146,7 +146,7 @@ export class EmpresaCadastroComponent implements OnInit {
       });
   }
   async buscarCidades(estadoId: number) {
-    await ConsumirApi.BuscaCidade(estadoId)
+    await Viacep.BuscaCidade(estadoId)
       .then((data) => {
         this.listCidades = data;
       })

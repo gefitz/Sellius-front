@@ -1,10 +1,13 @@
 <div class="modal-content large">
   <!-- Header da Modal -->
-  <div class="modal-header usuarios">
+  <div class="modal-header produtos">
     <div class="header-content">
       <mat-icon class="header-icon">person_add</mat-icon>
       <h2 class="modal-title">Cadastro de Usuário</h2>
     </div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
 
   <!-- Formulário -->
@@ -43,8 +46,8 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Tipo de Usuário</mat-label>
           <mat-select formControlName="tipoUsuario" #tipoUsuario>
-            <mat-option *ngFor="let tipoUsuario of listaTipoUsuario" [value]="tipoUsuario.key">
-              {{ tipoUsuario.value }}
+            <mat-option *ngFor="let tipoUsuario of listaTipoUsuario" [value]="tipoUsuario.id">
+              {{ tipoUsuario.tpUsuario }}
             </mat-option>
           </mat-select>
           <mat-icon matSuffix>admin_panel_settings</mat-icon>
@@ -61,12 +64,7 @@
       </h3>
 
       <div class="form-row">
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>CEP</mat-label>
-          <input type="text" matInput formControlName="cep" placeholder="00000-000" (change)="buscarCep()">
-          <mat-icon matSuffix>markunread_mailbox</mat-icon>
-          <mat-error>O CEP é obrigatório</mat-error>
-        </mat-form-field>
+        <input-cep formControlName="cep" class="form-field" (resposta)="preencherEndereco($event)"></input-cep>
 
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Estado</mat-label>
@@ -127,7 +125,7 @@
 
     <!-- Botões de Ação -->
     <div class="form-actions" *ngIf="!telaCadastroEmpresa">
-      <button mat-stroked-button type="button" routerLink="/Login" class="cancel-button">
+      <button mat-stroked-button type="button" class="cancel-button">
         <mat-icon>arrow_back</mat-icon>
         Voltar
       </button>

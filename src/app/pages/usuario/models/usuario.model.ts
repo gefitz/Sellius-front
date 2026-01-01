@@ -1,5 +1,5 @@
 import { CidadeModel } from '../../../core/model/cidade.model';
-import { TipoUsuario } from '../enums/tipo-usuario.enum';
+import { TpUsuario } from './tipo-usuario.model';
 
 export interface UsuarioModel {
   id: number;
@@ -10,6 +10,6 @@ export interface UsuarioModel {
   cep: string;
   rua: string;
   empresaId: number;
-  tipoUsuario: TipoUsuario;
+  tipoUsuario: TpUsuario;
   fAtivo: number;
 }

@@ -10,4 +10,6 @@ export interface Menu {
   dtCadastro: Date | string;
   dtAtualizacao: Date | string;
   menuFilhos: Menu[];
+  sMenuPai: string;
+  menuPai: Menu;
 }

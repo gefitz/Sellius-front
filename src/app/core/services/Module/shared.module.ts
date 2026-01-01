@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { CepComponent } from '../../../shared/components/cep/cep.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -24,6 +26,8 @@ import { RouterLink } from '@angular/router';
     MatIcon,
     RouterLink,
     MatIconModule,
+    CepComponent,
+    MatCheckboxModule,
   ],
   exports: [
     FormGroupModule,
@@ -35,6 +39,7 @@ import { RouterLink } from '@angular/router';
     RouterLink,
     MatIconModule,
     CommonModule,
+    CepComponent,
   ],
   providers: [
     {

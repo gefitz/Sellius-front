@@ -1,0 +1,62 @@
+<div class="modal-content large">
+  <!-- Header da Modal -->
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <h2 class="modal-title">Filtra Tipo Usuario</h2>
+    </div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Formulário -->
+  <form [formGroup]="formTpUsuario" class="form-container">
+    <!-- Informações Pessoais -->
+    <div class="form-section">
+      <div class="form-row">
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Descrição Tipo Usuario</mat-label>
+          <input type="text" matInput formControlName="tpUsuario" placeholder="Ex: Vendedor">
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-error>A descrição é obrigatória</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="fAtivo">
+            Status:
+          </mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="-1">
+
+              Todos
+            </mat-option>
+            <mat-option [value]="1">
+
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              Inativo
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+
+      <!-- Botões de Ação -->
+      <div class="form-actions">
+        <button mat-stroked-button type="button" class="cancel-button">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+
+        <button mat-flat-button type="submit" [disabled]="!formTpUsuario.valid" color="primary" class="save-button"
+          [mat-dialog-close]="formTpUsuario.value">
+          <mat-icon>search</mat-icon>
+          Pesquisar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
