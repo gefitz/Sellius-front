@@ -62,76 +62,56 @@ export class TpUsuarioCadastroComponent implements OnInit {
   }
 
   preencherForm() {
-    if (this.tpUsuarioEditar) {
-      this.formTpUsuario = new FormGroup({
-        id: new FormControl(this.tpUsuarioEditar.id),
-        tpUsuario: new FormControl(
-          this.tpUsuarioEditar.tpUsuario,
-          Validators.required
-        ),
-        fAtivo: new FormControl(
-          this.tpUsuarioEditar.fAtivo,
-          Validators.required
-        ),
-        flPodeCriar: new FormControl(
-          this.tpUsuarioEditar.tpUsuarioConfiguracao &&
-          this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeCriar != null
-            ? this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeCriar
-            : false
-        ),
-        flPodeExcluir: new FormControl(
-          this.tpUsuarioEditar.tpUsuarioConfiguracao &&
-          this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExcluir != null
-            ? this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExcluir
-            : false
-        ),
-        flPodeEditar: new FormControl(
-          this.tpUsuarioEditar.tpUsuarioConfiguracao &&
-          this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeEditar != null
-            ? this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeEditar
-            : false
-        ),
-        flPodeInativar: new FormControl(
-          this.tpUsuarioEditar.tpUsuarioConfiguracao &&
-          this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeInativar != null
-            ? this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeInativar
-            : false
-        ),
-        flPodeAprovar: new FormControl(
-          this.tpUsuarioEditar.tpUsuarioConfiguracao &&
-          this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeAprovar != null
-            ? this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeAprovar
-            : false
-        ),
-        flPodeExportar: new FormControl(
-          this.tpUsuarioEditar.tpUsuarioConfiguracao &&
-          this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExportar != null
-            ? this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExportar
-            : false
-        ),
-        flPodeGerenciarUsuarios: new FormControl(
-          this.tpUsuarioEditar.tpUsuarioConfiguracao &&
-          this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeGerenciarUsuarios !=
-            null
-            ? this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeGerenciarUsuarios
-            : false
-        ),
-      });
-      this.listaMenuAdicionado = this.tpUsuarioEditar.menu;
-    } else {
-      this.formTpUsuario = new FormGroup({
-        id: new FormControl(0),
-        tpUsuario: new FormControl('', Validators.required),
-        fAtivo: new FormControl(1, Validators.required),
-        // flPodeCriar: new FormControl(0),
-        // flPodeExcluir: new FormControl(0),
-        // flPodeEditar: new FormControl(0),
-        // flPodeInativar: new FormControl(0),
-        // flPodeAprovar: new FormControl(0),
-        // flPodeExportar: new FormControl(0),
-        // flPodeGerenciarUsuarios: new FormControl(0),
-      });
-    }
+    setTimeout(() => {
+      if (this.tpUsuarioEditar) {
+        this.formTpUsuario = new FormGroup({
+          id: new FormControl(this.tpUsuarioEditar.id),
+          tpUsuario: new FormControl(
+            this.tpUsuarioEditar.tpUsuario,
+            Validators.required
+          ),
+          fAtivo: new FormControl(
+            this.tpUsuarioEditar.fAtivo,
+            Validators.required
+          ),
+          flPodeCriar: new FormControl(
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeCriar
+          ),
+          flPodeExcluir: new FormControl(
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExcluir
+          ),
+          flPodeEditar: new FormControl(
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeEditar
+          ),
+          flPodeInativar: new FormControl(
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeInativar
+          ),
+          flPodeAprovar: new FormControl(
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeAprovar
+          ),
+          flPodeExportar: new FormControl(
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExportar
+          ),
+          flPodeGerenciarUsuarios: new FormControl(
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeGerenciarUsuarios
+          ),
+        });
+        this.listaMenuAdicionado = this.tpUsuarioEditar.menu;
+      } else {
+        this.formTpUsuario = new FormGroup({
+          id: new FormControl(0),
+          tpUsuario: new FormControl('', Validators.required),
+          fAtivo: new FormControl(1, Validators.required),
+          flPodeCriar: new FormControl(false),
+          flPodeExcluir: new FormControl(false),
+          flPodeEditar: new FormControl(false),
+          flPodeInativar: new FormControl(false),
+          flPodeAprovar: new FormControl(false),
+          flPodeExportar: new FormControl(false),
+          flPodeGerenciarUsuarios: new FormControl(false),
+        });
+      }
+    }, 0);
   }
   submitCadastro() {
     this.montaEnvio();
@@ -171,7 +151,7 @@ export class TpUsuarioCadastroComponent implements OnInit {
     this.tpUsuarioEditar = this.formTpUsuario.value;
     this.tpUsuarioEditar.tpUsuarioConfiguracao = {
       flPodeAprovar: this.formTpUsuario.value.flPodeAprovar,
-      flPodeCriar: this.formTpUsuario.value.flPodeAprovar,
+      flPodeCriar: this.formTpUsuario.value.flPodeCriar,
       flPodeEditar: this.formTpUsuario.value.flPodeEditar,
       flPodeExcluir: this.formTpUsuario.value.flPodeExcluir,
       flPodeExportar: this.formTpUsuario.value.flPodeExportar,

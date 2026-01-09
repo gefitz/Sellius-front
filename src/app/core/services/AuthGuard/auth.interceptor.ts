@@ -1,16 +1,13 @@
-import { HttpInterceptorFn } from '@angular/common/http';
-import { AuthGuardService } from './auth-guard.service';
-import { inject } from '@angular/core';
+import { HttpHandlerFn, HttpRequest } from '@angular/common/http';
 
-export const autInterceptor: HttpInterceptorFn = (req, next) => {
-  const cookie = inject(AuthGuardService);
-  const token = cookie.getCookie();
-  if (token) {
-    req = req.clone({
-      setHeaders: {
-        Authorization: 'Bearer ' + token,
-      },
-    });
-  }
-  return next(req);
-};
+export function authInterceptor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) {
+  // Clona a requisição adicionando withCredentials: true
+  const authReq = req.clone({
+    withCredentials: true,
+  });
+
+  return next(authReq);
+}

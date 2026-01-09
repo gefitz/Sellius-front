@@ -10,14 +10,14 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { autInterceptor } from './core/services/AuthGuard/auth.interceptor';
+import { authInterceptor } from './core/services/AuthGuard/auth.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(),
     provideAnimationsAsync(),
-    provideHttpClient(withFetch(), withInterceptors([autInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     DatePipe,
   ],
 };

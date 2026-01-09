@@ -3,40 +3,39 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginModel } from '../models/login.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { response } from 'express';
-import { ResponseApiModel } from '../../../core/model/ResponseApi.model';
-import { error } from 'console';
-import { environment } from '../../../../environments/environment';
+import { ApiService } from '../../../core/services/Api/api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   public isAuthenticado: boolean = true;
-  private urlApi: string = environment.apiUrl + '/api/Login';
+  // private urlApi: string = environment.apiUrl + '/api';
   constructor(
     private cookie: CookieService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private http: HttpClient
+    private http: ApiService
   ) {}
   authenticarUsuario(login: LoginModel) {
-    this.http.post<ResponseApiModel>(this.urlApi, login).subscribe({
+    this.http.post<string>('/Login', login).subscribe({
       next: (response) => {
-        this.cookie.set('auth_token', response.data.toString());
+        this.cookie.set('token', response);
         this.snackBar.open('Sucesso na autenticação', 'ok', {
           duration: 1000,
         });
         this.router.navigateByUrl('');
       },
-      error: (error) => {
-        this.snackBar.open(error.error.errorMessage, 'Ok', { duration: 5000 });
-      },
     });
   }
   sair() {
-    this.cookie.delete('auth_token');
-    this.router.navigateByUrl('/Login');
+    this.http.delete<any>('/Login/logout').subscribe({
+      next: (ret) => {
+        this.snackBar.open('Sessao finalizado com sucesso', 'Ok', {
+          duration: 5000,
+        });
+        this.router.navigateByUrl('/Login');
+      },
+    });
   }
 }

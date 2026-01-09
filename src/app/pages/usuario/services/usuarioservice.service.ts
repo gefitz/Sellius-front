@@ -79,4 +79,10 @@ export class UsuarioserviceService {
 
     return ret.afterClosed().pipe(tap((valor) => console.log(valor)));
   }
+
+  carregaTpUsuario() {
+    return this.http.get<TpUsuario[]>(
+      this.apiUrl + '/TpUsuario/obterTodosTpUsuarios'
+    );
+  }
 }

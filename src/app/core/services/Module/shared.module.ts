@@ -13,9 +13,10 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { CepComponent } from '../../../shared/components/cep/cep.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { PermissaoDirective } from '../AuthGuard/PermissaoDirective';
 
 @NgModule({
-  declarations: [],
+  declarations: [PermissaoDirective],
   imports: [
     FormGroupModule,
     MatDialogModule,
@@ -40,6 +41,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatIconModule,
     CommonModule,
     CepComponent,
+    PermissaoDirective,
   ],
   providers: [
     {

@@ -1,4 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { catchError, map, Observable, throwError, finalize } from 'rxjs';
 import { Cookie } from '../cookie/cookie.service';
 import {
@@ -32,7 +36,7 @@ export class ApiService {
     private http: HttpClient,
     private cookie: Cookie,
     private snack: MatSnackBar,
-    private login: LoginService,
+    // private login: LoginService,
     private route: Router
   ) {}
 
@@ -53,99 +57,78 @@ export class ApiService {
   }
   get<model>(endPoint: string): Observable<model> {
     this.showLoader();
-    return this.http
-      .get<ResponseModel<model>>(this.url + endPoint, {
-        headers: this.montarHeader(),
-      })
-      .pipe(
-        map((response) => {
-          if (response.success) {
-            return response.data;
-          } else {
-            this.snack.open(response.errorMessage, `Ok`, { duration: 5000 });
-            throw new Error('Erro: ' + response.errorMessage);
-          }
-        }),
-        catchError((error) => this.error(error)),
-        finalize(() => this.hideLoader())
-      );
+    return this.http.get<ResponseModel<model>>(this.url + endPoint).pipe(
+      map((response) => {
+        if (response.success) {
+          return response.data;
+        } else {
+          this.snack.open(response.errorMessage, `Ok`, { duration: 5000 });
+          throw new Error('Erro: ' + response.errorMessage);
+        }
+      }),
+      catchError((error) => this.error(error)),
+      finalize(() => this.hideLoader())
+    );
   }
   post<model>(endPoint: string, obj: object): Observable<model> {
     this.showLoader();
-    return this.http
-      .post<ResponseModel<model>>(this.url + endPoint, obj, {
-        headers: this.montarHeader(),
-      })
-      .pipe(
-        map((response) => {
-          if (response.success) {
-            return response.data;
-          } else {
-            throw new Error(response.errorMessage);
-          }
-        }),
-        catchError((error) => this.error(error)),
-        finalize(() => this.hideLoader())
-      );
+    return this.http.post<ResponseModel<model>>(this.url + endPoint, obj).pipe(
+      map((response) => {
+        if (response.success) {
+          return response.data;
+        } else {
+          throw new Error(response.errorMessage);
+        }
+      }),
+      catchError((error) => this.error(error)),
+      finalize(() => this.hideLoader())
+    );
   }
 
   put<model>(endPoint: string, obj: object): Observable<model> {
     this.showLoader();
-    return this.http
-      .put<ResponseModel<model>>(this.url + endPoint, obj, {
-        headers: this.montarHeader(),
-      })
-      .pipe(
-        map((response) => {
-          if (response.success) {
-            return response.data;
-          } else {
-            throw new Error('Erro ao excluir');
-          }
-        }),
-        catchError((error) => this.error(error)),
-        finalize(() => this.hideLoader())
-      );
+    return this.http.put<ResponseModel<model>>(this.url + endPoint, obj).pipe(
+      map((response) => {
+        if (response.success) {
+          return response.data;
+        } else {
+          throw new Error('Erro ao excluir');
+        }
+      }),
+      catchError((error) => this.error(error)),
+      finalize(() => this.hideLoader())
+    );
   }
 
   delete<model>(endPoint: string): Observable<model> {
     this.showLoader();
-    return this.http
-      .delete<ResponseModel<model>>(this.url + endPoint, {
-        headers: this.montarHeader(),
-      })
-      .pipe(
-        map((response) => {
-          if (response.success) {
-            return response.data;
-          } else {
-            throw new Error('Erro ao excluir');
-          }
-        }),
-        catchError((error) => this.error(error)),
-        finalize(() => this.hideLoader())
-      );
+    return this.http.delete<ResponseModel<model>>(this.url + endPoint).pipe(
+      map((response) => {
+        if (response.success) {
+          return response.data;
+        } else {
+          throw new Error('Erro ao excluir');
+        }
+      }),
+      catchError((error) => this.error(error)),
+      finalize(() => this.hideLoader())
+    );
   }
 
-  private montarHeader(): HttpHeaders {
-    const token = this.cookie.resgatarCookie('auth_token');
-    if (!token || token == '') {
-      this.login.sair();
-    }
-    const headers: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ` + token,
-    });
-    return headers;
+  private httpResponse401(erro: HttpErrorResponse) {
+    this.route.navigateByUrl('/Login');
   }
-  private httpResponse401(erro: any) {
-    if (erro.error === 'Token is experied.') {
-      this.login.sair();
-    }
+  private httpResponse403(erro: HttpErrorResponse) {
+    this.snack.open(
+      'Acesso negado! Seu usuario nao tem permisao para realizar essa acao'
+    );
   }
-  private error(error: any) {
+  private error(error: HttpErrorResponse) {
     if (error.status == 401) {
       this.httpResponse401(error);
+    }
+    if (error.status == 403) {
+      this.httpResponse403(error);
     }
     this.snack.open(error.error.errorMessage, 'Ok', { duration: 5000 });
     return throwError(() => error.error);

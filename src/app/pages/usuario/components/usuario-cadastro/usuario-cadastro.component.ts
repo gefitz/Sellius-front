@@ -40,6 +40,7 @@ export class UsuarioCadastroComponent implements OnInit {
   }
   ngOnInit(): void {
     this.carregaEstado();
+    this.carregaTpUsuario();
   }
   ngAfterViewInit(): void {
     if (this.origem.includes('cadastroEmpresa')) {
@@ -93,6 +94,13 @@ export class UsuarioCadastroComponent implements OnInit {
       estado: data.estado,
       cidadeId: data.cidade,
       rua: data.rua,
+    });
+  }
+  carregaTpUsuario() {
+    this.service.carregaTpUsuario().subscribe({
+      next: (ret) => {
+        this.listaTipoUsuario = ret;
+      },
     });
   }
 }

@@ -1,5 +1,5 @@
 <div class="demo-button-container">
-  <button mat-raised-button class="demo-button" (click)="editarUsuario()">
+  <button mat-raised-button class="demo-button" (click)="editarUsuario()" *permissao="'flPodeCriar'">
     <mat-icon>add</mat-icon>
     Novo Usuário
   </button>

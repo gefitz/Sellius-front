@@ -23,7 +23,7 @@ export const routes: Routes = [
       ...FornecedorRoutes,
       ...MenuRoutes,
     ],
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: '',
