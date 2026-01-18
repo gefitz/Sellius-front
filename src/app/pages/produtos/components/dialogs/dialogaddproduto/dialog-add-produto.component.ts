@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from '../../../../../core/services/Utils/paginator-edit';
-import { SharedModule } from '../../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 import { ProdutoTabela } from '../../../models/produto-tabela.model';
 import { Paginacao } from '../../../../../core/model/paginacao.mode';
 import { ProdutoFiltro } from '../../../models/produtoFiltro.model';

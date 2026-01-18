@@ -16,7 +16,7 @@
     <div class="form-section">
       <h3 class="section-title">
         <mat-icon>person</mat-icon>
-        Informações Pessoais
+        Informações Basicas
       </h3>
 
       <div class="form-row">
@@ -53,6 +53,24 @@
           <mat-icon matSuffix>admin_panel_settings</mat-icon>
           <mat-error>O tipo de usuário é obrigatório</mat-error>
         </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="fAtivo">
+            Status:
+          </mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="1">
+              <mat-icon>check_circle</mat-icon>
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              <mat-icon>cancel</mat-icon>
+              Inativo
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+          <mat-error>O status é obrigatório</mat-error>
+        </mat-form-field>
+
       </div>
     </div>
 
@@ -64,31 +82,14 @@
       </h3>
 
       <div class="form-row">
-        <input-cep formControlName="cep" class="form-field" (resposta)="preencherEndereco($event)"></input-cep>
-
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Estado</mat-label>
-          <mat-select formControlName="estado" (selectionChange)="buscarCidades($event.value)">
-            <mat-option *ngFor="let estado of listEstados" [value]="estado.id">
-              {{ estado.estado }}
-            </mat-option>
-          </mat-select>
-          <mat-icon matSuffix>map</mat-icon>
-          <mat-error>O estado é obrigatório</mat-error>
-        </mat-form-field>
+        <input-cep formControlName="cep" (resposta)="preencherEndereco($event)"></input-cep>
+        <app-estado-select formControlName="estado">
+        </app-estado-select>
       </div>
 
       <div class="form-row">
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Cidade</mat-label>
-          <mat-select formControlName="cidadeId">
-            <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">
-              {{ cidade.cidade }}
-            </mat-option>
-          </mat-select>
-          <mat-icon matSuffix>location_city</mat-icon>
-          <mat-error>A cidade é obrigatória</mat-error>
-        </mat-form-field>
+        <app-cidade-select formControlName="cidadeId" [idEstado]="formUsuario.value?.estado">
+        </app-cidade-select>
 
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Rua</mat-label>
@@ -112,6 +113,9 @@
           <input type="password" matInput formControlName="password" placeholder="Digite sua senha">
           <mat-icon matSuffix>lock</mat-icon>
           <mat-error>A senha é obrigatória</mat-error>
+          <mat-error *ngIf="senhasNaoCoincidem">
+            As senhas não coincidem
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="form-field">
@@ -119,6 +123,9 @@
           <input type="password" matInput formControlName="confirmaPassword" placeholder="Confirme sua senha">
           <mat-icon matSuffix>lock</mat-icon>
           <mat-error>Confirmação de senha obrigatória</mat-error>
+          <mat-error *ngIf="senhasNaoCoincidem">
+            As senhas não coincidem
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -132,7 +139,7 @@
 
       <button mat-flat-button type="submit" [disabled]="!formUsuario.valid" color="primary" class="save-button">
         <mat-icon>person_add</mat-icon>
-        Cadastrar-se
+        Salvar
       </button>
     </div>
 

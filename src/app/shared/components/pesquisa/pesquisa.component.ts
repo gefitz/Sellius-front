@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { EventEmitter } from 'stream';
 import { ApiService } from '../../../core/services/Api/api.service';
-import { SharedModule } from '../../../core/services/Module/shared.module';
 import { Paginacao } from '../../../core/model/paginacao.mode';
 import {
   MAT_DIALOG_DATA,
@@ -24,6 +23,7 @@ import {
   PageEvent,
 } from '@angular/material/paginator';
 import { CustomPaginator } from '../../../core/services/Utils/paginator-edit';
+import { SharedModule } from '../Module/shared.module';
 
 @Component({
   selector: 'pesquisa-component',

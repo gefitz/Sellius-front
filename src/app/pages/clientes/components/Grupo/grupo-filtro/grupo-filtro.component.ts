@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { SharedModule } from '../../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 
 @Component({
   selector: 'grupo-filtro',

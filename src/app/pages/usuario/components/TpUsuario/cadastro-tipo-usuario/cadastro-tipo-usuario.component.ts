@@ -1,18 +1,19 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
-import { UsuarioserviceService } from '../../services/usuarioservice.service';
+import { SharedModule } from '../../../../../shared/components/Module/shared.module';
+import { UsuarioserviceService } from '../../../services/usuarioservice.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TpUsuario } from '../../models/tipo-usuario.model';
+import { TpUsuario } from '../../../models/tipo-usuario.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Menu } from '../../../menu/model/menu.model';
-import { Paginacao } from '../../../../core/model/paginacao.mode';
-import { MenuFiltro } from '../../../menu/model/menu-filtro.model';
+import { Menu } from '../../../../menu/model/menu.model';
+import { Paginacao } from '../../../../../core/model/paginacao.mode';
+import { MenuFiltro } from '../../../../menu/model/menu-filtro.model';
 import { MatPaginator } from '@angular/material/paginator';
-import { MenuService } from '../../../menu/services/menu.service';
-import { TpUsuarioXMenu } from '../../models/tp-usario-x-menu.model';
+import { MenuService } from '../../../../menu/services/menu.service';
+import { TpUsuarioXMenu } from '../../../models/tp-usario-x-menu.model';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TpUsuarioService } from '../../../services/tp-usuario.service';
 
 @Component({
   selector: 'lista-tipo-usuario',
@@ -37,7 +38,7 @@ export class TpUsuarioCadastroComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<Menu>;
 
   constructor(
-    private service: UsuarioserviceService,
+    private service: TpUsuarioService,
     @Inject(MAT_DIALOG_DATA) public data: TpUsuario,
     private refDialog: DialogRef,
     private menuService: MenuService

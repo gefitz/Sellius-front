@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../shared/components/Module/shared.module';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from '../../services/menu.service';
 import { Menu } from '../../model/menu.model';

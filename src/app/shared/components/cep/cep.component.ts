@@ -24,9 +24,8 @@ import { Subject } from 'rxjs';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Viacep } from '../../../core/services/Utils/consome-api.serivce';
-import { SharedModule } from '../../../core/services/Module/shared.module';
-import { FormGroupModule } from '../../../core/services/Module/form.module';
 import { MatInputModule } from '@angular/material/input';
+import { FormGroupModule } from '../Module/form.module';
 
 @Component({
   selector: 'input-cep',

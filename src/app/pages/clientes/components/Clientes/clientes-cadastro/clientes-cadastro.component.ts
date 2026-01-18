@@ -15,7 +15,7 @@ import { ClienteModel } from '../../../models/cliente.model';
 import { CidadeModel } from '../../../../../core/model/cidade.model';
 import { CommonModule } from '@angular/common';
 import { ClienteService } from '../../../services/cliente.service';
-import { SharedModule } from '../../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SegmentacaoModel } from '../../../models/segmentacao.model';
 import { GrupoModel } from '../../../models/grupo.model';

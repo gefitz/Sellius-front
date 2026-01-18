@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { UsuarioModel } from '../models/usuario.model';
+import { UsuarioModel } from '../models/Cadastro/usuario.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from '../../../core/services/Api/api.service';
 import { MatDialog } from '@angular/material/dialog';
-import { UsuarioCadastroComponent } from '../components/usuario-cadastro/usuario-cadastro.component';
-import { TpUsuarioCadastroComponent } from '../components/cadastro-tipo-usuario/cadastro-tipo-usuario.component';
+import { UsuarioCadastroComponent } from '../components/Usuario/usuario-cadastro/usuario-cadastro.component';
+import { TpUsuarioCadastroComponent } from '../components/TpUsuario/cadastro-tipo-usuario/cadastro-tipo-usuario.component';
 import { TpUsuario } from '../models/tipo-usuario.model';
 import { Paginacao } from '../../../core/model/paginacao.mode';
 import { DialogInativacaoComponent } from '../../../shared/dialog-inativacao/dialog-inativacao.component';
 import { filter, switchMap, tap } from 'rxjs';
-import { FiltroTpUsuarioComponent } from '../components/filtro-tp-usuario/filtro-tp-usuario.component';
+import { FiltroTpUsuarioComponent } from '../components/TpUsuario/filtro-tp-usuario/filtro-tp-usuario.component';
 import { tpUsuairoFiltro } from '../models/tp-usuario-filtro.model';
+import { UsuarioTabela } from '../models/Tabela/usuario-tabela.model';
+import { UsuarioFiltro } from '../models/Filtros/usuario-filtro.model';
+import { FiltroUsuarioComponent } from '../components/Usuario/filtro/filtro-usuario.component';
 
 @Injectable({
   providedIn: 'root',
@@ -24,65 +27,33 @@ export class UsuarioserviceService {
   ) {}
 
   createUsuario(usuairo: UsuarioModel) {
-    this.http.post(this.apiUrl, usuairo).subscribe({
-      next: (response) => {
-        if (response) {
-          this.snack.open('Sucesso ao criar usuario', 'Ok', { duration: 1000 });
-        }
-      },
-    });
+    return this.http.post(this.apiUrl + '/novoUsuario', usuairo);
   }
   abrirModalCadastro(usuairo?: UsuarioModel) {
     const ret = this.dialog.open(UsuarioCadastroComponent, {
       panelClass: 'md-large',
       data: usuairo,
     });
-  }
-  abrirModalCadastroTpUsuario(tpUsuairo?: TpUsuario) {
-    const ret = this.dialog.open(TpUsuarioCadastroComponent, {
-      panelClass: 'md-large',
-      data: tpUsuairo,
-    });
     return ret.afterClosed();
   }
-
-  listarMenus(paginacao: Paginacao<TpUsuario, tpUsuairoFiltro>) {
-    return this.http.post<Paginacao<TpUsuario, tpUsuairoFiltro>>(
-      this.apiUrl + '/TpUsuario/paginacao',
+  obterUsuarios(paginacao: Paginacao<UsuarioTabela, UsuarioFiltro>) {
+    return this.http.post<Paginacao<UsuarioTabela, UsuarioFiltro>>(
+      this.apiUrl + '/obterTodosUsuarios',
       paginacao
     );
   }
-  salvarTpUsuario(tpUsuario: TpUsuario) {
-    return this.http.post<TpUsuario>(
-      this.apiUrl + '/TpUsuario/cadastrarTpUsuario',
-      tpUsuario
-    );
-  }
-  updateTpUsuario(tpUsuario: TpUsuario) {
-    return this.http.put<TpUsuario>(this.apiUrl + '/TpUsuario', tpUsuario);
-  }
-  inativarTpUsuario(tpUsuario: TpUsuario) {
-    const retDialog = this.dialog.open(DialogInativacaoComponent, {
-      data: tpUsuario,
-    });
-    return retDialog.afterClosed().pipe(
-      filter((ret) => !!ret),
-      switchMap(() =>
-        this.http.delete(this.apiUrl + '/TpUsuario?id=' + tpUsuario.id)
-      )
-    );
-  }
-  abrirModalPesquisaTpUsuario(filtro: tpUsuairoFiltro) {
-    const ret = this.dialog.open(FiltroTpUsuarioComponent, {
+  AbrirmodalPesquisa(filtro: UsuarioFiltro) {
+    const ret = this.dialog.open(FiltroUsuarioComponent, {
       data: filtro,
     });
-
     return ret.afterClosed().pipe(tap((valor) => console.log(valor)));
   }
-
-  carregaTpUsuario() {
-    return this.http.get<TpUsuario[]>(
-      this.apiUrl + '/TpUsuario/obterTodosTpUsuarios'
+  obterUsuarioById(usuario: UsuarioTabela) {
+    return this.http.get<UsuarioModel>(
+      this.apiUrl + '/obterUsuario?id=' + usuario.id
     );
+  }
+  upDateUsuario(usuario: UsuarioModel) {
+    return this.http.put<UsuarioModel>(this.apiUrl, usuario);
   }
 }

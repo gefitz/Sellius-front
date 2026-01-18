@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
-import { Paginacao } from '../../../../core/model/paginacao.mode';
+import { SharedModule } from '../../../../../shared/components/Module/shared.module';
+import { Paginacao } from '../../../../../core/model/paginacao.mode';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { UsuarioserviceService } from '../../services/usuarioservice.service';
+import { UsuarioserviceService } from '../../../services/usuarioservice.service';
 import { DatePipe } from '@angular/common';
-import { TpUsuario } from '../../models/tipo-usuario.model';
+import { TpUsuario } from '../../../models/tipo-usuario.model';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { tpUsuairoFiltro } from '../../models/tp-usuario-filtro.model';
+import { tpUsuairoFiltro } from '../../../models/tp-usuario-filtro.model';
+import { TpUsuarioService } from '../../../services/tp-usuario.service';
 
 @Component({
   selector: 'lista-tipo-usuario',
@@ -34,7 +35,7 @@ export class ListaTipoUsuario implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable) table!: MatTable<TpUsuario>;
 
-  constructor(private service: UsuarioserviceService, public _pipe: DatePipe) {}
+  constructor(private service: TpUsuarioService, public _pipe: DatePipe) {}
   ngOnInit(): void {
     this.carregarFiltro();
   }

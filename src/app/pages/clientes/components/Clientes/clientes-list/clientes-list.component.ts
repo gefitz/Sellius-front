@@ -19,7 +19,7 @@ import { ClienteFiltro } from '../../../models/cliente-filtro.model';
 import { ClienteTabela } from '../../../models/cliente-tabela.model';
 import { DialogFiltroComponent } from '../dialog-filtro/dialog-filtro.component';
 import { ClientesCadastroComponent } from '../clientes-cadastro/clientes-cadastro.component';
-import { SharedModule } from '../../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 
 @Component({
   selector: 'app-clientes-list',

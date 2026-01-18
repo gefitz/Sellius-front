@@ -30,7 +30,7 @@ import { CustomPaginator } from '../../../../core/services/Utils/paginator-edit'
 import { PedidoService } from '../../service/pedido-service.service';
 import { DialogFiltroProdutoComponent } from '../../../produtos/components/dialogs/dialog-filtro-produto/dialog-filtro-produto.component';
 import { ProdutoModalService } from '../../../produtos/services/produto-modal.service';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../shared/components/Module/shared.module';
 
 @Component({
   selector: 'app-pedido-novo',

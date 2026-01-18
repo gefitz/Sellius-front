@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TpUsuario } from '../../models/tipo-usuario.model';
+import { TpUsuario } from '../../../models/tipo-usuario.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 

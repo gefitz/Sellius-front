@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ListaUsuairoComponent } from './components/lista-usuario/lista-usuario.component';
-import { ListaTipoUsuario } from './components/lista-tipo-usuario/lista-tipo-usuario.component';
+import { ListaUsuairoComponent } from './components/Usuario/lista-usuario/lista-usuario.component';
+import { ListaTipoUsuario } from './components/TpUsuario/lista-tipo-usuario/lista-tipo-usuario.component';
 
 export const Usuarioroutes: Routes = [
   {

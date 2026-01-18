@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline" class="form-field">
+  <mat-label>Cidade</mat-label>
+
+  <mat-select [value]="value" [disabled]="disabled" (selectionChange)="onChange($event.value); onTouched()"
+    (focus)="focused = true; stateChanges.next()" (blur)="focused = false; stateChanges.next(); onTouched()">
+    <mat-option [value]="null">Selecione...</mat-option>
+    <mat-option *ngFor="let cidade of cidades" [value]="cidade.id">
+      {{ cidade.cidade }}
+    </mat-option>
+  </mat-select>
+
+  <!-- Caso queira mostrar erros do form -->
+  <mat-error *ngIf="ngControl?.errors?.['required']">
+    Cidade é obrigatória
+  </mat-error>
+</mat-form-field>

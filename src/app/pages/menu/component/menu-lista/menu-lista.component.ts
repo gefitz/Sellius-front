@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Menu } from '../../model/menu.model';
 import { MenuModalEditarCadastrarComponent } from '../menu-modal-editar-cadastrar/menu-modal-editar-cadastrar.component';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../shared/components/Module/shared.module';
 import { MenuService } from '../../services/menu.service';
 import { Paginacao } from '../../../../core/model/paginacao.mode';
 import { MatTable, MatTableDataSource } from '@angular/material/table';

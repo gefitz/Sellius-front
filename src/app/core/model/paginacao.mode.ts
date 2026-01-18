@@ -1,7 +1,7 @@
 import { MatTableDataSource } from '@angular/material/table';
 
 export class Paginacao<model, filtroModel> {
-  paginaAtual: number = 0;
+  paginaAtual: number = 1;
   totalPaginas: number = 0;
   totalRegistros: number = 0;
   tamanhoPagina: number = 10;

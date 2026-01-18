@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FornecedorCadastroComponent } from '../../../pages/fornecedores/component/fornecedor-cadastro/fornecedor-cadastro.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CidadeComponent } from '../cidade/cidade.component';
+import { EstadoComponent } from '../estado/estado.component';
+import { CepComponent } from '../cep/cep.component';
 
 @NgModule({
   declarations: [],

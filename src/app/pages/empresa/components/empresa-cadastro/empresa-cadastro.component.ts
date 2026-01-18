@@ -18,7 +18,7 @@ import {
   MatTabGroup,
   MatTabsModule,
 } from '@angular/material/tabs';
-import { UsuarioCadastroComponent } from '../../../usuario/components/usuario-cadastro/usuario-cadastro.component';
+import { UsuarioCadastroComponent } from '../../../usuario/components/Usuario/usuario-cadastro/usuario-cadastro.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CidadeModel } from '../../../../core/model/cidade.model';
 import { EstadoModel } from '../../../../core/model/estado.model';

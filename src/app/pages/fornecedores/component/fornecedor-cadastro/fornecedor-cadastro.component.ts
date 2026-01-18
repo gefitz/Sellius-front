@@ -22,7 +22,7 @@ import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 import { EstadoModel } from '../../../../core/model/estado.model';
 import { CidadeModel } from '../../../../core/model/cidade.model';
 import { FornecedorService } from '../../services/fornecedor.service';
-import { FormGroupModule } from '../../../../core/services/Module/form.module';
+import { FormGroupModule } from '../../../../shared/components/Module/form.module';
 
 @Component({
   selector: 'app-fornecedor-cadastro',

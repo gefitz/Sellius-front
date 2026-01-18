@@ -120,7 +120,9 @@ export class ApiService {
   }
   private httpResponse403(erro: HttpErrorResponse) {
     this.snack.open(
-      'Acesso negado! Seu usuario nao tem permisao para realizar essa acao'
+      'Acesso negado! Seu usuario nao tem permisao para realizar essa acao',
+      'Ok',
+      { duration: 5000 }
     );
   }
   private error(error: HttpErrorResponse) {

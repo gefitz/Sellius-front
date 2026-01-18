@@ -1,0 +1,83 @@
+<div class="modal-content large">
+  <!-- Header da Modal -->
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <h2 class="modal-title">Filtra Tipo Usuario</h2>
+    </div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Formulário -->
+  <form [formGroup]="filtro" class="form-container">
+    <!-- Informações Pessoais -->
+    <div class="form-section">
+      <div class="form-row">
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome de Usuario</mat-label>
+          <input type="text" matInput formControlName="nome">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>CPF</mat-label>
+          <input type="text" matInput formControlName="cpf">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Tipo de Usuário</mat-label>
+          <mat-select formControlName="tipoUsuario" #tipoUsuario>
+            <mat-option *ngFor="let tipoUsuario of listaTipoUsuario" [value]="tipoUsuario.id">
+              {{ tipoUsuario.tpUsuario }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>admin_panel_settings</mat-icon>
+          <mat-error>O tipo de usuário é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label for="fAtivo">
+            Status:
+          </mat-label>
+          <mat-select formControlName="fAtivo">
+            <mat-option [value]="-1">
+
+              Todos
+            </mat-option>
+            <mat-option [value]="1">
+
+              Ativo
+            </mat-option>
+            <mat-option [value]="0">
+              Inativo
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <app-estado-select formControlName="estado">
+        </app-estado-select>
+
+        <app-cidade-select formControlName="cidade" [idEstado]="filtro.value?.estado">
+        </app-cidade-select>
+
+
+      </div>
+
+
+      <!-- Botões de Ação -->
+      <div class="form-actions">
+        <button mat-stroked-button type="button" class="cancel-button" [mat-dialog-close]>
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+
+        <button mat-flat-button type="submit" color="primary" class="save-button" [mat-dialog-close]="filtro.value">
+          <mat-icon>search</mat-icon>
+          Pesquisar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

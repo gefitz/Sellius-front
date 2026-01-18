@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 import { CidadeModel } from '../../../../core/model/cidade.model';
 import { EstadoModel } from '../../../../core/model/estado.model';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../shared/components/Module/shared.module';
 
 @Component({
   selector: 'app-fonecedor-filtro',

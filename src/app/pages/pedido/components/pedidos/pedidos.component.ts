@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 import { PedidoModel } from '../../models/pedido.model';
 import { StatusPedido } from '../../models/statuspedido.enum';
 import { Paginacao } from '../../../../core/model/paginacao.mode';
-import { SharedModule } from '../../../../core/services/Module/shared.module';
+import { SharedModule } from '../../../../shared/components/Module/shared.module';
 import { PedidoService } from '../../service/pedido-service.service';
 import { PedidoFiltro } from '../../models/pedido-filtro.model';
 import { MatDialog } from '@angular/material/dialog';
