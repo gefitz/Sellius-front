@@ -23,7 +23,10 @@ import { TpUsuario } from '../../../models/tipo-usuario.model';
 @Component({
   selector: 'filtro-usuario',
   templateUrl: './filtro-usuario.component.html',
-  styleUrls: ['./filtro-usuario.component.css'],
+  styleUrls: [
+    './filtro-usuario.component.css',
+    '../../../../../shared/styles/modal-styles.css',
+  ],
   imports: [SharedModule, FormGroupModule, EstadoComponent],
   standalone: true,
 })
