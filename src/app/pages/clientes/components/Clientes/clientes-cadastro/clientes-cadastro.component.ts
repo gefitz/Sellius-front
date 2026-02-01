@@ -51,7 +51,7 @@ export class ClientesCadastroComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public clienteEditar: ClienteModel,
     private segmentacaoService: SegmentacaoService,
     private grupoService: GrupoService,
-    private toastr: ToastrService,
+    // private toastr: ToastrService,
   ) {
     if (clienteEditar) {
       this.editando = true;
