@@ -27,13 +27,14 @@ import { error } from 'node:console';
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
-    selector: 'app-clientes-cadastro',
-    imports: [SharedModule],
-    templateUrl: './clientes-cadastro.component.html',
-    styleUrls: [
-        '/src/app/shared/styles/modal-styles.css',
-        './clientes-cadastro.component.css',
-    ]
+  selector: 'app-clientes-cadastro',
+  imports: [SharedModule],
+  templateUrl: './clientes-cadastro.component.html',
+  styleUrls: [
+    '/src/app/shared/styles/modal-styles.css',
+    './clientes-cadastro.component.css',
+  ],
+  standalone: true,
 })
 export class ClientesCadastroComponent implements OnInit {
   cidade: CidadeModel[] = [];
@@ -50,7 +51,7 @@ export class ClientesCadastroComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public clienteEditar: ClienteModel,
     private segmentacaoService: SegmentacaoService,
     private grupoService: GrupoService,
-    // private toastr: ToastrService,
+    private toastr: Toast,
   ) {
     if (clienteEditar) {
       this.editando = true;

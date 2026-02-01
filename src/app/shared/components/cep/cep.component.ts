@@ -28,21 +28,22 @@ import { MatInputModule } from '@angular/material/input';
 import { FormGroupModule } from '../Module/form.module';
 
 @Component({
-    selector: 'input-cep',
-    templateUrl: './cep.component.html',
-    styleUrls: ['./cep.component.css'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => CepComponent),
-            multi: true,
-        },
-        {
-            provide: MatFormFieldControl,
-            useExisting: forwardRef(() => CepComponent),
-        },
-    ],
-    imports: [MatFormField, MatLabel, FormGroupModule, MatInputModule]
+  selector: 'input-cep',
+  templateUrl: './cep.component.html',
+  styleUrls: ['./cep.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CepComponent),
+      multi: true,
+    },
+    {
+      provide: MatFormFieldControl,
+      useExisting: forwardRef(() => CepComponent),
+    },
+  ],
+  imports: [MatFormField, MatLabel, FormGroupModule, MatInputModule],
+  standalone: true,
 })
 export class CepComponent
   implements
@@ -72,7 +73,7 @@ export class CepComponent
 
   constructor(
     private _focusMonitor: FocusMonitor,
-    private _elRef: ElementRef<HTMLElement>
+    private _elRef: ElementRef<HTMLElement>,
   ) {}
   ngAfterViewInit(): void {
     this._focusMonitor.monitor(this.inputElement).subscribe((origin) => {
@@ -210,7 +211,7 @@ export class CepComponent
   setDescribedByIds(ids: string[]): void {
     this.inputElement.nativeElement.setAttribute(
       'aria-describedby',
-      ids.join(' ')
+      ids.join(' '),
     );
   }
 }
