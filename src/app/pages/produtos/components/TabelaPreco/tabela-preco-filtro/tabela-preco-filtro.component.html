@@ -1,0 +1,77 @@
+<div class="modal-content large">
+  <!-- Header da Modal -->
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <h2 class="modal-title">Filtros Tabela Preco</h2>
+    </div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Formulário -->
+  <form [formGroup]="formFiltro" class="form-container">
+    <!-- Informações Pessoais -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <mat-icon>filter_list</mat-icon>
+        Filtros de Pesquisa
+      </h3>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Tabela Preco</mat-label>
+          <input type="text" matInput formControlName="descTabelaPreco" placeholder="Digite o nome da tabela de preço">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>O nome é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Data Início Pesquisa </mat-label>
+          <mat-label> DD/MM/YYYY</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="dtInicialPesquisaInicioVigencia"
+            (focus)="datepicker.open()" (click)="datepicker.open()" />
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+          </mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Data Fim Pesquisa</mat-label>
+          <mat-label> DD/MM/YYYY</mat-label>
+          <input matInput [matDatepicker]="datepickerFim" formControlName="dtFimPesquisaInicioVigencia"
+            (focus)="datepickerFim.open()" (click)="datepickerFim.open()" />
+          <mat-datepicker-toggle matIconSuffix [for]="datepickerFim"></mat-datepicker-toggle>
+          <mat-datepicker #datepickerFim>
+          </mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Origem da Tabela Preco</mat-label>
+          <mat-select formControlName="idOrigemTabelaPreco" #idOrigemTabelaPreco>
+            <mat-option *ngFor="let origemTabelaPreco of listaOrigemTabelaPreco" [value]="origemTabelaPreco.value">
+              {{ origemTabelaPreco.label }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>admin_panel_settings</mat-icon>
+          <mat-error>A origem e obrigatório</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="form-actions">
+      <button mat-stroked-button type="button" class="cancel-button" [mat-dialog-close]>
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+      </button>
+
+      <button mat-flat-button type="button" [mat-dialog-close]="formFiltro.value" color="primary" class="save-button">
+        <mat-icon>search</mat-icon>
+        Pesquisar
+      </button>
+    </div>
+
+    <input type="text" matInput formControlName="id" hidden>
+  </form>
+</div>

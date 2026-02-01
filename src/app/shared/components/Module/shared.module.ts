@@ -18,6 +18,8 @@ import { CepComponent } from '../cep/cep.component';
 import { CustomPaginator } from '../../../core/services/Utils/paginator-edit';
 import { CidadeComponent } from '../cidade/cidade.component';
 import { EstadoComponent } from '../estado/estado.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [PermissaoDirective],
@@ -35,6 +37,8 @@ import { EstadoComponent } from '../estado/estado.component';
     MatCheckboxModule,
     CidadeComponent,
     EstadoComponent,
+    MatDatepickerModule,
+    MatTabsModule,
   ],
   exports: [
     FormGroupModule,
@@ -50,6 +54,8 @@ import { EstadoComponent } from '../estado/estado.component';
     PermissaoDirective,
     CidadeComponent,
     EstadoComponent,
+    MatDatepickerModule,
+    MatTabsModule,
   ],
   providers: [
     {
