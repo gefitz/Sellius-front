@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormGroupModule } from './form.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
@@ -20,6 +19,7 @@ import { CidadeComponent } from '../cidade/cidade.component';
 import { EstadoComponent } from '../estado/estado.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [PermissaoDirective],
