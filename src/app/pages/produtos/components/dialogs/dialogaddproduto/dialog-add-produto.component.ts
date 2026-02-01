@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CommonModule } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from '../../../../../core/services/Utils/paginator-edit';
@@ -28,14 +28,13 @@ import { ProdutoService } from '../../../services/produto.service';
 @Component({
     selector: 'app-dialog-add-produto',
     imports: [
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        CommonModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        SharedModule,
-    ],
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    SharedModule
+],
     templateUrl: './dialog-add-produto.component.html',
     styleUrls: [
         './dialog-add-produto.component.css',

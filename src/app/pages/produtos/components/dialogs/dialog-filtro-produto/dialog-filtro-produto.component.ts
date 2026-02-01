@@ -16,19 +16,18 @@ import { TpProdutoService } from '../../../services/tp-produto.service';
 import { FornecedorService } from '../../../../fornecedores/services/fornecedor.service';
 import { TpProdutoModel } from '../../../models/tpProduto.model';
 import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model';
-import { CommonModule } from '@angular/common';
+
 @Component({
     selector: 'app-dialog-filtro-produto',
     imports: [
-        MatDialogModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatSelectModule,
-        MatIconModule,
-        CommonModule,
-    ],
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule
+],
     templateUrl: './dialog-filtro-produto.component.html',
     styleUrl: './dialog-filtro-produto.component.css'
 })

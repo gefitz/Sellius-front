@@ -18,7 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Subject, takeUntil } from 'rxjs';
 import { ApiService } from '../../../core/services/Api/api.service';
 import { CidadeModel } from '../../../core/model/cidade.model';
-import { CommonModule } from '@angular/common';
+
 import { FormGroupModule } from '../Module/form.module';
 import { Viacep } from '../../../core/services/Utils/consome-api.serivce';
 
@@ -39,10 +39,8 @@ import { Viacep } from '../../../core/services/Utils/consome-api.serivce';
   ],
   imports: [
     MatFormFieldModule,
-    MatSelectModule,
-    CommonModule,
-    // outros módulos que precisar (ex: MatOptionModule já vem com MatSelectModule)
-  ],
+    MatSelectModule
+],
   standalone: true,
 })
 export class CidadeComponent

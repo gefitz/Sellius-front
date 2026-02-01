@@ -22,24 +22,23 @@ import { UsuarioCadastroComponent } from '../../../usuario/components/Usuario/us
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CidadeModel } from '../../../../core/model/cidade.model';
 import { EstadoModel } from '../../../../core/model/estado.model';
-import { CommonModule } from '@angular/common';
+
 import { TipoLicenca } from '../../../../core/enums/tipo-licenca.enum';
 import { RouterLink } from '@angular/router';
 import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 @Component({
     selector: 'app-empresa-cadastro',
     imports: [
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatIconModule,
-        MatInputModule,
-        MatTabsModule,
-        UsuarioCadastroComponent,
-        CommonModule,
-        RouterLink,
-    ],
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatTabsModule,
+    UsuarioCadastroComponent,
+    RouterLink
+],
     templateUrl: './empresa-cadastro.component.html',
     styleUrl: './empresa-cadastro.component.css'
 })

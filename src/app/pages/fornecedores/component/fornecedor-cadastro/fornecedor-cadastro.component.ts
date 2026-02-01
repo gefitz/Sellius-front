@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
@@ -26,7 +26,7 @@ import { FormGroupModule } from '../../../../shared/components/Module/form.modul
 
 @Component({
     selector: 'app-fornecedor-cadastro',
-    imports: [FormGroupModule, CommonModule],
+    imports: [FormGroupModule],
     templateUrl: './fornecedor-cadastro.component.html',
     styleUrls: [
         '/src/app/shared/styles/modal-styles.css',

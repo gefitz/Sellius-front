@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
@@ -23,12 +23,11 @@ import { DialogInativacaoComponent } from '../../../../shared/dialog-inativacao/
 @Component({
     selector: 'app-tp-produto-list',
     imports: [
-        MatPaginatorModule,
-        MatTableModule,
-        MatButtonModule,
-        MatIconModule,
-        CommonModule,
-    ],
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule
+],
     providers: [
         {
             provide: MatPaginatorIntl,

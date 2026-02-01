@@ -32,60 +32,64 @@
           <mat-label> DD/MM/YYYY</mat-label>
           <input matInput [matDatepicker]="datepicker" formControlName="dtInicioVigencia" (focus)="datepicker.open()"
             (click)="datepicker.open()" />
-          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-          <mat-datepicker #datepicker>
-          </mat-datepicker>
-        </mat-form-field>
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+            </mat-datepicker>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Data Fim Vigência</mat-label>
-          <mat-label> DD/MM/YYYY</mat-label>
-          <input matInput [matDatepicker]="datepickerFim" formControlName="dtFimVigencia" (focus)="datepickerFim.open()"
-            (click)="datepickerFim.open()" />
-          <mat-datepicker-toggle matIconSuffix [for]="datepickerFim"></mat-datepicker-toggle>
-          <mat-datepicker #datepickerFim>
-          </mat-datepicker>
-        </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Data Fim Vigência</mat-label>
+            <mat-label> DD/MM/YYYY</mat-label>
+            <input matInput [matDatepicker]="datepickerFim" formControlName="dtFimVigencia" (focus)="datepickerFim.open()"
+              (click)="datepickerFim.open()" />
+              <mat-datepicker-toggle matIconSuffix [for]="datepickerFim"></mat-datepicker-toggle>
+              <mat-datepicker #datepickerFim>
+              </mat-datepicker>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Origem da Tabela Preco</mat-label>
-          <mat-select formControlName="idOrigemTabelaPreco" #idOrigemTabelaPreco>
-            <mat-option *ngFor="let origemTabelaPreco of listaOrigemTabelaPreco" [value]="origemTabelaPreco.value"
-              (onSelectionChange)="preencherListaReferencia($event)">
-              {{ origemTabelaPreco.label }}
-            </mat-option>
-          </mat-select>
-          <mat-icon matSuffix>admin_panel_settings</mat-icon>
-          <mat-error>A origem e obrigatório</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Origem da Tabela Preco</mat-label>
+              <mat-select formControlName="idOrigemTabelaPreco" #idOrigemTabelaPreco>
+                @for (origemTabelaPreco of listaOrigemTabelaPreco; track origemTabelaPreco) {
+                  <mat-option [value]="origemTabelaPreco.value"
+                    (onSelectionChange)="preencherListaReferencia($event)">
+                    {{ origemTabelaPreco.label }}
+                  </mat-option>
+                }
+              </mat-select>
+              <mat-icon matSuffix>admin_panel_settings</mat-icon>
+              <mat-error>A origem e obrigatório</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Referencia</mat-label>
-          <mat-select formControlName="idReferenciaOrigem" #idReferenciaOrigem>
-            <mat-option *ngFor="let origemTabelaPreco of listaReferencia" [value]="origemTabelaPreco.id">
-              {{ origemTabelaPreco.label }}
-            </mat-option>
-          </mat-select>
-          <mat-icon matSuffix>admin_panel_settings</mat-icon>
-          <mat-error>A referência é obrigatória</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Referencia</mat-label>
+              <mat-select formControlName="idReferenciaOrigem" #idReferenciaOrigem>
+                @for (origemTabelaPreco of listaReferencia; track origemTabelaPreco) {
+                  <mat-option [value]="origemTabelaPreco.id">
+                    {{ origemTabelaPreco.label }}
+                  </mat-option>
+                }
+              </mat-select>
+              <mat-icon matSuffix>admin_panel_settings</mat-icon>
+              <mat-error>A referência é obrigatória</mat-error>
+            </mat-form-field>
 
-      </div>
+          </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="form-actions">
+          <button mat-stroked-button type="button" class="cancel-button" [mat-dialog-close]>
+            <mat-icon>arrow_back</mat-icon>
+            Voltar
+          </button>
+
+          <button mat-flat-button type="submit" [disabled]="!formTabelaPreco.valid" color="primary" class="save-button">
+            <mat-icon>person_add</mat-icon>
+            Salvar
+          </button>
+        </div>
+
+        <input type="text" matInput formControlName="id" hidden>
+      </form>
     </div>
-
-    <!-- Botões de Ação -->
-    <div class="form-actions">
-      <button mat-stroked-button type="button" class="cancel-button" [mat-dialog-close]>
-        <mat-icon>arrow_back</mat-icon>
-        Voltar
-      </button>
-
-      <button mat-flat-button type="submit" [disabled]="!formTabelaPreco.valid" color="primary" class="save-button">
-        <mat-icon>person_add</mat-icon>
-        Salvar
-      </button>
-    </div>
-
-    <input type="text" matInput formControlName="id" hidden>
-  </form>
-</div>

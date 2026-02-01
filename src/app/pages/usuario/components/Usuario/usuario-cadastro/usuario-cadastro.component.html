@@ -46,9 +46,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Tipo de Usuário</mat-label>
           <mat-select formControlName="tipoUsuario" #tipoUsuario>
-            <mat-option *ngFor="let tipoUsuario of listaTipoUsuario" [value]="tipoUsuario.id">
-              {{ tipoUsuario.tpUsuario }}
-            </mat-option>
+            @for (tipoUsuario of listaTipoUsuario; track tipoUsuario) {
+              <mat-option [value]="tipoUsuario.id">
+                {{ tipoUsuario.tpUsuario }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>admin_panel_settings</mat-icon>
           <mat-error>O tipo de usuário é obrigatório</mat-error>
@@ -113,9 +115,11 @@
           <input type="password" matInput formControlName="password" placeholder="Digite sua senha">
           <mat-icon matSuffix>lock</mat-icon>
           <mat-error>A senha é obrigatória</mat-error>
-          <mat-error *ngIf="senhasNaoCoincidem">
-            As senhas não coincidem
-          </mat-error>
+          @if (senhasNaoCoincidem) {
+            <mat-error>
+              As senhas não coincidem
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="form-field">
@@ -123,25 +127,28 @@
           <input type="password" matInput formControlName="confirmaPassword" placeholder="Confirme sua senha">
           <mat-icon matSuffix>lock</mat-icon>
           <mat-error>Confirmação de senha obrigatória</mat-error>
-          <mat-error *ngIf="senhasNaoCoincidem">
-            As senhas não coincidem
-          </mat-error>
+          @if (senhasNaoCoincidem) {
+            <mat-error>
+              As senhas não coincidem
+            </mat-error>
+          }
         </mat-form-field>
       </div>
     </div>
 
     <!-- Botões de Ação -->
-    <div class="form-actions" *ngIf="!telaCadastroEmpresa">
-      <button mat-stroked-button type="button" class="cancel-button">
-        <mat-icon>arrow_back</mat-icon>
-        Voltar
-      </button>
-
-      <button mat-flat-button type="submit" [disabled]="!formUsuario.valid" color="primary" class="save-button">
-        <mat-icon>person_add</mat-icon>
-        Salvar
-      </button>
-    </div>
+    @if (!telaCadastroEmpresa) {
+      <div class="form-actions">
+        <button mat-stroked-button type="button" class="cancel-button">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+        <button mat-flat-button type="submit" [disabled]="!formUsuario.valid" color="primary" class="save-button">
+          <mat-icon>person_add</mat-icon>
+          Salvar
+        </button>
+      </div>
+    }
 
     <input type="text" matInput formControlName="id" hidden>
   </form>

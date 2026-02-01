@@ -73,9 +73,11 @@
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Estado</mat-label>
               <mat-select formControlName="estado" (selectionChange)="buscarCidades($event.value)">
-                <mat-option *ngFor="let estado of estado" [value]="estado.id">
-                  {{ estado.estado }}
-                </mat-option>
+                @for (estado of estado; track estado) {
+                  <mat-option [value]="estado.id">
+                    {{ estado.estado }}
+                  </mat-option>
+                }
               </mat-select>
               <mat-icon matSuffix>map</mat-icon>
               <mat-error>O estado é obrigatório</mat-error>
@@ -86,9 +88,11 @@
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Cidade</mat-label>
               <mat-select formControlName="cidadeId">
-                <mat-option *ngFor="let c of cidade" [value]="c.id">
-                  {{ c.cidade }}
-                </mat-option>
+                @for (c of cidade; track c) {
+                  <mat-option [value]="c.id">
+                    {{ c.cidade }}
+                  </mat-option>
+                }
               </mat-select>
               <mat-icon matSuffix>location_city</mat-icon>
               <mat-error>A cidade é obrigatória</mat-error>
@@ -122,9 +126,11 @@
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Segmentação</mat-label>
               <mat-select formControlName="idSegmentacao">
-                <mat-option *ngFor="let s of segmentacao" [value]="s.id">
-                  {{ s.segmento }}
-                </mat-option>
+                @for (s of segmentacao; track s) {
+                  <mat-option [value]="s.id">
+                    {{ s.segmento }}
+                  </mat-option>
+                }
               </mat-select>
               <mat-icon matSuffix>category</mat-icon>
               <mat-error>A segmentação é obrigatória</mat-error>
@@ -133,9 +139,11 @@
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Grupo</mat-label>
               <mat-select formControlName="idGrupo">
-                <mat-option *ngFor="let g of grupo" [value]="g.id">
-                  {{ g.nome }}
-                </mat-option>
+                @for (g of grupo; track g) {
+                  <mat-option [value]="g.id">
+                    {{ g.nome }}
+                  </mat-option>
+                }
               </mat-select>
               <mat-icon matSuffix>group_work</mat-icon>
               <mat-error>O grupo é obrigatório</mat-error>

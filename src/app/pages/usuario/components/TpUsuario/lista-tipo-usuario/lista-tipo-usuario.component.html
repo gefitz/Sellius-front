@@ -29,8 +29,12 @@
     <ng-container matColumnDef="fAtivo">
       <th mat-header-cell *matHeaderCellDef> Status </th>
       <td mat-cell *matCellDef="let element">
-        <span *ngIf="element.fAtivo === 1" class="ativo"> Ativo</span>
-        <span *ngIf="element.fAtivo === 0" class="inativo"> Inativo</span>
+        @if (element.fAtivo === 1) {
+          <span class="ativo"> Ativo</span>
+        }
+        @if (element.fAtivo === 0) {
+          <span class="inativo"> Inativo</span>
+        }
       </td>
     </ng-container>
     <ng-container matColumnDef="btnEditar">

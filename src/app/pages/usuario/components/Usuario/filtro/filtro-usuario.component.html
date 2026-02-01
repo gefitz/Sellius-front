@@ -29,9 +29,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Tipo de Usuário</mat-label>
           <mat-select formControlName="tipoUsuario" #tipoUsuario>
-            <mat-option *ngFor="let tipoUsuario of listaTipoUsuario" [value]="tipoUsuario.id">
-              {{ tipoUsuario.tpUsuario }}
-            </mat-option>
+            @for (tipoUsuario of listaTipoUsuario; track tipoUsuario) {
+              <mat-option [value]="tipoUsuario.id">
+                {{ tipoUsuario.tpUsuario }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>admin_panel_settings</mat-icon>
           <mat-error>O tipo de usuário é obrigatório</mat-error>

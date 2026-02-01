@@ -7,7 +7,7 @@ import {
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+
 import { Subject } from 'rxjs';
 import { ApiService } from '../../../core/services/Api/api.service';
 import { EstadoModel } from '../../../core/model/estado.model';
@@ -27,7 +27,7 @@ import { EstadoModel } from '../../../core/model/estado.model';
       useExisting: EstadoComponent,
     },
   ],
-  imports: [CommonModule, MatFormFieldModule, MatSelectModule],
+  imports: [MatFormFieldModule, MatSelectModule],
   standalone: true,
 })
 export class EstadoComponent

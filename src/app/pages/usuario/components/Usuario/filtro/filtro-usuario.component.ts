@@ -11,7 +11,7 @@ import { FormGroupModule } from '../../../../../shared/components/Module/form.mo
 import { CidadeComponent } from '../../../../../shared/components/cidade/cidade.component';
 import { EstadoComponent } from '../../../../../shared/components/estado/estado.component';
 import { CepComponent } from '../../../../../shared/components/cep/cep.component';
-import { CommonModule } from '@angular/common';
+
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';

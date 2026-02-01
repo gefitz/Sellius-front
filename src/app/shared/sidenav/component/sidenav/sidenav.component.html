@@ -1,9 +1,15 @@
 <mat-toolbar class="toolbar" color="primary">
 
-  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toogler()" *ngIf="isMobile">
-    <mat-icon aria-label="Side nav toggle icon" *ngIf="expanded">close</mat-icon>
-    <mat-icon aria-label="Side nav toggle icon" *ngIf="!expanded">menu</mat-icon>
-  </button>
+  @if (isMobile) {
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toogler()">
+      @if (expanded) {
+        <mat-icon aria-label="Side nav toggle icon">close</mat-icon>
+      }
+      @if (!expanded) {
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      }
+    </button>
+  }
   <span class="espaco"></span>
   <span>{{titulo}}</span>
   <span class="espaco"></span>
@@ -18,32 +24,35 @@
 
   <mat-sidenav [opened]="expanded" class="sidenav" mode="side">
     <mat-nav-list>
-      <ng-container *ngFor="let item of menu">
-
+      @for (item of menu; track item) {
         <!-- Se tiver submenu (children), usa expansion -->
-        <mat-expansion-panel *ngIf="item.menuFilhos && item.menuFilhos.length; else simpleLink" class="menu-expansion">
-          <mat-expansion-panel-header style="padding-left: 17px;">
-            <mat-icon class="mat-icon-nav-list">{{ item.icone }}</mat-icon>
-            <span *ngIf="expanded">{{ item.deMenu }}</span>
-          </mat-expansion-panel-header>
-
-          <ng-container *ngFor="let child of item.menuFilhos">
-            <a mat-list-item [routerLink]="child.urlMenu">
-              <mat-icon class="mat-icon-nav-list">{{ child.icone }}</mat-icon>
-              <span *ngIf="expanded">{{ child.deMenu }}</span>
-            </a>
-          </ng-container>
-        </mat-expansion-panel>
-
-        <!-- Se NÃO tiver submenu, mostra como link direto -->
-        <ng-template #simpleLink>
+        @if (item.menuFilhos && item.menuFilhos.length) {
+          <mat-expansion-panel class="menu-expansion">
+            <mat-expansion-panel-header style="padding-left: 17px;">
+              <mat-icon class="mat-icon-nav-list">{{ item.icone }}</mat-icon>
+              @if (expanded) {
+                <span>{{ item.deMenu }}</span>
+              }
+            </mat-expansion-panel-header>
+            @for (child of item.menuFilhos; track child) {
+              <a mat-list-item [routerLink]="child.urlMenu">
+                <mat-icon class="mat-icon-nav-list">{{ child.icone }}</mat-icon>
+                @if (expanded) {
+                  <span>{{ child.deMenu }}</span>
+                }
+              </a>
+            }
+          </mat-expansion-panel>
+        } @else {
           <a mat-list-item [routerLink]="item.urlMenu">
             <mat-icon class="mat-icon-nav-list">{{ item.icone }}</mat-icon>
-            <span *ngIf="expanded">{{ item.deMenu }}</span>
+            @if (expanded) {
+              <span>{{ item.deMenu }}</span>
+            }
           </a>
-        </ng-template>
-
-      </ng-container>
+        }
+        <!-- Se NÃO tiver submenu, mostra como link direto -->
+      }
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

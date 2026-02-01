@@ -30,9 +30,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Tipo de Produto</mat-label>
           <mat-select formControlName="tipoProduto">
-            <mat-option *ngFor="let item of tpProduto" [value]="item.id">
-              {{ item.tipo }}
-            </mat-option>
+            @for (item of tpProduto; track item) {
+              <mat-option [value]="item.id">
+                {{ item.tipo }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>category</mat-icon>
           <mat-error>O tipo do produto é obrigatório</mat-error>
@@ -43,9 +45,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Fornecedor</mat-label>
           <mat-select formControlName="marca">
-            <mat-option *ngFor="let item of fornecedores" [value]="item.id">
-              {{ item.nome }}
-            </mat-option>
+            @for (item of fornecedores; track item) {
+              <mat-option [value]="item.id">
+                {{ item.nome }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>business</mat-icon>
           <mat-error>O fornecedor é obrigatório</mat-error>
@@ -94,9 +98,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Regra de Tabela Preco</mat-label>
           <mat-select formControlName="origemTabelaPreco">
-            <mat-option *ngFor="let item of listaTabelaPrecoOrigem" [value]="item.value">
-              {{ item.label }}
-            </mat-option>
+            @for (item of listaTabelaPrecoOrigem; track item) {
+              <mat-option [value]="item.value">
+                {{ item.label }}
+              </mat-option>
+            }
           </mat-select>
           <mat-error>O valor é obrigatório</mat-error>
         </mat-form-field>
@@ -133,8 +139,12 @@
 
       <button mat-flat-button type="submit" [disabled]="!produtoForm.valid || isLoading" color="primary"
         class="save-button">
-        <mat-icon *ngIf="!isLoading">save</mat-icon>
-        <mat-icon *ngIf="isLoading" class="spinning">refresh</mat-icon>
+        @if (!isLoading) {
+          <mat-icon>save</mat-icon>
+        }
+        @if (isLoading) {
+          <mat-icon class="spinning">refresh</mat-icon>
+        }
         {{ isLoading ? 'Salvando...' : 'Salvar' }}
       </button>
     </div>

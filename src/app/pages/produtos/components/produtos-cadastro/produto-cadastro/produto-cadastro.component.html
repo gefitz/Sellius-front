@@ -30,9 +30,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Tipo de Produto</mat-label>
           <mat-select formControlName="tipoProduto">
-            <mat-option *ngFor="let item of tpProduto" [value]="item.id">
-              {{ item.tipo }}
-            </mat-option>
+            @for (item of tpProduto; track item) {
+              <mat-option [value]="item.id">
+                {{ item.tipo }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>category</mat-icon>
           <mat-error>O tipo do produto é obrigatório</mat-error>
@@ -43,9 +45,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Fornecedor</mat-label>
           <mat-select formControlName="marca">
-            <mat-option *ngFor="let item of fornecedores" [value]="item.id">
-              {{ item.nome }}
-            </mat-option>
+            @for (item of fornecedores; track item) {
+              <mat-option [value]="item.id">
+                {{ item.nome }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>business</mat-icon>
           <mat-error>O fornecedor é obrigatório</mat-error>

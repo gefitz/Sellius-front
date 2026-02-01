@@ -15,10 +15,12 @@
     <table mat-table [dataSource]="dataSource">
 
       <!-- Position Column -->
-      <ng-container *ngFor="let coluna of pesquisa.colunas; let i = index" [matColumnDef]="coluna">
-        <th mat-header-cell *matHeaderCellDef> {{ pesquisa.nomeColunas[i] }} </th>
-        <td mat-cell *matCellDef="let element"> {{ element[coluna] }} </td>
-      </ng-container>
+      @for (coluna of pesquisa.colunas; track coluna; let i = $index) {
+        <ng-container [matColumnDef]="coluna">
+          <th mat-header-cell *matHeaderCellDef> {{ pesquisa.nomeColunas[i] }} </th>
+          <td mat-cell *matCellDef="let element"> {{ element[coluna] }} </td>
+        </ng-container>
+      }
 
       <!-- Header e linhas -->
       <tr mat-header-row *matHeaderRowDef="pesquisa.colunas"></tr>

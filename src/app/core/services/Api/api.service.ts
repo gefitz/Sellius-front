@@ -19,7 +19,7 @@ import { LoginService } from '../../../pages/login/services/login.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root',
@@ -140,12 +140,14 @@ export class ApiService {
 // Componente de Loader integrado ao ApiService
 @Component({
     selector: 'app-api-loader',
-    imports: [CommonModule],
+    imports: [],
     template: `
-    <div *ngIf="isLoading" class="loader-overlay">
-      <div class="spinner"></div>
-    </div>
-  `,
+    @if (isLoading) {
+      <div class="loader-overlay">
+        <div class="spinner"></div>
+      </div>
+    }
+    `,
     styles: [
         `
       .loader-overlay {

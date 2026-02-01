@@ -20,18 +20,22 @@
     <mat-form-field class="form-control">
       <mat-label>Estado:</mat-label>
       <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
-        <mat-option *ngFor="let estado of listEstados" [value]="estado.id">
-          {{ estado.estado }}
-        </mat-option>
+        @for (estado of listEstados; track estado) {
+          <mat-option [value]="estado.id">
+            {{ estado.estado }}
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="form-control">
       <mat-label>Cidade</mat-label>
       <mat-select formControlName="cidadeId" required>
-        <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">
-          {{ cidade.cidade }}
-        </mat-option>
+        @for (cidade of listCidades; track cidade) {
+          <mat-option [value]="cidade.id">
+            {{ cidade.cidade }}
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
 

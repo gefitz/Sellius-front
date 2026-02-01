@@ -5,66 +5,72 @@
     <div class="container-btn">
       <button mat-raised-button type="button" class="btn-voltar"
         routerLink="/Login"><mat-icon>arrow_back</mat-icon>Voltar</button>
-      <button mat-flat-button color="primary" class="btn-cadastro" (click)="selectTabIndex = 1">
-        <span class="texto-botao">Próximo</span>
-        <mat-icon class="icone-direita">arrow_forward</mat-icon>
-      </button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Dados da Empresa">
-    <form [formGroup]="formEmpresa" (submit)="salvar()">
+        <button mat-flat-button color="primary" class="btn-cadastro" (click)="selectTabIndex = 1">
+          <span class="texto-botao">Próximo</span>
+          <mat-icon class="icone-direita">arrow_forward</mat-icon>
+        </button>
+      </div>
+    </mat-tab>
+    <mat-tab label="Dados da Empresa">
+      <form [formGroup]="formEmpresa" (submit)="salvar()">
 
-      <mat-form-field>
-        <mat-label for="Nome">Nome: </mat-label>
-        <input type="text" matInput formControlName="nome">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="CNPJ">CNPJ: </mat-label>
-        <input type="text" matInput formControlName="cnpj">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="Telefone">Telefone: </mat-label>
-        <input type="text" matInput formControlName="telefone">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="Email">Email: </mat-label>
-        <input type="text" matInput formControlName="email">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="cep">CEP: </mat-label>
-        <input type="text" matInput formControlName="cep" (change)="buscarCep()">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="estado">Estado: </mat-label>
-        <mat-select type="text" formControlName="estado" (selectionChange)="buscarCidades($event.value)">
-          <mat-option *ngFor="let estado of listEstados" [value]="estado.id">{{estado.estado}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="cidadeId">Cidade: </mat-label>
-        <mat-select type="text" formControlName="cidadeId">
-          <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">{{cidade.cidade}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="rua">Rua: </mat-label>
-        <input type="text" matInput formControlName="rua">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label for="tipoLicenca">Plano: </mat-label>
-        <mat-select formControlName="tipoLicenca" #tipoLicenca>
-          <mat-option *ngFor="let licenca  of listaTipoLicenca" [value]="licenca.key">{{licenca.value}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label for="Nome">Nome: </mat-label>
+          <input type="text" matInput formControlName="nome">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="CNPJ">CNPJ: </mat-label>
+          <input type="text" matInput formControlName="cnpj">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="Telefone">Telefone: </mat-label>
+          <input type="text" matInput formControlName="telefone">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="Email">Email: </mat-label>
+          <input type="text" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="cep">CEP: </mat-label>
+          <input type="text" matInput formControlName="cep" (change)="buscarCep()">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="estado">Estado: </mat-label>
+          <mat-select type="text" formControlName="estado" (selectionChange)="buscarCidades($event.value)">
+            @for (estado of listEstados; track estado) {
+              <mat-option [value]="estado.id">{{estado.estado}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="cidadeId">Cidade: </mat-label>
+          <mat-select type="text" formControlName="cidadeId">
+            @for (cidade of listCidades; track cidade) {
+              <mat-option [value]="cidade.id">{{cidade.cidade}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="rua">Rua: </mat-label>
+          <input type="text" matInput formControlName="rua">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="tipoLicenca">Plano: </mat-label>
+          <mat-select formControlName="tipoLicenca" #tipoLicenca>
+            @for (licenca  of listaTipoLicenca; track licenca ) {
+              <mat-option [value]="licenca.key">{{licenca.value}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-      <input type="text" matInput formControlName="id" hidden>
-    </form>
-    <div class="container-btn">
-      <button mat-raised-button type="button" (click)="selectTabIndex=0"
-        class="btn-voltar"><mat-icon>arrow_back</mat-icon>Voltar</button>
-      <button mat-flat-button color="primary" class="btn-cadastro" (click)="salvar()">Cadastrar-se</button>
-    </div>
-  </mat-tab>
+        <input type="text" matInput formControlName="id" hidden>
+      </form>
+      <div class="container-btn">
+        <button mat-raised-button type="button" (click)="selectTabIndex=0"
+          class="btn-voltar"><mat-icon>arrow_back</mat-icon>Voltar</button>
+          <button mat-flat-button color="primary" class="btn-cadastro" (click)="salvar()">Cadastrar-se</button>
+        </div>
+      </mat-tab>
 
 
-</mat-tab-group>
+    </mat-tab-group>

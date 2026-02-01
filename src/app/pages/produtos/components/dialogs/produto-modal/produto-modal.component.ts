@@ -15,7 +15,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
+
 import { TpProdutoModel } from '../../../models/tpProduto.model';
 import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model';
 import { ProdutoModel } from '../../../models/produto.model';
@@ -27,15 +27,14 @@ import { enumToArrayOrigemTabelaPreco } from '../../../Enum/OrigemTabelaPreco.en
 @Component({
     selector: 'app-produto-modal',
     imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatDialogModule,
-        CommonModule,
-    ],
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatDialogModule
+],
     templateUrl: './produto-modal.component.html',
     styleUrls: [
         '/src/app/shared/styles/modal-styles.css',

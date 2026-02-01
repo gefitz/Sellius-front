@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,12 +21,11 @@ import { FornecedorFiltro } from '../../models/forncedor-filtro.model';
 @Component({
     selector: 'app-fornecedor-lista',
     imports: [
-        MatPaginatorModule,
-        MatTableModule,
-        MatButtonModule,
-        MatIconModule,
-        CommonModule,
-    ],
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule
+],
     providers: [
         {
             provide: MatPaginatorIntl,

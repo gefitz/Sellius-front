@@ -5,13 +5,17 @@
     (focus)="focused = true; stateChanges.next()" (blur)="focused = false; stateChanges.next(); onTouched()">
     <mat-option [value]="null">Selecione o estado</mat-option>
 
-    <mat-option *ngFor="let estado of estados" [value]="estado.id">
-      {{ estado.estado }} ({{ estado.sigla }})
-    </mat-option>
+    @for (estado of estados; track estado) {
+      <mat-option [value]="estado.id">
+        {{ estado.estado }} ({{ estado.sigla }})
+      </mat-option>
+    }
   </mat-select>
 
   <!-- Exemplo de erro (opcional) -->
-  <mat-error *ngIf="ngControl?.errors?.['required']">
-    Estado é obrigatório
-  </mat-error>
+  @if (ngControl?.errors?.['required']) {
+    <mat-error>
+      Estado é obrigatório
+    </mat-error>
+  }
 </mat-form-field>

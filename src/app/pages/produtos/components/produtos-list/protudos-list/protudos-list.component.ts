@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { ProdutoModel } from '../../../models/produto.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInativarProdutoComponent } from '../../dialogs/dialog-inativar-produto/dialog-inativar-produto.component';
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { EtiquetaComponent } from '../../etiqueta/etiqueta.component';
 import { EtiquetaModel } from '../../../models/etiqueta.model';
 import { ProdutoService } from '../../../services/produto.service';
@@ -25,14 +25,13 @@ import { DialogFiltroProdutoComponent } from '../../dialogs/dialog-filtro-produt
 @Component({
     selector: 'app-protudos-list',
     imports: [
-        MatPaginatorModule,
-        MatTableModule,
-        MatButtonModule,
-        MatIcon,
-        MatButtonModule,
-        MatIconModule,
-        CommonModule,
-    ],
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIcon,
+    MatButtonModule,
+    MatIconModule
+],
     providers: [
         {
             provide: MatPaginatorIntl,

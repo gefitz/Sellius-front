@@ -69,9 +69,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Estado</mat-label>
           <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
-            <mat-option *ngFor="let estado of lisEstados" [value]="estado.id">
-              {{ estado.estado }}
-            </mat-option>
+            @for (estado of lisEstados; track estado) {
+              <mat-option [value]="estado.id">
+                {{ estado.estado }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>map</mat-icon>
           <mat-error>O estado é obrigatório</mat-error>
@@ -82,9 +84,11 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Cidade</mat-label>
           <mat-select formControlName="cidadeId">
-            <mat-option *ngFor="let cidade of listCidades" [value]="cidade.id">
-              {{ cidade.cidade }}
-            </mat-option>
+            @for (cidade of listCidades; track cidade) {
+              <mat-option [value]="cidade.id">
+                {{ cidade.cidade }}
+              </mat-option>
+            }
           </mat-select>
           <mat-icon matSuffix>location_city</mat-icon>
           <mat-error>A cidade é obrigatória</mat-error>

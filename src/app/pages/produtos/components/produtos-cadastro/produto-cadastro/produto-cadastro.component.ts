@@ -14,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProdutoModel } from '../../../models/produto.model';
 import { ProdutoService } from '../../../services/produto.service';
-import { CommonModule } from '@angular/common';
+
 import { TpProdutoModel } from '../../../models/tpProduto.model';
 import { TpProdutoService } from '../../../services/tp-produto.service';
 import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model';
@@ -23,16 +23,15 @@ import { FornecedorService } from '../../../../fornecedores/services/fornecedor.
 @Component({
     selector: 'app-produto-cadastro',
     imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatButtonModule,
-        RouterLink,
-        MatSelectModule,
-        FlexLayoutModule,
-        CommonModule,
-    ],
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterLink,
+    MatSelectModule,
+    FlexLayoutModule
+],
     templateUrl: './produto-cadastro.component.html',
     styleUrls: [
         '/src/app/shared/styles/modal-styles.css',

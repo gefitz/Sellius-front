@@ -3,7 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { CommonModule } from '@angular/common';
+
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
@@ -26,19 +26,18 @@ import { Menu } from '../../../../pages/menu/model/menu.model';
 @Component({
     selector: 'app-sidenav',
     imports: [
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSidenavModule,
-        CommonModule,
-        MatListModule,
-        MatMenuModule,
-        RouterOutlet,
-        MatTooltipModule,
-        RouterLink,
-        MatCardModule,
-        MatExpansionModule,
-    ],
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule,
+    RouterOutlet,
+    MatTooltipModule,
+    RouterLink,
+    MatCardModule,
+    MatExpansionModule
+],
     templateUrl: './sidenav.component.html',
     styleUrl: './sidenav.component.css'
 })

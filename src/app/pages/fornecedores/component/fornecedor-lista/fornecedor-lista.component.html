@@ -45,12 +45,11 @@
     <ng-container matColumnDef="fAtivo">
       <th mat-header-cell *matHeaderCellDef> Status </th>
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.fAtivo === 1; else inactive">
+        @if (element.fAtivo === 1) {
           <span class="status-ativo">Ativo</span>
-        </ng-container>
-        <ng-template #inactive>
+        } @else {
           <span class="status-inativo">Inativo</span>
-        </ng-template>
+        }
       </td>
     </ng-container>
     <ng-container matColumnDef="dthCadastro">

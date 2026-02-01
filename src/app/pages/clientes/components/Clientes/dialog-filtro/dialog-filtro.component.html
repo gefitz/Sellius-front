@@ -21,7 +21,9 @@
       <mat-form-field class="form-control">
         <mat-label for="cidade">Cidade: </mat-label>
         <mat-select formControlName="cidade">
-          <mat-option *ngFor="let c of cidade" [value]="c">{{c.cidade}}</mat-option>
+          @for (c of cidade; track c) {
+            <mat-option [value]="c">{{c.cidade}}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-control">
@@ -31,7 +33,7 @@
           <mat-option value="0">Inativo</mat-option>
         </mat-select>
       </mat-form-field>
-            <div>
+      <div>
         <button mat-flat-button type="button" color="primary" [mat-dialog-close]="clienteForm.value">Pesquisar</button>
       </div>
     </form>

@@ -72,19 +72,23 @@
           <mat-icon matSuffix>toggle_on</mat-icon>
         </mat-form-field>
 
-        <mat-form-field *ngIf="MenuForm.value?.fMenuExclusivo == 1" appearance="outline" class="form-field">
-          <mat-label>Empresa</mat-label>
-          <input type="text" matInput formControlName="idEmpresa" placeholder="Digite o id da empresa">
-        </mat-form-field>
+        @if (MenuForm.value?.fMenuExclusivo == 1) {
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Empresa</mat-label>
+            <input type="text" matInput formControlName="idEmpresa" placeholder="Digite o id da empresa">
+          </mat-form-field>
+        }
 
         <mat-form-field appearance="outline" class="form-field">
           <mat-label for="idMenuPai">
             Menu Pai:
           </mat-label>
           <mat-select formControlName="idMenuPai">
-            <mat-option *ngFor="let menu of listaMenus" [value]="menu.id">
-              {{ menu.deMenu }}
-            </mat-option>
+            @for (menu of listaMenus; track menu) {
+              <mat-option [value]="menu.id">
+                {{ menu.deMenu }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>

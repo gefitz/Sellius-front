@@ -10,7 +10,7 @@ import {
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router, RouterLink } from '@angular/router';
 import { ClienteModel } from '../../../models/cliente.model';
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInativarComponent } from '../dialog-inativar/dialog-inativar.component';
 import { ClienteService } from '../../../services/cliente.service';
