@@ -30,10 +30,7 @@ import { HttpResponse } from '@angular/common/http';
   selector: 'app-clientes-cadastro',
   imports: [SharedModule],
   templateUrl: './clientes-cadastro.component.html',
-  styleUrls: [
-    '/src/app/shared/styles/modal-styles.css',
-    './clientes-cadastro.component.css',
-  ],
+  styleUrls: ['./clientes-cadastro.component.css'],
   standalone: true,
 })
 export class ClientesCadastroComponent implements OnInit {
@@ -51,7 +48,7 @@ export class ClientesCadastroComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public clienteEditar: ClienteModel,
     private segmentacaoService: SegmentacaoService,
     private grupoService: GrupoService,
-    private toastr: Toast,
+    // private toastr: Toast,
   ) {
     if (clienteEditar) {
       this.editando = true;

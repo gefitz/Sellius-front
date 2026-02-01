@@ -22,22 +22,23 @@ import { CustomPaginator } from '../../../../../core/services/Utils/paginator-ed
 import { GrupoFiltroComponent } from '../grupo-filtro/grupo-filtro.component';
 
 @Component({
-    selector: 'app-grupo-list',
-    imports: [
+  selector: 'app-grupo-list',
+  imports: [
     MatPaginatorModule,
     MatTableModule,
     MatButtonModule,
     MatIcon,
-    MatIconModule
-],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ],
-    templateUrl: './grupo-list.component.html',
-    styleUrl: './grupo-list.component.css'
+    MatIconModule,
+  ],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  templateUrl: './grupo-list.component.html',
+  styleUrl: './grupo-list.component.css',
+  standalone: true,
 })
 export class GrupoListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
@@ -63,7 +64,7 @@ export class GrupoListComponent implements OnInit, AfterViewInit {
     private router: Router,
     private dialog: MatDialog,
     private grupoService: GrupoService,
-    public pipe: DatePipe
+    public pipe: DatePipe,
   ) {}
 
   ngOnInit() {
@@ -117,7 +118,7 @@ export class GrupoListComponent implements OnInit, AfterViewInit {
         this.paginacaoGrupo = ret;
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<GrupoTabela>(
-          this.paginacaoGrupo.dados
+          this.paginacaoGrupo.dados,
         );
       },
     });

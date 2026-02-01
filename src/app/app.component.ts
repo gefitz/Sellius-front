@@ -5,10 +5,11 @@ import { LoginService } from './pages/login/services/login.service';
 import { ApiLoaderComponent } from './core/services/Api/api.service';
 
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet, ApiLoaderComponent],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css'
+  selector: 'app-root',
+  imports: [RouterOutlet, ApiLoaderComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  standalone: true,
 })
 export class AppComponent {
   title = 'RoteiroFacil';

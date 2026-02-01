@@ -19,21 +19,17 @@ import { FonecedorFiltroComponent } from '../fonecedor-filtro/fonecedor-filtro.c
 import { FornecedorFiltro } from '../../models/forncedor-filtro.model';
 
 @Component({
-    selector: 'app-fornecedor-lista',
-    imports: [
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule
-],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ],
-    templateUrl: './fornecedor-lista.component.html',
-    styleUrl: './fornecedor-lista.component.css'
+  selector: 'app-fornecedor-lista',
+  imports: [MatPaginatorModule, MatTableModule, MatButtonModule, MatIconModule],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  templateUrl: './fornecedor-lista.component.html',
+  styleUrl: './fornecedor-lista.component.css',
+  standalone: true,
 })
 export class FornecedorListaComponent implements OnInit {
   displayedColumns: string[] = [
@@ -55,7 +51,7 @@ export class FornecedorListaComponent implements OnInit {
   constructor(
     public pipe: DatePipe,
     private service: FornecedorService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
   ngOnInit(): void {
     this.carregarTabela();
@@ -90,7 +86,7 @@ export class FornecedorListaComponent implements OnInit {
         this.paginacaoProduto = result;
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<FornecedorModel>(
-          this.paginacaoProduto.dados
+          this.paginacaoProduto.dados,
         );
       },
     });

@@ -19,18 +19,19 @@ import { SegmentacaoModel } from '../../../models/segmentacao.model';
 import { SegmentacaoService } from '../../../services/segmentacao.service';
 
 @Component({
-    selector: 'app-segmentacao-cadastro',
-    imports: [
-        MatDialogModule,
-        MatInput,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatSelectModule,
-    ],
-    templateUrl: './segmentacao-cadastro.component.html',
-    styleUrl: './segmentacao-cadastro.component.css'
+  selector: 'app-segmentacao-cadastro',
+  imports: [
+    MatDialogModule,
+    MatInput,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
+  ],
+  templateUrl: './segmentacao-cadastro.component.html',
+  styleUrl: './segmentacao-cadastro.component.css',
+  standalone: true,
 })
 export class SegmentacaoCadastroComponent implements OnInit {
   segmentacaoForm!: FormGroup;
@@ -39,7 +40,7 @@ export class SegmentacaoCadastroComponent implements OnInit {
   constructor(
     private service: SegmentacaoService,
     private dialogRef: MatDialogRef<SegmentacaoCadastroComponent>,
-    @Inject(MAT_DIALOG_DATA) public segmentacaoEdit: SegmentacaoModel
+    @Inject(MAT_DIALOG_DATA) public segmentacaoEdit: SegmentacaoModel,
   ) {}
 
   ngOnInit(): void {
@@ -74,7 +75,7 @@ export class SegmentacaoCadastroComponent implements OnInit {
         id: new FormControl(this.segmentacaoEdit.id),
         segmento: new FormControl(
           this.segmentacaoEdit.segmento,
-          Validators.required
+          Validators.required,
         ),
         fAtivo: new FormControl(this.segmentacaoEdit.fAtivo),
       });

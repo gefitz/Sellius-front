@@ -33,19 +33,17 @@ import { ProdutoModalService } from '../../../produtos/services/produto-modal.se
 import { SharedModule } from '../../../../shared/components/Module/shared.module';
 
 @Component({
-    selector: 'app-pedido-novo',
-    imports: [SharedModule],
-    templateUrl: './pedido-novo.component.html',
-    styleUrls: [
-        './pedido-novo.component.css',
-        '/src/app/shared/styles/modal-styles.css',
-    ],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ]
+  selector: 'app-pedido-novo',
+  imports: [SharedModule],
+  templateUrl: './pedido-novo.component.html',
+  styleUrls: ['./pedido-novo.component.css'],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  standalone: true,
 })
 export class PedidoNovoComponent implements OnInit {
   //Formularios
@@ -87,7 +85,7 @@ export class PedidoNovoComponent implements OnInit {
     private dialog: MatDialog,
     private serviceProduto: ProdutoService,
     private pedidoService: PedidoService,
-    private produtoModalService: ProdutoModalService
+    private produtoModalService: ProdutoModalService,
   ) {}
 
   ngOnInit(): void {
@@ -116,19 +114,19 @@ export class PedidoNovoComponent implements OnInit {
 
   removerProdutoXPedido(produto: PedidoXProdutoModel) {
     const validaProduto = this.produtos.data.find(
-      (p) => p.id === produto.produto.id
+      (p) => p.id === produto.produto.id,
     );
     if (!validaProduto) {
       this.paginacaoProduto.dados.push(produto.produto);
 
       this.produtos = new MatTableDataSource<ProdutoTabela>(
-        this.paginacaoProduto.dados
+        this.paginacaoProduto.dados,
       );
 
       this.paginacaoPedidoXProduto.dados =
         this.paginacaoPedidoXProduto.dados.filter((p) => p.id !== produto.id);
       this.pedidoXProduto = new MatTableDataSource<PedidoXProdutoModel>(
-        this.paginacaoPedidoXProduto.dados
+        this.paginacaoPedidoXProduto.dados,
       );
     }
   }
@@ -160,7 +158,7 @@ export class PedidoNovoComponent implements OnInit {
           nomeColunas: ['Nome', 'CPF / CNPJ'],
         },
         panelClass: `md-large`,
-      }
+      },
     );
     retDialog.afterClosed().subscribe({
       next: (ret) => {
@@ -176,7 +174,7 @@ export class PedidoNovoComponent implements OnInit {
         this.paginacaoProduto = ret;
         this.paginacaoToPaginator();
         this.produtos = new MatTableDataSource<ProdutoTabela>(
-          this.paginacaoProduto.dados
+          this.paginacaoProduto.dados,
         );
       },
     });

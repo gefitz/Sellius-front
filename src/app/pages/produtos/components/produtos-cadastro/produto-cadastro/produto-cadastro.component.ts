@@ -21,8 +21,8 @@ import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model
 import { FornecedorService } from '../../../../fornecedores/services/fornecedor.service';
 
 @Component({
-    selector: 'app-produto-cadastro',
-    imports: [
+  selector: 'app-produto-cadastro',
+  imports: [
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
@@ -30,13 +30,11 @@ import { FornecedorService } from '../../../../fornecedores/services/fornecedor.
     MatButtonModule,
     RouterLink,
     MatSelectModule,
-    FlexLayoutModule
-],
-    templateUrl: './produto-cadastro.component.html',
-    styleUrls: [
-        '/src/app/shared/styles/modal-styles.css',
-        './produto-cadastro.component.css',
-    ]
+    FlexLayoutModule,
+  ],
+  templateUrl: './produto-cadastro.component.html',
+  styleUrls: ['./produto-cadastro.component.css'],
+  standalone: true,
 })
 export class ProdutoCadastroComponent {
   produtoForm!: FormGroup;
@@ -46,7 +44,7 @@ export class ProdutoCadastroComponent {
     private router: Router,
     private service: ProdutoService,
     private tpService: TpProdutoService,
-    private fornecedorService: FornecedorService
+    private fornecedorService: FornecedorService,
   ) {
     const nav = router.getCurrentNavigation();
     const produtoEditar: ProdutoModel = nav?.extras.state?.['produto'];
@@ -56,7 +54,7 @@ export class ProdutoCadastroComponent {
   salvarProduto() {
     if (this.produtoForm.valid) {
       this.produtoForm.value.dthCriacao = new Date(
-        this.produtoForm.value.dthCriacao
+        this.produtoForm.value.dthCriacao,
       ).toISOString();
       const produto: ProdutoModel = this.produtoForm.value;
       produto.tipoProdutoId = this.produtoForm.value.tipoProduto;
@@ -81,7 +79,7 @@ export class ProdutoCadastroComponent {
         marca: new FormControl(produtoEditar.fornecedorId),
         fAtivo: new FormControl(produtoEditar.fAtivo, Validators.required),
         dthCriacao: new FormControl(
-          new Date(produtoEditar.dthCriacao).toISOString().split('T')[0]
+          new Date(produtoEditar.dthCriacao).toISOString().split('T')[0],
         ),
         descricao: new FormControl(produtoEditar.descricao),
         valor: new FormControl(produtoEditar.valor, Validators.required),

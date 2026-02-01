@@ -8,13 +8,11 @@ import { url } from 'inspector';
 import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
-    selector: 'app-menu-modal-editar-cadastrar',
-    imports: [SharedModule],
-    templateUrl: './menu-modal-editar-cadastrar.component.html',
-    styleUrls: [
-        '/src/app/shared/styles/modal-styles.css',
-        './menu-modal-editar-cadastrar.component.css',
-    ]
+  selector: 'app-menu-modal-editar-cadastrar',
+  imports: [SharedModule],
+  templateUrl: './menu-modal-editar-cadastrar.component.html',
+  styleUrls: ['./menu-modal-editar-cadastrar.component.css'],
+  standalone: true,
 })
 export class MenuModalEditarCadastrarComponent implements OnInit {
   MenuForm!: FormGroup;
@@ -22,7 +20,7 @@ export class MenuModalEditarCadastrarComponent implements OnInit {
   constructor(
     private service: MenuService,
     @Inject(MAT_DIALOG_DATA) private menuEditar: Menu,
-    private dialogRef: DialogRef<MenuModalEditarCadastrarComponent>
+    private dialogRef: DialogRef<MenuModalEditarCadastrarComponent>,
   ) {}
   ngOnInit(): void {
     this.preencherCamposFormulario(this.menuEditar);
@@ -38,7 +36,7 @@ export class MenuModalEditarCadastrarComponent implements OnInit {
         idMenuPai: new FormControl(menuEditar.idMenuPai),
         fMenuExclusivo: new FormControl(
           menuEditar.fMenuExclusivo,
-          Validators.required
+          Validators.required,
         ),
         fAtivo: new FormControl(menuEditar.fAtivo, Validators.required),
         dtCadastro: new FormControl(menuEditar.dtCadastro),
@@ -65,7 +63,7 @@ export class MenuModalEditarCadastrarComponent implements OnInit {
     if (this.menuEditar && this.menuEditar.id) {
       this.service.updateMenu(this.MenuForm.value).subscribe({
         next: (ret) => {
-          this, this.dialogRef.close();
+          (this, this.dialogRef.close());
         },
       });
     } else {

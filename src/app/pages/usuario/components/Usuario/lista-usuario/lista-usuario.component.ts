@@ -11,10 +11,11 @@ import { UsuarioFiltro } from '../../../models/Filtros/usuario-filtro.model';
 import { UsuarioTabela } from '../../../models/Tabela/usuario-tabela.model';
 
 @Component({
-    selector: 'lista-usuario',
-    templateUrl: './lista-usuario.component.html',
-    styleUrls: ['./lista-usuario.component.css'],
-    imports: [SharedModule]
+  selector: 'lista-usuario',
+  templateUrl: './lista-usuario.component.html',
+  styleUrls: ['./lista-usuario.component.css'],
+  imports: [SharedModule],
+  standalone: true,
 })
 export class ListaUsuairoComponent
   extends TabelaPaginada<UsuarioTabela, UsuarioFiltro>

@@ -26,26 +26,24 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProdutoService } from '../../../services/produto.service';
 
 @Component({
-    selector: 'app-dialog-add-produto',
-    imports: [
+  selector: 'app-dialog-add-produto',
+  imports: [
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    SharedModule
-],
-    templateUrl: './dialog-add-produto.component.html',
-    styleUrls: [
-        './dialog-add-produto.component.css',
-        '/src/app/shared/styles/modal-styles.css',
-    ],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ]
+    SharedModule,
+  ],
+  templateUrl: './dialog-add-produto.component.html',
+  styleUrls: ['./dialog-add-produto.component.css'],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  standalone: true,
 })
 export class DialogaddprodutoComponent {
   pedidoXProdutoForm!: FormGroup;
@@ -72,7 +70,7 @@ export class DialogaddprodutoComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: PedidoXProdutoModel,
-    private serviceProduto: ProdutoService
+    private serviceProduto: ProdutoService,
   ) {
     this.carregFiltro();
   }
@@ -104,7 +102,7 @@ export class DialogaddprodutoComponent {
         this.paginacaoProduto = ret;
         this.paginacaoToPaginator();
         this.dataSourceProduto = new MatTableDataSource<ProdutoTabela>(
-          this.paginacaoProduto.dados
+          this.paginacaoProduto.dados,
         );
       },
     });

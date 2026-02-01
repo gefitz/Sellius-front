@@ -8,15 +8,16 @@ import {
 import { EtiquetaModel } from '../../models/etiqueta.model';
 
 @Component({
-    selector: 'app-etiqueta',
-    imports: [MatDialogModule],
-    templateUrl: './etiqueta.component.html',
-    styleUrl: './etiqueta.component.css'
+  selector: 'app-etiqueta',
+  imports: [MatDialogModule],
+  templateUrl: './etiqueta.component.html',
+  styleUrl: './etiqueta.component.css',
+  standalone: true,
 })
 export class EtiquetaComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public dados: EtiquetaModel,
-    private dialogRef: MatDialogRef<EtiquetaComponent>
+    private dialogRef: MatDialogRef<EtiquetaComponent>,
   ) {}
 
   imprimir() {

@@ -16,16 +16,17 @@ import { MenuFiltro } from '../../model/menu-filtro.model';
 import { CustomPaginator } from '../../../../core/services/Utils/paginator-edit';
 
 @Component({
-    selector: 'app-menu-lista',
-    imports: [SharedModule],
-    templateUrl: './menu-lista.component.html',
-    styleUrl: './menu-lista.component.css',
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ]
+  selector: 'app-menu-lista',
+  imports: [SharedModule],
+  templateUrl: './menu-lista.component.html',
+  styleUrl: './menu-lista.component.css',
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  standalone: true,
 })
 export class MenuListaComponent implements OnInit {
   displayedColumns: string[] = [
@@ -50,7 +51,7 @@ export class MenuListaComponent implements OnInit {
   constructor(
     public _pipe: DatePipe,
     private dialog: MatDialog,
-    private serviceMenu: MenuService
+    private serviceMenu: MenuService,
   ) {}
   ngOnInit(): void {
     this.carregFiltro(this.menuFiltro);

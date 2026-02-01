@@ -21,21 +21,17 @@ import { TpProdutoService } from '../../services/tp-produto.service';
 import { DialogInativacaoComponent } from '../../../../shared/dialog-inativacao/dialog-inativacao.component';
 
 @Component({
-    selector: 'app-tp-produto-list',
-    imports: [
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule
-],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ],
-    templateUrl: './tp-produto-list.component.html',
-    styleUrl: './tp-produto-list.component.css'
+  selector: 'app-tp-produto-list',
+  imports: [MatPaginatorModule, MatTableModule, MatButtonModule, MatIconModule],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  templateUrl: './tp-produto-list.component.html',
+  styleUrl: './tp-produto-list.component.css',
+  standalone: true,
 })
 export class TpProdutoListComponent implements OnInit {
   displayedColumns: string[] = [
@@ -57,7 +53,7 @@ export class TpProdutoListComponent implements OnInit {
     private service: TpProdutoService,
     public pipe: DatePipe,
     private dialog: MatDialog,
-    private route: Router
+    private route: Router,
   ) {}
 
   ngOnInit(): void {
@@ -93,7 +89,7 @@ export class TpProdutoListComponent implements OnInit {
         this.paginacaoProduto = ret;
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<TpProdutoModel>(
-          this.paginacaoProduto.dados
+          this.paginacaoProduto.dados,
         );
       },
     });

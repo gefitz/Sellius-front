@@ -19,10 +19,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { PedidoNovoComponent } from '../pedido-novo/pedido-novo.component';
 
 @Component({
-    selector: 'app-pedidos',
-    imports: [SharedModule],
-    templateUrl: './pedidos.component.html',
-    styleUrl: './pedidos.component.css'
+  selector: 'app-pedidos',
+  imports: [SharedModule],
+  templateUrl: './pedidos.component.html',
+  styleUrl: './pedidos.component.css',
+  standalone: true,
 })
 export class PedidosComponent implements OnInit {
   displayedColumns: string[] = [
@@ -43,7 +44,7 @@ export class PedidosComponent implements OnInit {
   constructor(
     private pedidoService: PedidoService,
     public _pipe: DatePipe,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
   ngOnInit(): void {
     this.carregarFiltro();
@@ -63,7 +64,7 @@ export class PedidosComponent implements OnInit {
         this.paginacao = ret;
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<PedidoModel>(
-          this.paginacao.dados
+          this.paginacao.dados,
         );
       },
     });

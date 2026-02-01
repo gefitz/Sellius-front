@@ -18,18 +18,19 @@ import { TpProdutoModel } from '../../../models/tpProduto.model';
 import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model';
 
 @Component({
-    selector: 'app-dialog-filtro-produto',
-    imports: [
+  selector: 'app-dialog-filtro-produto',
+  imports: [
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
-],
-    templateUrl: './dialog-filtro-produto.component.html',
-    styleUrl: './dialog-filtro-produto.component.css'
+    MatIconModule,
+  ],
+  templateUrl: './dialog-filtro-produto.component.html',
+  styleUrl: './dialog-filtro-produto.component.css',
+  standalone: true,
 })
 export class DialogFiltroProdutoComponent implements OnInit {
   produtoForm: FormGroup;
@@ -37,7 +38,7 @@ export class DialogFiltroProdutoComponent implements OnInit {
   fornecedores!: FornecedorModel[];
   constructor(
     private tpProdutoService: TpProdutoService,
-    private fornecedorService: FornecedorService
+    private fornecedorService: FornecedorService,
   ) {
     this.produtoForm = new FormGroup({
       nome: new FormControl(''),

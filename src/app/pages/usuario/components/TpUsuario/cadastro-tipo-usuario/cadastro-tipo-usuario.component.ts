@@ -16,13 +16,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TpUsuarioService } from '../../../services/tp-usuario.service';
 
 @Component({
-    selector: 'lista-tipo-usuario',
-    templateUrl: './cadastro-tipo-usuario.component.html',
-    styleUrls: [
-        './cadastro-tipo-usuario.component.css',
-        '/src/app/shared/styles/modal-styles.css',
-    ],
-    imports: [SharedModule, MatCheckboxModule]
+  selector: 'lista-tipo-usuario',
+  templateUrl: './cadastro-tipo-usuario.component.html',
+  styleUrls: ['./cadastro-tipo-usuario.component.css'],
+  imports: [SharedModule, MatCheckboxModule],
+  standalone: true,
 })
 export class TpUsuarioCadastroComponent implements OnInit {
   formTpUsuario!: FormGroup;
@@ -40,7 +38,7 @@ export class TpUsuarioCadastroComponent implements OnInit {
     private service: TpUsuarioService,
     @Inject(MAT_DIALOG_DATA) public data: TpUsuario,
     private refDialog: DialogRef,
-    private menuService: MenuService
+    private menuService: MenuService,
   ) {
     this.tpUsuarioEditar = data;
     this.menuFiltro = {
@@ -68,32 +66,32 @@ export class TpUsuarioCadastroComponent implements OnInit {
           id: new FormControl(this.tpUsuarioEditar.id),
           tpUsuario: new FormControl(
             this.tpUsuarioEditar.tpUsuario,
-            Validators.required
+            Validators.required,
           ),
           fAtivo: new FormControl(
             this.tpUsuarioEditar.fAtivo,
-            Validators.required
+            Validators.required,
           ),
           flPodeCriar: new FormControl(
-            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeCriar
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeCriar,
           ),
           flPodeExcluir: new FormControl(
-            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExcluir
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExcluir,
           ),
           flPodeEditar: new FormControl(
-            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeEditar
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeEditar,
           ),
           flPodeInativar: new FormControl(
-            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeInativar
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeInativar,
           ),
           flPodeAprovar: new FormControl(
-            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeAprovar
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeAprovar,
           ),
           flPodeExportar: new FormControl(
-            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExportar
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeExportar,
           ),
           flPodeGerenciarUsuarios: new FormControl(
-            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeGerenciarUsuarios
+            this.tpUsuarioEditar.tpUsuarioConfiguracao.flPodeGerenciarUsuarios,
           ),
         });
         this.listaMenuAdicionado = this.tpUsuarioEditar.menu;
@@ -137,7 +135,7 @@ export class TpUsuarioCadastroComponent implements OnInit {
   removerMenu(menu: Menu) {
     if (this.listaMenuAdicionado.find((m) => m == menu)) {
       this.listaMenuAdicionado = this.listaMenuAdicionado.filter(
-        (m) => m !== menu
+        (m) => m !== menu,
       );
     }
   }

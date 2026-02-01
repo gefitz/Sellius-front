@@ -22,10 +22,11 @@ import { ClientesCadastroComponent } from '../clientes-cadastro/clientes-cadastr
 import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 
 @Component({
-    selector: 'app-clientes-list',
-    imports: [MatPaginatorModule, MatTableModule, SharedModule],
-    templateUrl: './clientes-list.component.html',
-    styleUrl: './clientes-list.component.css'
+  selector: 'app-clientes-list',
+  imports: [MatPaginatorModule, MatTableModule, SharedModule],
+  templateUrl: './clientes-list.component.html',
+  styleUrl: './clientes-list.component.css',
+  standalone: true,
 })
 export class ClientesListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
@@ -58,7 +59,7 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
     private router: Router,
     private dialog: MatDialog,
     private clienteService: ClienteService,
-    public _pipe: DatePipe
+    public _pipe: DatePipe,
   ) {}
 
   ngOnInit() {
@@ -113,7 +114,7 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
         this.paginacaoCliente = ret;
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<ClienteTabela>(
-          this.paginacaoCliente.dados
+          this.paginacaoCliente.dados,
         );
         this.paginacaoCliente.dados = [];
       },

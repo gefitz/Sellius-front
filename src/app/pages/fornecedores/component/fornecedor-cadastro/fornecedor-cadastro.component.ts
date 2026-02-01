@@ -1,4 +1,3 @@
-
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
@@ -25,13 +24,11 @@ import { FornecedorService } from '../../services/fornecedor.service';
 import { FormGroupModule } from '../../../../shared/components/Module/form.module';
 
 @Component({
-    selector: 'app-fornecedor-cadastro',
-    imports: [FormGroupModule],
-    templateUrl: './fornecedor-cadastro.component.html',
-    styleUrls: [
-        '/src/app/shared/styles/modal-styles.css',
-        './fornecedor-cadastro.component.css',
-    ]
+  selector: 'app-fornecedor-cadastro',
+  imports: [FormGroupModule],
+  templateUrl: './fornecedor-cadastro.component.html',
+  styleUrls: ['./fornecedor-cadastro.component.css'],
+  standalone: true,
 })
 export class FornecedorCadastroComponent implements OnInit {
   fornecedorForm!: FormGroup;
@@ -41,7 +38,7 @@ export class FornecedorCadastroComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public fornecedorEdit: FornecedorModel,
     private service: FornecedorService,
-    private dialogRef: MatDialogRef<FornecedorCadastroComponent>
+    private dialogRef: MatDialogRef<FornecedorCadastroComponent>,
   ) {}
   ngOnInit(): void {
     this.fornecedorForm = new FormGroup({
@@ -104,7 +101,7 @@ export class FornecedorCadastroComponent implements OnInit {
         fAtivo: new FormControl(this.fornecedorEdit.fAtivo),
         cidadeId: new FormControl(
           this.fornecedorEdit.cidadeId,
-          Validators.required
+          Validators.required,
         ),
         cep: new FormControl(this.fornecedorEdit.cep, Validators.required),
         rua: new FormControl(this.fornecedorEdit.rua, Validators.required),

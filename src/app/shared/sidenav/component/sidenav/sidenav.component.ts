@@ -24,8 +24,8 @@ import { AuthGuardService } from '../../../../core/services/AuthGuard/auth-guard
 import { MenuService } from '../../../../pages/menu/services/menu.service';
 import { Menu } from '../../../../pages/menu/model/menu.model';
 @Component({
-    selector: 'app-sidenav',
-    imports: [
+  selector: 'app-sidenav',
+  imports: [
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -36,10 +36,11 @@ import { Menu } from '../../../../pages/menu/model/menu.model';
     MatTooltipModule,
     RouterLink,
     MatCardModule,
-    MatExpansionModule
-],
-    templateUrl: './sidenav.component.html',
-    styleUrl: './sidenav.component.css'
+    MatExpansionModule,
+  ],
+  templateUrl: './sidenav.component.html',
+  styleUrl: './sidenav.component.css',
+  standalone: true,
 })
 export class SidenavComponent implements OnInit {
   expanded = true;
@@ -111,7 +112,7 @@ export class SidenavComponent implements OnInit {
     private routerActived: ActivatedRoute,
     private loginService: LoginService,
     private auth: AuthGuardService,
-    private menuService: MenuService
+    private menuService: MenuService,
   ) {}
   async ngOnInit(): Promise<void> {
     this.vereficaIsMobile();

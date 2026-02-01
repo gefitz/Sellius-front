@@ -3,10 +3,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 
 @Component({
-    selector: 'grupo-filtro',
-    templateUrl: 'grupo-filtro.component.html',
-    styleUrls: ['grupo-filtro.component.css'],
-    imports: [SharedModule]
+  selector: 'grupo-filtro',
+  templateUrl: 'grupo-filtro.component.html',
+  styleUrls: ['grupo-filtro.component.css'],
+  imports: [SharedModule],
+  standalone: true,
 })
 export class GrupoFiltroComponent {
   grupoForm: FormGroup;

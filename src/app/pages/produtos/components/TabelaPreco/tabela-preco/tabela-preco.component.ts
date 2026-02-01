@@ -12,10 +12,11 @@ import {
 } from '../../../Enum/OrigemTabelaPreco.enum';
 
 @Component({
-    selector: 'app-tabela-preco',
-    imports: [SharedModule],
-    templateUrl: './tabela-preco.component.html',
-    styleUrl: './tabela-preco.component.css'
+  selector: 'app-tabela-preco',
+  imports: [SharedModule],
+  templateUrl: './tabela-preco.component.html',
+  styleUrl: './tabela-preco.component.css',
+  standalone: true,
 })
 export class TabelaPrecoComponent
   extends TabelaPaginada<TabelaPrecoModel, FiltroTabelaPreco>

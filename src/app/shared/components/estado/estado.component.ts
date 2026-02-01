@@ -15,7 +15,7 @@ import { EstadoModel } from '../../../core/model/estado.model';
 @Component({
   selector: 'app-estado-select',
   templateUrl: './estado.component.html',
-  styleUrl: './estado.component.scss',
+  styleUrl: './estado.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

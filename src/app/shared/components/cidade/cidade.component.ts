@@ -25,7 +25,7 @@ import { Viacep } from '../../../core/services/Utils/consome-api.serivce';
 @Component({
   selector: 'app-cidade-select',
   templateUrl: './cidade.component.html',
-  styleUrl: './cidade.component.scss',
+  styleUrls: ['./cidade.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -37,10 +37,7 @@ import { Viacep } from '../../../core/services/Utils/consome-api.serivce';
       useExisting: forwardRef(() => CidadeComponent),
     },
   ],
-  imports: [
-    MatFormFieldModule,
-    MatSelectModule
-],
+  imports: [MatFormFieldModule, MatSelectModule],
   standalone: true,
 })
 export class CidadeComponent

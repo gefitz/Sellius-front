@@ -23,26 +23,24 @@ import { ProdutoTabela } from '../../../models/produto-tabela.model';
 import { ProdutoModalService } from '../../../services/produto-modal.service';
 import { DialogFiltroProdutoComponent } from '../../dialogs/dialog-filtro-produto/dialog-filtro-produto.component';
 @Component({
-    selector: 'app-protudos-list',
-    imports: [
+  selector: 'app-protudos-list',
+  imports: [
     MatPaginatorModule,
     MatTableModule,
     MatButtonModule,
     MatIcon,
     MatButtonModule,
-    MatIconModule
-],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ],
-    templateUrl: './protudos-list.component.html',
-    styleUrls: [
-        './protudos-list.component.css',
-        '/src/app/shared/styles/modal-styles.css',
-    ]
+    MatIconModule,
+  ],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  templateUrl: './protudos-list.component.html',
+  styleUrls: ['./protudos-list.component.css'],
+  standalone: true,
 })
 export class ProtudosListComponent implements OnInit {
   displayedColumns: string[] = [
@@ -68,7 +66,7 @@ export class ProtudosListComponent implements OnInit {
     private dialog: MatDialog,
     private service: ProdutoService,
     private pipe: DatePipe,
-    private modalProduto: ProdutoModalService
+    private modalProduto: ProdutoModalService,
   ) {
     this._pipe = pipe;
   }
@@ -130,7 +128,7 @@ export class ProtudosListComponent implements OnInit {
         this.paginacaoProduto = ret;
         this.paginacaoToPaginator();
         this.dataSource = new MatTableDataSource<ProdutoTabela>(
-          this.paginacaoProduto.dados
+          this.paginacaoProduto.dados,
         );
       },
     });

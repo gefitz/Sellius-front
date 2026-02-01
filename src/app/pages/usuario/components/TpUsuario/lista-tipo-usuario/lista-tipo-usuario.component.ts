@@ -10,10 +10,11 @@ import { tpUsuairoFiltro } from '../../../models/tp-usuario-filtro.model';
 import { TpUsuarioService } from '../../../services/tp-usuario.service';
 
 @Component({
-    selector: 'lista-tipo-usuario',
-    templateUrl: './lista-tipo-usuario.component.html',
-    styleUrls: ['./lista-tipo-usuario.component.css'],
-    imports: [SharedModule]
+  selector: 'lista-tipo-usuario',
+  templateUrl: './lista-tipo-usuario.component.html',
+  styleUrls: ['./lista-tipo-usuario.component.css'],
+  imports: [SharedModule],
+  standalone: true,
 })
 export class ListaTipoUsuario implements OnInit {
   displayedColumns: string[] = [
@@ -34,7 +35,10 @@ export class ListaTipoUsuario implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable) table!: MatTable<TpUsuario>;
 
-  constructor(private service: TpUsuarioService, public _pipe: DatePipe) {}
+  constructor(
+    private service: TpUsuarioService,
+    public _pipe: DatePipe,
+  ) {}
   ngOnInit(): void {
     this.carregarFiltro();
   }

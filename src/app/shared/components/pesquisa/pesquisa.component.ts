@@ -26,16 +26,17 @@ import { CustomPaginator } from '../../../core/services/Utils/paginator-edit';
 import { SharedModule } from '../Module/shared.module';
 
 @Component({
-    selector: 'pesquisa-component',
-    templateUrl: './pesquisa.component.html',
-    styleUrls: ['./pesquisa.component.css'],
-    imports: [SharedModule, MatDialogModule, MatTableModule, MatPaginatorModule],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ]
+  selector: 'pesquisa-component',
+  templateUrl: './pesquisa.component.html',
+  styleUrls: ['./pesquisa.component.css'],
+  imports: [SharedModule, MatDialogModule, MatTableModule, MatPaginatorModule],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  standalone: true,
 })
 export class PesquisaComponent<tabela, filtro> implements OnInit {
   paginacao: Paginacao<tabela, filtro> = new Paginacao<tabela, filtro>();
@@ -45,7 +46,7 @@ export class PesquisaComponent<tabela, filtro> implements OnInit {
   constructor(
     private api: ApiService,
     private dialogRef: MatDialogRef<PesquisaComponent<tabela, filtro>>,
-    @Inject(MAT_DIALOG_DATA) public pesquisa: PesquisaModel
+    @Inject(MAT_DIALOG_DATA) public pesquisa: PesquisaModel,
   ) {}
   ngOnInit(): void {
     this.carregarTabela();

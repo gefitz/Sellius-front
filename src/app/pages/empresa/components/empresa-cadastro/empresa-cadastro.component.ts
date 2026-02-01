@@ -27,8 +27,8 @@ import { TipoLicenca } from '../../../../core/enums/tipo-licenca.enum';
 import { RouterLink } from '@angular/router';
 import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 @Component({
-    selector: 'app-empresa-cadastro',
-    imports: [
+  selector: 'app-empresa-cadastro',
+  imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -37,10 +37,11 @@ import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
     MatInputModule,
     MatTabsModule,
     UsuarioCadastroComponent,
-    RouterLink
-],
-    templateUrl: './empresa-cadastro.component.html',
-    styleUrl: './empresa-cadastro.component.css'
+    RouterLink,
+  ],
+  templateUrl: './empresa-cadastro.component.html',
+  styleUrl: './empresa-cadastro.component.css',
+  standalone: true,
 })
 export class EmpresaCadastroComponent implements OnInit {
   formEmpresa!: FormGroup;
@@ -60,7 +61,10 @@ export class EmpresaCadastroComponent implements OnInit {
       key: TipoLicenca[key as keyof typeof TipoLicenca],
       value: key,
     }));
-  constructor(private service: EmpresaService, private snack: MatSnackBar) {}
+  constructor(
+    private service: EmpresaService,
+    private snack: MatSnackBar,
+  ) {}
   ngOnInit(): void {
     this.montaForm();
     this.carregaCombo();
@@ -108,7 +112,7 @@ export class EmpresaCadastroComponent implements OnInit {
       this.snack.open(
         'Para seguir com o restante do cadastro deve completar o formulario de usuario',
         'Ok',
-        { duration: 5000 }
+        { duration: 5000 },
       );
       this.tabGroup.selectedIndex = this.selectTabIndex;
       this.ignoreTabChange = true;

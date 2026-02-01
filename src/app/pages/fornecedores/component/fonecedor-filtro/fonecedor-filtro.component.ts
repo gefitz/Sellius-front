@@ -6,13 +6,11 @@ import { EstadoModel } from '../../../../core/model/estado.model';
 import { SharedModule } from '../../../../shared/components/Module/shared.module';
 
 @Component({
-    selector: 'app-fonecedor-filtro',
-    imports: [SharedModule],
-    templateUrl: './fonecedor-filtro.component.html',
-    styleUrls: [
-        '/src/app/shared/styles/modal-styles.css',
-        './fonecedor-filtro.component.css',
-    ]
+  selector: 'app-fonecedor-filtro',
+  imports: [SharedModule],
+  templateUrl: './fonecedor-filtro.component.html',
+  styleUrls: ['./fonecedor-filtro.component.css'],
+  standalone: true,
 })
 export class FonecedorFiltroComponent implements OnInit {
   filtroForm!: FormGroup;

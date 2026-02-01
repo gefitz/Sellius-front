@@ -22,13 +22,11 @@ import { FormGroupModule } from '../../../../../shared/components/Module/form.mo
 import { EstadoComponent } from '../../../../../shared/components/estado/estado.component';
 
 @Component({
-    selector: 'app-usuario-cadastro',
-    imports: [SharedModule, FormGroupModule, EstadoComponent],
-    templateUrl: './usuario-cadastro.component.html',
-    styleUrls: [
-        './usuario-cadastro.component.css',
-        '/src/app/shared/styles/modal-styles.css',
-    ]
+  selector: 'app-usuario-cadastro',
+  imports: [SharedModule, FormGroupModule, EstadoComponent],
+  templateUrl: './usuario-cadastro.component.html',
+  styleUrls: ['./usuario-cadastro.component.css'],
+  standalone: true,
 })
 export class UsuarioCadastroComponent implements OnInit {
   formUsuario!: FormGroup;

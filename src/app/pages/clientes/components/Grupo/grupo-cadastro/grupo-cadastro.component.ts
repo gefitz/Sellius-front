@@ -19,18 +19,19 @@ import { GrupoModel } from '../../../models/grupo.model';
 import { GrupoService } from '../../../services/grupo.service';
 
 @Component({
-    selector: 'app-grupo-cadastro',
-    imports: [
-        MatDialogModule,
-        MatInput,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatSelectModule,
-    ],
-    templateUrl: './grupo-cadastro.component.html',
-    styleUrl: './grupo-cadastro.component.css'
+  selector: 'app-grupo-cadastro',
+  imports: [
+    MatDialogModule,
+    MatInput,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
+  ],
+  templateUrl: './grupo-cadastro.component.html',
+  styleUrl: './grupo-cadastro.component.css',
+  standalone: true,
 })
 export class GrupoCadastroComponent implements OnInit {
   grupoForm!: FormGroup;
@@ -39,7 +40,7 @@ export class GrupoCadastroComponent implements OnInit {
   constructor(
     private service: GrupoService,
     private dialogRef: MatDialogRef<GrupoCadastroComponent>,
-    @Inject(MAT_DIALOG_DATA) public grupoEdit: GrupoModel
+    @Inject(MAT_DIALOG_DATA) public grupoEdit: GrupoModel,
   ) {}
 
   ngOnInit(): void {

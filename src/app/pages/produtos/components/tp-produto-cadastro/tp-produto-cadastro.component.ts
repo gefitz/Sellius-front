@@ -19,21 +19,19 @@ import { TpProdutoService } from '../../services/tp-produto.service';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-    selector: 'app-tp-produto-cadastro',
-    imports: [
-        MatDialogModule,
-        MatInput,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatSelectModule,
-    ],
-    templateUrl: './tp-produto-cadastro.component.html',
-    styleUrls: [
-        './tp-produto-cadastro.component.css',
-        '/src/app/shared/styles/modal-styles.css',
-    ]
+  selector: 'app-tp-produto-cadastro',
+  imports: [
+    MatDialogModule,
+    MatInput,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
+  ],
+  templateUrl: './tp-produto-cadastro.component.html',
+  styleUrls: ['./tp-produto-cadastro.component.css'],
+  standalone: true,
 })
 export class TpProdutoCadastroComponent implements OnInit {
   tpProdutoForm!: FormGroup;
@@ -43,7 +41,7 @@ export class TpProdutoCadastroComponent implements OnInit {
   constructor(
     private service: TpProdutoService,
     private dialogRef: MatDialogRef<TpProdutoCadastroComponent>,
-    @Inject(MAT_DIALOG_DATA) public tpProdutoEdit: TpProdutoModel
+    @Inject(MAT_DIALOG_DATA) public tpProdutoEdit: TpProdutoModel,
   ) {}
   ngOnInit(): void {
     this.preencherCampos();
@@ -76,7 +74,7 @@ export class TpProdutoCadastroComponent implements OnInit {
         tipo: new FormControl(this.tpProdutoEdit.tipo, Validators.required),
         descricao: new FormControl(
           this.tpProdutoEdit.descricao,
-          Validators.required
+          Validators.required,
         ),
         fAtivo: new FormControl(this.tpProdutoEdit.fAtivo),
       });

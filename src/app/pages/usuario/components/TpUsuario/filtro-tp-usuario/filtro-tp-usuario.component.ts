@@ -6,20 +6,18 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-    selector: 'app-filtro-tp-usuario',
-    imports: [SharedModule],
-    templateUrl: './filtro-tp-usuario.component.html',
-    styleUrls: [
-        './filtro-tp-usuario.component.css',
-        '/src/app/shared/styles/modal-styles.css',
-    ]
+  selector: 'app-filtro-tp-usuario',
+  imports: [SharedModule],
+  templateUrl: './filtro-tp-usuario.component.html',
+  styleUrls: ['./filtro-tp-usuario.component.css'],
+  standalone: true,
 })
 export class FiltroTpUsuarioComponent implements OnInit {
   formTpUsuario!: FormGroup;
   tpUsuarioEditar!: TpUsuario;
   constructor(
     private refDialog: DialogRef,
-    @Inject(MAT_DIALOG_DATA) public data: TpUsuario
+    @Inject(MAT_DIALOG_DATA) public data: TpUsuario,
   ) {}
 
   ngOnInit(): void {

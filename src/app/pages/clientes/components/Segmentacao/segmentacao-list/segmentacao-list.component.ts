@@ -22,22 +22,23 @@ import { CustomPaginator } from '../../../../../core/services/Utils/paginator-ed
 import { DialogFiltroSegmentacaoComponent } from '../dialog-filtro-segmentacao/dialog-filtro-segmentacao.component';
 
 @Component({
-    selector: 'app-segmentacao-list',
-    imports: [
+  selector: 'app-segmentacao-list',
+  imports: [
     MatPaginatorModule,
     MatTableModule,
     MatButtonModule,
     MatIcon,
-    MatIconModule
-],
-    providers: [
-        {
-            provide: MatPaginatorIntl,
-            useFactory: CustomPaginator,
-        },
-    ],
-    templateUrl: './segmentacao-list.component.html',
-    styleUrl: './segmentacao-list.component.css'
+    MatIconModule,
+  ],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useFactory: CustomPaginator,
+    },
+  ],
+  templateUrl: './segmentacao-list.component.html',
+  styleUrl: './segmentacao-list.component.css',
+  standalone: true,
 })
 export class SegmentacaoListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
@@ -64,7 +65,7 @@ export class SegmentacaoListComponent implements OnInit, AfterViewInit {
     private router: Router,
     private dialog: MatDialog,
     private segmentacaoService: SegmentacaoService,
-    public pipe: DatePipe
+    public pipe: DatePipe,
   ) {}
 
   ngOnInit() {
@@ -124,7 +125,7 @@ export class SegmentacaoListComponent implements OnInit, AfterViewInit {
           this.paginacaoSegmentacao = ret;
           this.paginacaoToPaginator();
           this.dataSource = new MatTableDataSource<SegmentacaoTabela>(
-            this.paginacaoSegmentacao.dados
+            this.paginacaoSegmentacao.dados,
           );
         },
       });

@@ -12,6 +12,7 @@ import {
   OnDestroy,
   ElementRef,
   Renderer2,
+  Inject,
 } from '@angular/core';
 import { ResponseModel } from './model/response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,7 +20,6 @@ import { LoginService } from '../../../pages/login/services/login.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { BehaviorSubject, Subscription } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root',
@@ -33,11 +33,11 @@ export class ApiService {
   private requestCount = 0;
 
   constructor(
-    private http: HttpClient,
+    @Inject(HttpClient) private http: HttpClient,
     private cookie: Cookie,
     private snack: MatSnackBar,
     // private login: LoginService,
-    private route: Router
+    private route: Router,
   ) {}
 
   // Métodos para controlar o loader internamente
@@ -67,7 +67,7 @@ export class ApiService {
         }
       }),
       catchError((error) => this.error(error)),
-      finalize(() => this.hideLoader())
+      finalize(() => this.hideLoader()),
     );
   }
   post<model>(endPoint: string, obj: object): Observable<model> {
@@ -81,7 +81,7 @@ export class ApiService {
         }
       }),
       catchError((error) => this.error(error)),
-      finalize(() => this.hideLoader())
+      finalize(() => this.hideLoader()),
     );
   }
 
@@ -96,7 +96,7 @@ export class ApiService {
         }
       }),
       catchError((error) => this.error(error)),
-      finalize(() => this.hideLoader())
+      finalize(() => this.hideLoader()),
     );
   }
 
@@ -111,7 +111,7 @@ export class ApiService {
         }
       }),
       catchError((error) => this.error(error)),
-      finalize(() => this.hideLoader())
+      finalize(() => this.hideLoader()),
     );
   }
 
@@ -122,7 +122,7 @@ export class ApiService {
     this.snack.open(
       'Acesso negado! Seu usuario nao tem permisao para realizar essa acao',
       'Ok',
-      { duration: 5000 }
+      { duration: 5000 },
     );
   }
   private error(error: HttpErrorResponse) {
@@ -139,17 +139,17 @@ export class ApiService {
 
 // Componente de Loader integrado ao ApiService
 @Component({
-    selector: 'app-api-loader',
-    imports: [],
-    template: `
+  selector: 'app-api-loader',
+  imports: [],
+  template: `
     @if (isLoading) {
       <div class="loader-overlay">
         <div class="spinner"></div>
       </div>
     }
-    `,
-    styles: [
-        `
+  `,
+  styles: [
+    `
       .loader-overlay {
         position: fixed;
         top: 0;
@@ -183,7 +183,8 @@ export class ApiService {
         }
       }
     `,
-    ]
+  ],
+  standalone: true,
 })
 export class ApiLoaderComponent implements OnInit, OnDestroy {
   isLoading = false;

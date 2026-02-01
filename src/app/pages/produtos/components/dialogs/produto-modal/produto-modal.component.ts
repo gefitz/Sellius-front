@@ -25,21 +25,19 @@ import { FornecedorService } from '../../../../fornecedores/services/fornecedor.
 import { enumToArrayOrigemTabelaPreco } from '../../../Enum/OrigemTabelaPreco.enum';
 
 @Component({
-    selector: 'app-produto-modal',
-    imports: [
+  selector: 'app-produto-modal',
+  imports: [
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
-    MatDialogModule
-],
-    templateUrl: './produto-modal.component.html',
-    styleUrls: [
-        '/src/app/shared/styles/modal-styles.css',
-        './produto-modal.component.css',
-    ]
+    MatDialogModule,
+  ],
+  templateUrl: './produto-modal.component.html',
+  styleUrls: ['./produto-modal.component.css'],
+  standalone: true,
 })
 export class ProdutoModalComponent implements OnInit {
   produtoForm!: FormGroup;
@@ -54,7 +52,7 @@ export class ProdutoModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { produto?: ProdutoModel },
     @Inject(ProdutoService) private service: ProdutoService,
     @Inject(TpProdutoService) private tpService: TpProdutoService,
-    @Inject(FornecedorService) private fornecedorService: FornecedorService
+    @Inject(FornecedorService) private fornecedorService: FornecedorService,
   ) {
     if (this.data?.produto) {
       this.titulo = 'Editar Produto';
@@ -71,7 +69,7 @@ export class ProdutoModalComponent implements OnInit {
       this.isLoading = true;
 
       this.produtoForm.value.dthCriacao = new Date(
-        this.produtoForm.value.dthCriacao
+        this.produtoForm.value.dthCriacao,
       ).toISOString();
 
       const produto: ProdutoModel = this.produtoForm.value;
@@ -117,13 +115,13 @@ export class ProdutoModalComponent implements OnInit {
         marca: new FormControl(produtoEditar.fornecedorId),
         fAtivo: new FormControl(produtoEditar.fAtivo, Validators.required),
         dthCriacao: new FormControl(
-          new Date(produtoEditar.dthCriacao).toISOString().split('T')[0]
+          new Date(produtoEditar.dthCriacao).toISOString().split('T')[0],
         ),
         descricao: new FormControl(produtoEditar.descricao),
         valor: new FormControl(produtoEditar.valor, Validators.required),
         origemTabelaPreco: new FormControl(
           produtoEditar.origemTabelaPreco,
-          Validators.required
+          Validators.required,
         ),
       });
     } else {
