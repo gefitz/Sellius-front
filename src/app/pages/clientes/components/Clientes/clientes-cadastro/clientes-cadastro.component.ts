@@ -50,7 +50,8 @@ export class ClientesCadastroComponent implements OnInit {
     private dialogRef: MatDialogRef<ClientesCadastroComponent>,
     @Inject(MAT_DIALOG_DATA) public clienteEditar: ClienteModel,
     private segmentacaoService: SegmentacaoService,
-    private grupoService: GrupoService
+    private grupoService: GrupoService,
+    private toastr: ToastrService,
   ) {
     if (clienteEditar) {
       this.editando = true;
@@ -98,9 +99,7 @@ export class ClientesCadastroComponent implements OnInit {
       const cliente: ClienteModel = this.clienteForm.value;
       if (!this.editando || cliente.id === 0) {
         this.clienteService.cadastrarCliente(cliente).subscribe({
-          next: () => {
-            this.dialogRef.close(true);
-          },
+          next: () => {},
         });
       } else {
         this.clienteService.editarCliente(cliente).subscribe({
@@ -120,11 +119,11 @@ export class ClientesCadastroComponent implements OnInit {
         nome: new FormControl(this.clienteEditar.nome, Validators.required),
         documento: new FormControl(
           this.clienteEditar.documento,
-          Validators.required
+          Validators.required,
         ),
         telefone: new FormControl(
           this.clienteEditar.telefone,
-          Validators.required
+          Validators.required,
         ),
         email: new FormControl(this.clienteEditar.email, [
           Validators.required,
@@ -133,7 +132,7 @@ export class ClientesCadastroComponent implements OnInit {
         estado: new FormControl(this.clienteEditar.cidade.estado.id),
         cidadeId: new FormControl(
           this.clienteEditar.cidadeId,
-          Validators.required
+          Validators.required,
         ),
         rua: new FormControl(this.clienteEditar.rua, Validators.required),
         cep: new FormControl(this.clienteEditar.cep, Validators.required),
@@ -160,7 +159,7 @@ export class ClientesCadastroComponent implements OnInit {
     });
   }
   preencherGrupo() {
-    this.grupoService.carregarSegmentacao().subscribe({
+    this.grupoService.carregarGrupo().subscribe({
       next: (ret) => {
         this.grupo = ret;
       },

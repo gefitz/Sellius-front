@@ -16,12 +16,15 @@ export class ClienteService {
   listarClientes(paginacao: Paginacao<ClienteTabela, ClienteFiltro>) {
     return this.api.post<Paginacao<ClienteTabela, ClienteFiltro>>(
       this.apiUrl + '/obterClientes',
-      paginacao
+      paginacao,
     );
   }
 
   cadastrarCliente(cliente: ClienteModel) {
-    return this.api.post<ClienteModel>(this.apiUrl, cliente);
+    return this.api.post<ClienteModel>(
+      this.apiUrl + '/cadastrarCliente',
+      cliente,
+    );
   }
 
   editarCliente(cliente: ClienteModel) {

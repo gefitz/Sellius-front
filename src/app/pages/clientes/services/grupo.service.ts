@@ -16,7 +16,7 @@ export class GrupoService {
   listarGrupos(paginacao: Paginacao<GrupoTabela, GrupoFiltro>) {
     return this.api.post<Paginacao<GrupoTabela, GrupoFiltro>>(
       this.apiUrl + '/listaGrupo',
-      paginacao
+      paginacao,
     );
   }
 
@@ -37,5 +37,8 @@ export class GrupoService {
   }
   carregarSegmentacao() {
     return this.api.get<GrupoModel[]>(this.apiUrl + '/carregarComboGrupo');
+  }
+  carregarGrupo() {
+    return this.api.get<GrupoModel[]>(this.api + '/carregarComboGrupo');
   }
 }
