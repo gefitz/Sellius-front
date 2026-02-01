@@ -21,14 +21,13 @@ import { TpUsuarioService } from '../../../services/tp-usuario.service';
 import { TpUsuario } from '../../../models/tipo-usuario.model';
 
 @Component({
-  selector: 'filtro-usuario',
-  standalone: true,
-  templateUrl: './filtro-usuario.component.html',
-  styleUrls: [
-    './filtro-usuario.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
-  imports: [SharedModule, FormGroupModule, EstadoComponent],
+    selector: 'filtro-usuario',
+    templateUrl: './filtro-usuario.component.html',
+    styleUrls: [
+        './filtro-usuario.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ],
+    imports: [SharedModule, FormGroupModule, EstadoComponent]
 })
 export class FiltroUsuarioComponent {
   filtro: FormGroup;

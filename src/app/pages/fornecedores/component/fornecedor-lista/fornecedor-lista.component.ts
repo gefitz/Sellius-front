@@ -19,23 +19,22 @@ import { FonecedorFiltroComponent } from '../fonecedor-filtro/fonecedor-filtro.c
 import { FornecedorFiltro } from '../../models/forncedor-filtro.model';
 
 @Component({
-  selector: 'app-fornecedor-lista',
-  standalone: true,
-  imports: [
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    CommonModule,
-  ],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
-  templateUrl: './fornecedor-lista.component.html',
-  styleUrl: './fornecedor-lista.component.css',
+    selector: 'app-fornecedor-lista',
+    imports: [
+        MatPaginatorModule,
+        MatTableModule,
+        MatButtonModule,
+        MatIconModule,
+        CommonModule,
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ],
+    templateUrl: './fornecedor-lista.component.html',
+    styleUrl: './fornecedor-lista.component.css'
 })
 export class FornecedorListaComponent implements OnInit {
   displayedColumns: string[] = [

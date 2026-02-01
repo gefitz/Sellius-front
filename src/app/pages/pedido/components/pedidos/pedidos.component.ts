@@ -19,11 +19,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { PedidoNovoComponent } from '../pedido-novo/pedido-novo.component';
 
 @Component({
-  selector: 'app-pedidos',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './pedidos.component.html',
-  styleUrl: './pedidos.component.css',
+    selector: 'app-pedidos',
+    imports: [SharedModule],
+    templateUrl: './pedidos.component.html',
+    styleUrl: './pedidos.component.css'
 })
 export class PedidosComponent implements OnInit {
   displayedColumns: string[] = [

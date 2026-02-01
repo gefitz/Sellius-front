@@ -23,27 +23,26 @@ import { FormGroupModule } from '../Module/form.module';
 import { Viacep } from '../../../core/services/Utils/consome-api.serivce';
 
 @Component({
-  selector: 'app-cidade-select',
-  standalone: true,
-  templateUrl: './cidade.component.html',
-  styleUrl: './cidade.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CidadeComponent),
-      multi: true,
-    },
-    {
-      provide: MatFormFieldControl,
-      useExisting: forwardRef(() => CidadeComponent),
-    },
-  ],
-  imports: [
-    MatFormFieldModule,
-    MatSelectModule,
-    CommonModule,
-    // outros módulos que precisar (ex: MatOptionModule já vem com MatSelectModule)
-  ],
+    selector: 'app-cidade-select',
+    templateUrl: './cidade.component.html',
+    styleUrl: './cidade.component.scss',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CidadeComponent),
+            multi: true,
+        },
+        {
+            provide: MatFormFieldControl,
+            useExisting: forwardRef(() => CidadeComponent),
+        },
+    ],
+    imports: [
+        MatFormFieldModule,
+        MatSelectModule,
+        CommonModule,
+        // outros módulos que precisar (ex: MatOptionModule já vem com MatSelectModule)
+    ]
 })
 export class CidadeComponent
   implements

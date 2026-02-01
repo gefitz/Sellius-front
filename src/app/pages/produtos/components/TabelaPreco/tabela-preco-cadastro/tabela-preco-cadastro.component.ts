@@ -24,20 +24,19 @@ import {
 } from '../../../../../core/Abstract/BrasilDateFormats';
 
 @Component({
-  selector: 'app-tabela-preco-cadastro',
-  standalone: true,
-  imports: [SharedModule, MatDatepickerModule],
-  templateUrl: './tabela-preco-cadastro.component.html',
-  styleUrls: [
-    './tabela-preco-cadastro.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    provideNativeDateAdapter(),
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, // ← importante!
-    { provide: MY_DATE_FORMATS, useValue: BRAZIL_DATE_FORMATS },
-  ],
+    selector: 'app-tabela-preco-cadastro',
+    imports: [SharedModule, MatDatepickerModule],
+    templateUrl: './tabela-preco-cadastro.component.html',
+    styleUrls: [
+        './tabela-preco-cadastro.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        provideNativeDateAdapter(),
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, // ← importante!
+        { provide: MY_DATE_FORMATS, useValue: BRAZIL_DATE_FORMATS },
+    ]
 })
 export class TabelaPrecoCadastroComponent {
   constructor(

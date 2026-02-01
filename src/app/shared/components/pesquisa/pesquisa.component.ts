@@ -26,17 +26,16 @@ import { CustomPaginator } from '../../../core/services/Utils/paginator-edit';
 import { SharedModule } from '../Module/shared.module';
 
 @Component({
-  selector: 'pesquisa-component',
-  standalone: true,
-  templateUrl: './pesquisa.component.html',
-  styleUrls: ['./pesquisa.component.css'],
-  imports: [SharedModule, MatDialogModule, MatTableModule, MatPaginatorModule],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
+    selector: 'pesquisa-component',
+    templateUrl: './pesquisa.component.html',
+    styleUrls: ['./pesquisa.component.css'],
+    imports: [SharedModule, MatDialogModule, MatTableModule, MatPaginatorModule],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ]
 })
 export class PesquisaComponent<tabela, filtro> implements OnInit {
   paginacao: Paginacao<tabela, filtro> = new Paginacao<tabela, filtro>();

@@ -13,22 +13,21 @@ import { ApiService } from '../../../core/services/Api/api.service';
 import { EstadoModel } from '../../../core/model/estado.model';
 
 @Component({
-  selector: 'app-estado-select', // Sugestão: mude para um nome mais claro
-  standalone: true,
-  templateUrl: './estado.component.html',
-  styleUrl: './estado.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: EstadoComponent,
-      multi: true,
-    },
-    {
-      provide: MatFormFieldControl,
-      useExisting: EstadoComponent,
-    },
-  ],
-  imports: [CommonModule, MatFormFieldModule, MatSelectModule],
+    selector: 'app-estado-select',
+    templateUrl: './estado.component.html',
+    styleUrl: './estado.component.scss',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: EstadoComponent,
+            multi: true,
+        },
+        {
+            provide: MatFormFieldControl,
+            useExisting: EstadoComponent,
+        },
+    ],
+    imports: [CommonModule, MatFormFieldModule, MatSelectModule]
 })
 export class EstadoComponent
   implements

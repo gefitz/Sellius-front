@@ -16,17 +16,16 @@ import { MenuFiltro } from '../../model/menu-filtro.model';
 import { CustomPaginator } from '../../../../core/services/Utils/paginator-edit';
 
 @Component({
-  selector: 'app-menu-lista',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './menu-lista.component.html',
-  styleUrl: './menu-lista.component.css',
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
+    selector: 'app-menu-lista',
+    imports: [SharedModule],
+    templateUrl: './menu-lista.component.html',
+    styleUrl: './menu-lista.component.css',
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ]
 })
 export class MenuListaComponent implements OnInit {
   displayedColumns: string[] = [

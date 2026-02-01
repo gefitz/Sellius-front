@@ -28,22 +28,21 @@ import { MatInputModule } from '@angular/material/input';
 import { FormGroupModule } from '../Module/form.module';
 
 @Component({
-  selector: 'input-cep',
-  templateUrl: './cep.component.html',
-  styleUrls: ['./cep.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CepComponent),
-      multi: true,
-    },
-    {
-      provide: MatFormFieldControl,
-      useExisting: forwardRef(() => CepComponent),
-    },
-  ],
-  imports: [MatFormField, MatLabel, FormGroupModule, MatInputModule],
-  standalone: true,
+    selector: 'input-cep',
+    templateUrl: './cep.component.html',
+    styleUrls: ['./cep.component.css'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CepComponent),
+            multi: true,
+        },
+        {
+            provide: MatFormFieldControl,
+            useExisting: forwardRef(() => CepComponent),
+        },
+    ],
+    imports: [MatFormField, MatLabel, FormGroupModule, MatInputModule]
 })
 export class CepComponent
   implements

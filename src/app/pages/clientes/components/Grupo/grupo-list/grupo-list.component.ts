@@ -22,24 +22,23 @@ import { CustomPaginator } from '../../../../../core/services/Utils/paginator-ed
 import { GrupoFiltroComponent } from '../grupo-filtro/grupo-filtro.component';
 
 @Component({
-  selector: 'app-grupo-list',
-  standalone: true,
-  imports: [
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIcon,
-    MatIconModule,
-    CommonModule,
-  ],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
-  templateUrl: './grupo-list.component.html',
-  styleUrl: './grupo-list.component.css',
+    selector: 'app-grupo-list',
+    imports: [
+        MatPaginatorModule,
+        MatTableModule,
+        MatButtonModule,
+        MatIcon,
+        MatIconModule,
+        CommonModule,
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ],
+    templateUrl: './grupo-list.component.html',
+    styleUrl: './grupo-list.component.css'
 })
 export class GrupoListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [

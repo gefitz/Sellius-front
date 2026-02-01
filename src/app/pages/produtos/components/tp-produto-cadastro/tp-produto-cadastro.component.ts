@@ -19,22 +19,21 @@ import { TpProdutoService } from '../../services/tp-produto.service';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  selector: 'app-tp-produto-cadastro',
-  standalone: true,
-  imports: [
-    MatDialogModule,
-    MatInput,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSelectModule,
-  ],
-  templateUrl: './tp-produto-cadastro.component.html',
-  styleUrls: [
-    './tp-produto-cadastro.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
+    selector: 'app-tp-produto-cadastro',
+    imports: [
+        MatDialogModule,
+        MatInput,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatSelectModule,
+    ],
+    templateUrl: './tp-produto-cadastro.component.html',
+    styleUrls: [
+        './tp-produto-cadastro.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ]
 })
 export class TpProdutoCadastroComponent implements OnInit {
   tpProdutoForm!: FormGroup;

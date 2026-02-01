@@ -25,14 +25,13 @@ import { FornecedorService } from '../../services/fornecedor.service';
 import { FormGroupModule } from '../../../../shared/components/Module/form.module';
 
 @Component({
-  selector: 'app-fornecedor-cadastro',
-  standalone: true,
-  imports: [FormGroupModule, CommonModule],
-  templateUrl: './fornecedor-cadastro.component.html',
-  styleUrls: [
-    '/src/app/shared/styles/modal-styles.css',
-    './fornecedor-cadastro.component.css',
-  ],
+    selector: 'app-fornecedor-cadastro',
+    imports: [FormGroupModule, CommonModule],
+    templateUrl: './fornecedor-cadastro.component.html',
+    styleUrls: [
+        '/src/app/shared/styles/modal-styles.css',
+        './fornecedor-cadastro.component.css',
+    ]
 })
 export class FornecedorCadastroComponent implements OnInit {
   fornecedorForm!: FormGroup;

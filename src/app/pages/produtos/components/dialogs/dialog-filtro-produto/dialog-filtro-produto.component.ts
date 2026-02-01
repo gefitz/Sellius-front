@@ -18,20 +18,19 @@ import { TpProdutoModel } from '../../../models/tpProduto.model';
 import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model';
 import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-dialog-filtro-produto',
-  standalone: true,
-  imports: [
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatIconModule,
-    CommonModule,
-  ],
-  templateUrl: './dialog-filtro-produto.component.html',
-  styleUrl: './dialog-filtro-produto.component.css',
+    selector: 'app-dialog-filtro-produto',
+    imports: [
+        MatDialogModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatIconModule,
+        CommonModule,
+    ],
+    templateUrl: './dialog-filtro-produto.component.html',
+    styleUrl: './dialog-filtro-produto.component.css'
 })
 export class DialogFiltroProdutoComponent implements OnInit {
   produtoForm: FormGroup;

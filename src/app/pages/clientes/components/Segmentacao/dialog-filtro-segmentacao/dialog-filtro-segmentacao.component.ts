@@ -8,19 +8,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  selector: 'app-dialog-filtro',
-  standalone: true,
-  imports: [
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatIconModule,
-  ],
-  templateUrl: './dialog-filtro-segmentacao.component.html',
-  styleUrl: './dialog-filtro-segmentacao.component.css',
+    selector: 'app-dialog-filtro',
+    imports: [
+        MatDialogModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatIconModule,
+    ],
+    templateUrl: './dialog-filtro-segmentacao.component.html',
+    styleUrl: './dialog-filtro-segmentacao.component.css'
 })
 export class DialogFiltroSegmentacaoComponent {
   segmentacaoForm: FormGroup;

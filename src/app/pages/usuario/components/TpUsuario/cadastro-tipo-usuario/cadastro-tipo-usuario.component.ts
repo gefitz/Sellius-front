@@ -16,14 +16,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TpUsuarioService } from '../../../services/tp-usuario.service';
 
 @Component({
-  selector: 'lista-tipo-usuario',
-  templateUrl: './cadastro-tipo-usuario.component.html',
-  styleUrls: [
-    './cadastro-tipo-usuario.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
-  standalone: true,
-  imports: [SharedModule, MatCheckboxModule],
+    selector: 'lista-tipo-usuario',
+    templateUrl: './cadastro-tipo-usuario.component.html',
+    styleUrls: [
+        './cadastro-tipo-usuario.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ],
+    imports: [SharedModule, MatCheckboxModule]
 })
 export class TpUsuarioCadastroComponent implements OnInit {
   formTpUsuario!: FormGroup;

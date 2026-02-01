@@ -24,20 +24,19 @@ import {
 } from '../../../../../core/Abstract/BrasilDateFormats';
 
 @Component({
-  selector: 'app-tabela-preco-filtro',
-  standalone: true,
-  imports: [SharedModule, MatDialogModule, MatDatepickerModule],
-  templateUrl: './tabela-preco-filtro.component.html',
-  styleUrls: [
-    './tabela-preco-filtro.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    provideNativeDateAdapter(),
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, // ← importante!
-    { provide: MY_DATE_FORMATS, useValue: BRAZIL_DATE_FORMATS },
-  ],
+    selector: 'app-tabela-preco-filtro',
+    imports: [SharedModule, MatDialogModule, MatDatepickerModule],
+    templateUrl: './tabela-preco-filtro.component.html',
+    styleUrls: [
+        './tabela-preco-filtro.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        provideNativeDateAdapter(),
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, // ← importante!
+        { provide: MY_DATE_FORMATS, useValue: BRAZIL_DATE_FORMATS },
+    ]
 })
 export class TabelaPrecoFiltroComponent implements OnInit {
   constructor(

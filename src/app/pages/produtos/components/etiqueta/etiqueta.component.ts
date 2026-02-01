@@ -8,11 +8,10 @@ import {
 import { EtiquetaModel } from '../../models/etiqueta.model';
 
 @Component({
-  selector: 'app-etiqueta',
-  standalone: true,
-  imports: [MatDialogModule],
-  templateUrl: './etiqueta.component.html',
-  styleUrl: './etiqueta.component.css',
+    selector: 'app-etiqueta',
+    imports: [MatDialogModule],
+    templateUrl: './etiqueta.component.html',
+    styleUrl: './etiqueta.component.css'
 })
 export class EtiquetaComponent {
   constructor(

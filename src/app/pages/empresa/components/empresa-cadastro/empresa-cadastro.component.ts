@@ -27,22 +27,21 @@ import { TipoLicenca } from '../../../../core/enums/tipo-licenca.enum';
 import { RouterLink } from '@angular/router';
 import { Viacep } from '../../../../core/services/Utils/consome-api.serivce';
 @Component({
-  selector: 'app-empresa-cadastro',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatTabsModule,
-    UsuarioCadastroComponent,
-    CommonModule,
-    RouterLink,
-  ],
-  templateUrl: './empresa-cadastro.component.html',
-  styleUrl: './empresa-cadastro.component.css',
+    selector: 'app-empresa-cadastro',
+    imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        MatTabsModule,
+        UsuarioCadastroComponent,
+        CommonModule,
+        RouterLink,
+    ],
+    templateUrl: './empresa-cadastro.component.html',
+    styleUrl: './empresa-cadastro.component.css'
 })
 export class EmpresaCadastroComponent implements OnInit {
   formEmpresa!: FormGroup;

@@ -10,11 +10,10 @@ import { tpUsuairoFiltro } from '../../../models/tp-usuario-filtro.model';
 import { TpUsuarioService } from '../../../services/tp-usuario.service';
 
 @Component({
-  selector: 'lista-tipo-usuario',
-  templateUrl: './lista-tipo-usuario.component.html',
-  styleUrls: ['./lista-tipo-usuario.component.css'],
-  imports: [SharedModule],
-  standalone: true,
+    selector: 'lista-tipo-usuario',
+    templateUrl: './lista-tipo-usuario.component.html',
+    styleUrls: ['./lista-tipo-usuario.component.css'],
+    imports: [SharedModule]
 })
 export class ListaTipoUsuario implements OnInit {
   displayedColumns: string[] = [

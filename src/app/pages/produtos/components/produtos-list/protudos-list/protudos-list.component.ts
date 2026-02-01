@@ -23,28 +23,27 @@ import { ProdutoTabela } from '../../../models/produto-tabela.model';
 import { ProdutoModalService } from '../../../services/produto-modal.service';
 import { DialogFiltroProdutoComponent } from '../../dialogs/dialog-filtro-produto/dialog-filtro-produto.component';
 @Component({
-  selector: 'app-protudos-list',
-  standalone: true,
-  imports: [
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIcon,
-    MatButtonModule,
-    MatIconModule,
-    CommonModule,
-  ],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
-  templateUrl: './protudos-list.component.html',
-  styleUrls: [
-    './protudos-list.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
+    selector: 'app-protudos-list',
+    imports: [
+        MatPaginatorModule,
+        MatTableModule,
+        MatButtonModule,
+        MatIcon,
+        MatButtonModule,
+        MatIconModule,
+        CommonModule,
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ],
+    templateUrl: './protudos-list.component.html',
+    styleUrls: [
+        './protudos-list.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ]
 })
 export class ProtudosListComponent implements OnInit {
   displayedColumns: string[] = [

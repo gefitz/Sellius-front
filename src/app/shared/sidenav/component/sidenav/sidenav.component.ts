@@ -24,24 +24,23 @@ import { AuthGuardService } from '../../../../core/services/AuthGuard/auth-guard
 import { MenuService } from '../../../../pages/menu/services/menu.service';
 import { Menu } from '../../../../pages/menu/model/menu.model';
 @Component({
-  selector: 'app-sidenav',
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
-    CommonModule,
-    MatListModule,
-    MatMenuModule,
-    RouterOutlet,
-    MatTooltipModule,
-    RouterLink,
-    MatCardModule,
-    MatExpansionModule,
-  ],
-  templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.css',
+    selector: 'app-sidenav',
+    imports: [
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSidenavModule,
+        CommonModule,
+        MatListModule,
+        MatMenuModule,
+        RouterOutlet,
+        MatTooltipModule,
+        RouterLink,
+        MatCardModule,
+        MatExpansionModule,
+    ],
+    templateUrl: './sidenav.component.html',
+    styleUrl: './sidenav.component.css'
 })
 export class SidenavComponent implements OnInit {
   expanded = true;

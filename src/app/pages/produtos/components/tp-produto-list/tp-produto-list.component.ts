@@ -21,23 +21,22 @@ import { TpProdutoService } from '../../services/tp-produto.service';
 import { DialogInativacaoComponent } from '../../../../shared/dialog-inativacao/dialog-inativacao.component';
 
 @Component({
-  selector: 'app-tp-produto-list',
-  standalone: true,
-  imports: [
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    CommonModule,
-  ],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
-  templateUrl: './tp-produto-list.component.html',
-  styleUrl: './tp-produto-list.component.css',
+    selector: 'app-tp-produto-list',
+    imports: [
+        MatPaginatorModule,
+        MatTableModule,
+        MatButtonModule,
+        MatIconModule,
+        CommonModule,
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ],
+    templateUrl: './tp-produto-list.component.html',
+    styleUrl: './tp-produto-list.component.css'
 })
 export class TpProdutoListComponent implements OnInit {
   displayedColumns: string[] = [

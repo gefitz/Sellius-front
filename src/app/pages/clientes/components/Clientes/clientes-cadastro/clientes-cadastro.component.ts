@@ -27,14 +27,13 @@ import { error } from 'node:console';
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-clientes-cadastro',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './clientes-cadastro.component.html',
-  styleUrls: [
-    '/src/app/shared/styles/modal-styles.css',
-    './clientes-cadastro.component.css',
-  ],
+    selector: 'app-clientes-cadastro',
+    imports: [SharedModule],
+    templateUrl: './clientes-cadastro.component.html',
+    styleUrls: [
+        '/src/app/shared/styles/modal-styles.css',
+        './clientes-cadastro.component.css',
+    ]
 })
 export class ClientesCadastroComponent implements OnInit {
   cidade: CidadeModel[] = [];

@@ -22,24 +22,23 @@ import { CustomPaginator } from '../../../../../core/services/Utils/paginator-ed
 import { DialogFiltroSegmentacaoComponent } from '../dialog-filtro-segmentacao/dialog-filtro-segmentacao.component';
 
 @Component({
-  selector: 'app-segmentacao-list',
-  standalone: true,
-  imports: [
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIcon,
-    MatIconModule,
-    CommonModule,
-  ],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
-  templateUrl: './segmentacao-list.component.html',
-  styleUrl: './segmentacao-list.component.css',
+    selector: 'app-segmentacao-list',
+    imports: [
+        MatPaginatorModule,
+        MatTableModule,
+        MatButtonModule,
+        MatIcon,
+        MatIconModule,
+        CommonModule,
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ],
+    templateUrl: './segmentacao-list.component.html',
+    styleUrl: './segmentacao-list.component.css'
 })
 export class SegmentacaoListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [

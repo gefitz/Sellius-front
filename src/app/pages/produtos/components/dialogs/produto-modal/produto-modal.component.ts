@@ -25,23 +25,22 @@ import { FornecedorService } from '../../../../fornecedores/services/fornecedor.
 import { enumToArrayOrigemTabelaPreco } from '../../../Enum/OrigemTabelaPreco.enum';
 
 @Component({
-  selector: 'app-produto-modal',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatDialogModule,
-    CommonModule,
-  ],
-  templateUrl: './produto-modal.component.html',
-  styleUrls: [
-    '/src/app/shared/styles/modal-styles.css',
-    './produto-modal.component.css',
-  ],
+    selector: 'app-produto-modal',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatDialogModule,
+        CommonModule,
+    ],
+    templateUrl: './produto-modal.component.html',
+    styleUrls: [
+        '/src/app/shared/styles/modal-styles.css',
+        './produto-modal.component.css',
+    ]
 })
 export class ProdutoModalComponent implements OnInit {
   produtoForm!: FormGroup;

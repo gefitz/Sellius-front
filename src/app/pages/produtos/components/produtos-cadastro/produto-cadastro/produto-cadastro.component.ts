@@ -21,24 +21,23 @@ import { FornecedorModel } from '../../../../fornecedores/models/forncedor.model
 import { FornecedorService } from '../../../../fornecedores/services/fornecedor.service';
 
 @Component({
-  selector: 'app-produto-cadastro',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterLink,
-    MatSelectModule,
-    FlexLayoutModule,
-    CommonModule,
-  ],
-  templateUrl: './produto-cadastro.component.html',
-  styleUrls: [
-    '/src/app/shared/styles/modal-styles.css',
-    './produto-cadastro.component.css',
-  ],
+    selector: 'app-produto-cadastro',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterLink,
+        MatSelectModule,
+        FlexLayoutModule,
+        CommonModule,
+    ],
+    templateUrl: './produto-cadastro.component.html',
+    styleUrls: [
+        '/src/app/shared/styles/modal-styles.css',
+        './produto-cadastro.component.css',
+    ]
 })
 export class ProdutoCadastroComponent {
   produtoForm!: FormGroup;

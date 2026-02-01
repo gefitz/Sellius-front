@@ -12,17 +12,16 @@ import {
 import { filter } from 'rxjs';
 
 @Component({
-  selector: 'app-authentication',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-  ],
-  templateUrl: './authentication.component.html',
-  styleUrl: './authentication.component.css',
+    selector: 'app-authentication',
+    imports: [
+        RouterOutlet,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+    ],
+    templateUrl: './authentication.component.html',
+    styleUrl: './authentication.component.css'
 })
 export class AuthenticationComponent {
   titulo: string = '';

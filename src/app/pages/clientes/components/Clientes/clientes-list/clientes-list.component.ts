@@ -22,11 +22,10 @@ import { ClientesCadastroComponent } from '../clientes-cadastro/clientes-cadastr
 import { SharedModule } from '../../../../../shared/components/Module/shared.module';
 
 @Component({
-  selector: 'app-clientes-list',
-  standalone: true,
-  imports: [MatPaginatorModule, MatTableModule, SharedModule],
-  templateUrl: './clientes-list.component.html',
-  styleUrl: './clientes-list.component.css',
+    selector: 'app-clientes-list',
+    imports: [MatPaginatorModule, MatTableModule, SharedModule],
+    templateUrl: './clientes-list.component.html',
+    styleUrl: './clientes-list.component.css'
 })
 export class ClientesListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [

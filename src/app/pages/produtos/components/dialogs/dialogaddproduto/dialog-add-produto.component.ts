@@ -26,28 +26,27 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProdutoService } from '../../../services/produto.service';
 
 @Component({
-  selector: 'app-dialog-add-produto',
-  standalone: true,
-  imports: [
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    SharedModule,
-  ],
-  templateUrl: './dialog-add-produto.component.html',
-  styleUrls: [
-    './dialog-add-produto.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
+    selector: 'app-dialog-add-produto',
+    imports: [
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        SharedModule,
+    ],
+    templateUrl: './dialog-add-produto.component.html',
+    styleUrls: [
+        './dialog-add-produto.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ]
 })
 export class DialogaddprodutoComponent {
   pedidoXProdutoForm!: FormGroup;

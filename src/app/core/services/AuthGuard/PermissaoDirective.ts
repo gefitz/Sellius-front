@@ -2,7 +2,8 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthGuardService } from './auth-guard.service';
 
 @Directive({
-  selector: '[permissao]',
+    selector: '[permissao]',
+    standalone: false
 })
 export class PermissaoDirective {
   constructor(

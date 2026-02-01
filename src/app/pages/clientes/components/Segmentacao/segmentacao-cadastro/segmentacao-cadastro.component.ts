@@ -19,19 +19,18 @@ import { SegmentacaoModel } from '../../../models/segmentacao.model';
 import { SegmentacaoService } from '../../../services/segmentacao.service';
 
 @Component({
-  selector: 'app-segmentacao-cadastro',
-  standalone: true,
-  imports: [
-    MatDialogModule,
-    MatInput,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSelectModule,
-  ],
-  templateUrl: './segmentacao-cadastro.component.html',
-  styleUrl: './segmentacao-cadastro.component.css',
+    selector: 'app-segmentacao-cadastro',
+    imports: [
+        MatDialogModule,
+        MatInput,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatSelectModule,
+    ],
+    templateUrl: './segmentacao-cadastro.component.html',
+    styleUrl: './segmentacao-cadastro.component.css'
 })
 export class SegmentacaoCadastroComponent implements OnInit {
   segmentacaoForm!: FormGroup;

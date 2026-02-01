@@ -139,16 +139,15 @@ export class ApiService {
 
 // Componente de Loader integrado ao ApiService
 @Component({
-  selector: 'app-api-loader',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-api-loader',
+    imports: [CommonModule],
+    template: `
     <div *ngIf="isLoading" class="loader-overlay">
       <div class="spinner"></div>
     </div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .loader-overlay {
         position: fixed;
         top: 0;
@@ -182,7 +181,7 @@ export class ApiService {
         }
       }
     `,
-  ],
+    ]
 })
 export class ApiLoaderComponent implements OnInit, OnDestroy {
   isLoading = false;

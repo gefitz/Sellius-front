@@ -33,20 +33,19 @@ import { ProdutoModalService } from '../../../produtos/services/produto-modal.se
 import { SharedModule } from '../../../../shared/components/Module/shared.module';
 
 @Component({
-  selector: 'app-pedido-novo',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './pedido-novo.component.html',
-  styleUrls: [
-    './pedido-novo.component.css',
-    '/src/app/shared/styles/modal-styles.css',
-  ],
-  providers: [
-    {
-      provide: MatPaginatorIntl,
-      useFactory: CustomPaginator,
-    },
-  ],
+    selector: 'app-pedido-novo',
+    imports: [SharedModule],
+    templateUrl: './pedido-novo.component.html',
+    styleUrls: [
+        './pedido-novo.component.css',
+        '/src/app/shared/styles/modal-styles.css',
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: CustomPaginator,
+        },
+    ]
 })
 export class PedidoNovoComponent implements OnInit {
   //Formularios

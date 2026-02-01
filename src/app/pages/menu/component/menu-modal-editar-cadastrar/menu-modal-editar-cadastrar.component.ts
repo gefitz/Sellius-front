@@ -8,14 +8,13 @@ import { url } from 'inspector';
 import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
-  selector: 'app-menu-modal-editar-cadastrar',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './menu-modal-editar-cadastrar.component.html',
-  styleUrls: [
-    '/src/app/shared/styles/modal-styles.css',
-    './menu-modal-editar-cadastrar.component.css',
-  ],
+    selector: 'app-menu-modal-editar-cadastrar',
+    imports: [SharedModule],
+    templateUrl: './menu-modal-editar-cadastrar.component.html',
+    styleUrls: [
+        '/src/app/shared/styles/modal-styles.css',
+        './menu-modal-editar-cadastrar.component.css',
+    ]
 })
 export class MenuModalEditarCadastrarComponent implements OnInit {
   MenuForm!: FormGroup;

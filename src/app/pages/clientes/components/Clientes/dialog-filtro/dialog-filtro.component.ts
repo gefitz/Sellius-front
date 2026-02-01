@@ -8,9 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  selector: 'app-dialog-filtro',
-  standalone: true,
-  imports: [
+    selector: 'app-dialog-filtro',
+    imports: [
         MatDialogModule,
         MatButtonModule,
         MatFormFieldModule,
@@ -18,9 +17,9 @@ import { MatSelectModule } from '@angular/material/select';
         MatInputModule,
         MatSelectModule,
         MatIconModule
-  ],
-  templateUrl: './dialog-filtro.component.html',
-  styleUrl: './dialog-filtro.component.css'
+    ],
+    templateUrl: './dialog-filtro.component.html',
+    styleUrl: './dialog-filtro.component.css'
 })
 export class DialogFiltroComponent {
   clienteForm: FormGroup
