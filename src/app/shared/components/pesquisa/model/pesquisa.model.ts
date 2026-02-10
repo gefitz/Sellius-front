@@ -3,4 +3,6 @@ export interface PesquisaModel {
   colunas: string[];
   tituloPesquisa: string;
   nomeColunas: string[];
+  modelFiltro: any;
+  eventFiltro: any;
 }

@@ -1,9 +1,10 @@
-<mat-dialog-content>
-  <div class="header">
-
-    <h5>{{pesquisa.tituloPesquisa}}</h5>
-    <span class="space"></span>
-    <button mat-icon-button [mat-dialog-close]>
+<mat-dialog-content class="modal-content large">
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <!-- <mat-icon class="header-icon">search</mat-icon> -->
+      <h5 class="modal-title">{{pesquisa.tituloPesquisa}}</h5>
+    </div>
+    <button mat-icon-button [mat-dialog-close] class="close-button">
       <mat-icon>close</mat-icon>
     </button>
   </div>
@@ -12,14 +13,21 @@
     </form>
   </div>
   <div class="mat-elevation-z8 table-responsivo">
+    <div class="demo-button-container">
+
+      <a mat-raised-button class="demo-button" (click)="abrirModalFiltro()">
+        <mat-icon>search</mat-icon>
+        Filtro
+      </a>
+    </div>
     <table mat-table [dataSource]="dataSource">
 
       <!-- Position Column -->
       @for (coluna of pesquisa.colunas; track coluna; let i = $index) {
-        <ng-container [matColumnDef]="coluna">
-          <th mat-header-cell *matHeaderCellDef> {{ pesquisa.nomeColunas[i] }} </th>
-          <td mat-cell *matCellDef="let element"> {{ element[coluna] }} </td>
-        </ng-container>
+      <ng-container [matColumnDef]="coluna">
+        <th mat-header-cell *matHeaderCellDef> {{ pesquisa.nomeColunas[i] }} </th>
+        <td mat-cell *matCellDef="let element"> {{ element[coluna] }} </td>
+      </ng-container>
       }
 
       <!-- Header e linhas -->

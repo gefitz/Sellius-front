@@ -1,12 +1,12 @@
 import {
   Component,
+  EventEmitter,
   Inject,
   Input,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
-import { EventEmitter } from 'stream';
 import { ApiService } from '../../../core/services/Api/api.service';
 import { Paginacao } from '../../../core/model/paginacao.mode';
 import {
@@ -24,6 +24,7 @@ import {
 } from '@angular/material/paginator';
 import { CustomPaginator } from '../../../core/services/Utils/paginator-edit';
 import { SharedModule } from '../Module/shared.module';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'pesquisa-component',
@@ -39,9 +40,13 @@ import { SharedModule } from '../Module/shared.module';
   standalone: true,
 })
 export class PesquisaComponent<tabela, filtro> implements OnInit {
-  paginacao: Paginacao<tabela, filtro> = new Paginacao<tabela, filtro>();
+  protected paginacao: Paginacao<tabela, filtro> = new Paginacao<
+    tabela,
+    filtro
+  >();
   dataSource!: MatTableDataSource<any>;
-
+  modelFiltro!: filtro;
+  eventFiltro!: Observable<filtro>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private api: ApiService,
@@ -49,6 +54,18 @@ export class PesquisaComponent<tabela, filtro> implements OnInit {
     @Inject(MAT_DIALOG_DATA) public pesquisa: PesquisaModel,
   ) {}
   ngOnInit(): void {
+    this.modelFiltro = this.pesquisa.modelFiltro;
+    // const eventFiltro = this.pesquisa.eventFiltro;
+    this.paginacao.filtro = this.modelFiltro;
+
+    this.eventFiltro = this.pesquisa.eventFiltro as Subject<filtro>;
+
+    if (this.eventFiltro) {
+      this.eventFiltro.subscribe((filtro) => {
+        this.modelFiltro = filtro;
+        this.carregarTabela();
+      });
+    }
     this.carregarTabela();
   }
   ngAfterViewInit() {
@@ -78,5 +95,8 @@ export class PesquisaComponent<tabela, filtro> implements OnInit {
   }
   closeDialog(row: any) {
     this.dialogRef.close(row);
+  }
+  abrirModalFiltro() {
+    (this.eventFiltro as Subject<filtro>).next(this.modelFiltro);
   }
 }

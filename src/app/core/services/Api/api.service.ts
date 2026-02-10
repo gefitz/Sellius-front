@@ -33,10 +33,9 @@ export class ApiService {
   private requestCount = 0;
 
   constructor(
-    @Inject(HttpClient) private http: HttpClient,
+    private http: HttpClient,
     private cookie: Cookie,
     private snack: MatSnackBar,
-    // private login: LoginService,
     private route: Router,
   ) {}
 
@@ -62,7 +61,7 @@ export class ApiService {
         if (response.success) {
           return response.data;
         } else {
-          this.snack.open(response.errorMessage, `Ok`, { duration: 5000 });
+          this.snack.open(response.errorMessage, 'Ok', { duration: 5000 });
           throw new Error('Erro: ' + response.errorMessage);
         }
       }),
@@ -77,6 +76,7 @@ export class ApiService {
         if (response.success) {
           return response.data;
         } else {
+          this.snack.open(response.errorMessage, 'Ok', { duration: 5000 });
           throw new Error(response.errorMessage);
         }
       }),
@@ -92,6 +92,7 @@ export class ApiService {
         if (response.success) {
           return response.data;
         } else {
+          this.snack.open(response.errorMessage, 'Ok', { duration: 5000 });
           throw new Error('Erro ao excluir');
         }
       }),
@@ -107,6 +108,7 @@ export class ApiService {
         if (response.success) {
           return response.data;
         } else {
+          this.snack.open(response.errorMessage, 'Ok', { duration: 5000 });
           throw new Error('Erro ao excluir');
         }
       }),
@@ -128,11 +130,9 @@ export class ApiService {
   private error(error: HttpErrorResponse) {
     if (error.status == 401) {
       this.httpResponse401(error);
-    }
-    if (error.status == 403) {
+    } else if (error.status == 403) {
       this.httpResponse403(error);
     }
-    this.snack.open(error.error.errorMessage, 'Ok', { duration: 5000 });
     return throwError(() => error.error);
   }
 }

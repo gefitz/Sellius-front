@@ -76,7 +76,10 @@ export class ClientesListComponent implements OnInit, AfterViewInit {
 
   editarCliente(cliente?: ClienteModel) {
     var ret = this.dialog.open(ClientesCadastroComponent, {
+      width: '600px', // opcional
+      height: '800px',
       panelClass: `md-large`,
+      maxHeight: '95vh',
       data: cliente,
     });
     ret

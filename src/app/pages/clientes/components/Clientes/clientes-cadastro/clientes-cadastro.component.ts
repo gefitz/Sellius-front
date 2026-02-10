@@ -25,10 +25,11 @@ import { Viacep } from '../../../../../core/services/Utils/consome-api.serivce';
 import { EstadoModel } from '../../../../../core/model/estado.model';
 import { error } from 'node:console';
 import { HttpResponse } from '@angular/common/http';
+import { FornecedorXClienteComponent } from '../../../../fornecedores/component/fornecedor-x-cliente/fornecedor-x-cliente.component';
 
 @Component({
   selector: 'app-clientes-cadastro',
-  imports: [SharedModule],
+  imports: [SharedModule, FornecedorXClienteComponent],
   templateUrl: './clientes-cadastro.component.html',
   styleUrls: ['./clientes-cadastro.component.css'],
   standalone: true,
@@ -55,27 +56,10 @@ export class ClientesCadastroComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.clienteForm = new FormGroup({
-      id: new FormControl(0),
-      nome: new FormControl('', Validators.required),
-      documento: new FormControl('', Validators.required),
-      telefone: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      estado: new FormControl(0),
-      cidadeId: new FormControl(0, Validators.required),
-      rua: new FormControl('', Validators.required),
-      cep: new FormControl('', Validators.required),
-      fAtivo: new FormControl(1, Validators.required),
-      dthCadastro: new FormControl(new Date()),
-      dthAlteracao: new FormControl(new Date()),
-      idSegmentacao: new FormControl(0),
-      idGrupo: new FormControl(0),
-      bairro: new FormControl(''),
-    });
+    this.criaFormulario();
     if (this.clienteEditar) {
       this.clienteService.obterClientePorId(this.clienteEditar.id).subscribe({
         next: (ret) => {
-          console.log(ret);
           this.clienteEditar = ret;
           this.preencherCamposFormulario();
           this.preencherSegmentacao();
@@ -140,9 +124,6 @@ export class ClientesCadastroComponent implements OnInit {
         idGrupo: new FormControl(this.clienteEditar.idGrupo),
         bairro: new FormControl(this.clienteEditar.bairro),
       });
-    } else {
-      console.log('Ola');
-      this.titleModal = 'Novo Cliente';
     }
   }
   close() {
@@ -183,7 +164,7 @@ export class ClientesCadastroComponent implements OnInit {
     Viacep.BuscaEstados()
       .then((data) => {
         this.estado = data;
-        if (this.clienteEditar.id) {
+        if (this.editando && this.clienteEditar && this.clienteEditar.id) {
           this.buscarCidades(this.clienteEditar.cidade.estado.id);
         }
       })
@@ -199,5 +180,25 @@ export class ClientesCadastroComponent implements OnInit {
       .catch((error) => {
         console.error('Erro ao buscar cidades:', error);
       });
+  }
+  criaFormulario() {
+    this.clienteForm = new FormGroup({
+      id: new FormControl(0),
+      nome: new FormControl('', Validators.required),
+      documento: new FormControl('', Validators.required),
+      telefone: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      estado: new FormControl(0),
+      cidadeId: new FormControl(0, Validators.required),
+      rua: new FormControl('', Validators.required),
+      cep: new FormControl('', Validators.required),
+      fAtivo: new FormControl(1, Validators.required),
+      dthCadastro: new FormControl(new Date()),
+      dthAlteracao: new FormControl(new Date()),
+      idSegmentacao: new FormControl(0),
+      idGrupo: new FormControl(0),
+      bairro: new FormControl(''),
+    });
+    this.titleModal = 'Novo Cliente';
   }
 }

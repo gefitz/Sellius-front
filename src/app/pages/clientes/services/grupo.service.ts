@@ -36,9 +36,11 @@ export class GrupoService {
     return this.api.get<GrupoModel>(`${this.apiUrl}?id=${id}`);
   }
   carregarSegmentacao() {
-    return this.api.get<GrupoModel[]>(this.apiUrl + '/carregarComboGrupo');
+    return this.api.get<GrupoModel[]>(
+      this.apiUrl + '/carregarComboSegmentacao',
+    );
   }
   carregarGrupo() {
-    return this.api.get<GrupoModel[]>(this.api + '/carregarComboGrupo');
+    return this.api.get<GrupoModel[]>(this.apiUrl + '/carregarComboGrupo');
   }
 }

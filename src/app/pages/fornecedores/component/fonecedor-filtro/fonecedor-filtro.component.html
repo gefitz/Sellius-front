@@ -1,46 +1,55 @@
-<mat-dialog-content>
-  <div class="header">
-    <h5>Pesquisar Fornecedor</h5>
+<mat-dialog-content class="modal-content large">
+  <div class="modal-header produtos">
+    <div class="header-content">
+      <h5 class="modal-title">Pesquisar Fornecedor</h5>
+    </div>
     <span class="space"></span>
-    <button mat-icon-button [mat-dialog-close]>
+    <button mat-icon-button [mat-dialog-close] class="close-button">
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <form [formGroup]="filtroForm">
-    <mat-form-field class="form-control">
-      <mat-label>Nome</mat-label>
-      <input matInput formControlName="nome" required>
-    </mat-form-field>
+  <form [formGroup]="filtroForm" class="form-container">
+    <div class="form-section">
 
-    <mat-form-field class="form-control">
-      <mat-label>CNPJ</mat-label>
-      <input matInput formControlName="cnpj" required>
-    </mat-form-field>
+      <div class="form-row">
 
-    <mat-form-field class="form-control">
-      <mat-label>Estado:</mat-label>
-      <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
-        @for (estado of listEstados; track estado) {
-          <mat-option [value]="estado.id">
-            {{ estado.estado }}
-          </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field" o>
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome">
+        </mat-form-field>
 
-    <mat-form-field class="form-control">
-      <mat-label>Cidade</mat-label>
-      <mat-select formControlName="cidadeId" required>
-        @for (cidade of listCidades; track cidade) {
-          <mat-option [value]="cidade.id">
-            {{ cidade.cidade }}
-          </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>CNPJ</mat-label>
+          <input matInput formControlName="cnpj">
+        </mat-form-field>
 
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Estado:</mat-label>
+          <mat-select formControlName="estado" (selectionChange)="carregarCidade($event.value)">
+            @for (estado of listEstados; track estado) {
+            <mat-option [value]="estado.id">
+              {{ estado.estado }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <mat-select formControlName="cidadeId">
+            @for (cidade of listCidades; track cidade) {
+            <mat-option [value]="cidade.id">
+              {{ cidade.cidade }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
+    <div class="form-actions">
+      <button mat-flat-button type="button" color="primary" [mat-dialog-close]="filtroForm.value">
+        Pesquisar</button>
+    </div>
   </form>
-  <div>
-    <button mat-flat-button type="button" color="primary" [mat-dialog-close]="filtroForm.value">Pesquisar</button>
-  </div>
 </mat-dialog-content>

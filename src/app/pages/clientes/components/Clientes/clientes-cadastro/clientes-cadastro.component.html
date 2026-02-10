@@ -74,9 +74,9 @@
               <mat-label>Estado</mat-label>
               <mat-select formControlName="estado" (selectionChange)="buscarCidades($event.value)">
                 @for (estado of estado; track estado) {
-                  <mat-option [value]="estado.id">
-                    {{ estado.estado }}
-                  </mat-option>
+                <mat-option [value]="estado.id">
+                  {{ estado.estado }}
+                </mat-option>
                 }
               </mat-select>
               <mat-icon matSuffix>map</mat-icon>
@@ -89,9 +89,9 @@
               <mat-label>Cidade</mat-label>
               <mat-select formControlName="cidadeId">
                 @for (c of cidade; track c) {
-                  <mat-option [value]="c.id">
-                    {{ c.cidade }}
-                  </mat-option>
+                <mat-option [value]="c.id">
+                  {{ c.cidade }}
+                </mat-option>
                 }
               </mat-select>
               <mat-icon matSuffix>location_city</mat-icon>
@@ -127,9 +127,9 @@
               <mat-label>Segmentação</mat-label>
               <mat-select formControlName="idSegmentacao">
                 @for (s of segmentacao; track s) {
-                  <mat-option [value]="s.id">
-                    {{ s.segmento }}
-                  </mat-option>
+                <mat-option [value]="s.id">
+                  {{ s.segmento }}
+                </mat-option>
                 }
               </mat-select>
               <mat-icon matSuffix>category</mat-icon>
@@ -140,9 +140,9 @@
               <mat-label>Grupo</mat-label>
               <mat-select formControlName="idGrupo">
                 @for (g of grupo; track g) {
-                  <mat-option [value]="g.id">
-                    {{ g.nome }}
-                  </mat-option>
+                <mat-option [value]="g.id">
+                  {{ g.nome }}
+                </mat-option>
                 }
               </mat-select>
               <mat-icon matSuffix>group_work</mat-icon>
@@ -192,8 +192,8 @@
       </form>
     </mat-tab>
 
-    <mat-tab label="Fornecedores vinculados">
-      <!-- <app-clientes-fornecedores-vinculados [clienteId]="clienteId"></app-clientes-fornecedores-vinculados> -->
+    <mat-tab label="Fornecedores vinculados" *ngIf="clienteEditar && clienteEditar.id">
+      <app-fornecedor-x-cliente [idCliente]="clienteEditar.id"></app-fornecedor-x-cliente>
     </mat-tab>
 
   </mat-tab-group>

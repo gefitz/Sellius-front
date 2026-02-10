@@ -2,3 +2,6 @@
 .modal-header.clientes {
   background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
 }
+.large{
+  max-height: 90vh !important;
+}
