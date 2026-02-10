@@ -1,25 +1,11 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, Observable, throwError, finalize } from 'rxjs';
-import { Cookie } from '../cookie/cookie.service';
-import {
-  Injectable,
-  Component,
-  OnInit,
-  OnDestroy,
-  ElementRef,
-  Renderer2,
-  Inject,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ResponseModel } from './model/response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginService } from '../../../pages/login/services/login.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +20,6 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private cookie: Cookie,
     private snack: MatSnackBar,
     private route: Router,
   ) {}
@@ -134,71 +119,5 @@ export class ApiService {
       this.httpResponse403(error);
     }
     return throwError(() => error.error);
-  }
-}
-
-// Componente de Loader integrado ao ApiService
-@Component({
-  selector: 'app-api-loader',
-  imports: [],
-  template: `
-    @if (isLoading) {
-      <div class="loader-overlay">
-        <div class="spinner"></div>
-      </div>
-    }
-  `,
-  styles: [
-    `
-      .loader-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
-
-      .spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #3498db;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    `,
-  ],
-  standalone: true,
-})
-export class ApiLoaderComponent implements OnInit, OnDestroy {
-  isLoading = false;
-  private subscription: Subscription = new Subscription();
-
-  constructor(private apiService: ApiService) {}
-
-  ngOnInit(): void {
-    this.subscription = this.apiService.loading$.subscribe((loading) => {
-      this.isLoading = loading;
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
